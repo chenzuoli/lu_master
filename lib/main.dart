@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lu_master/index/index.dart';
+import 'package:lu_master/pages/index/index.dart';
 
 void main() {
   runApp(MyApp());
@@ -109,7 +109,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed: _incrementCounter,2
         tooltip: 'Increment',
         child: Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.

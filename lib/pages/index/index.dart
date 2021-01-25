@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:lu_master/index/navigation_icon_view.dart';
-import 'package:lu_master/home/home_page.dart';
-import 'package:lu_master/photograpier/photographer.dart';
-import 'package:lu_master/about/about.dart';
+import 'package:lu_master/pages/index/navigation_icon_view.dart';
+import 'package:lu_master/pages/home/home_page.dart';
+import 'package:lu_master/pages/photograpier/photographer.dart';
+import 'package:lu_master/pages/about/about.dart';
+import 'package:lu_master/pages/contact/contact.dart';
 
 // 创建一个带有状态的widget，因为我们需要事件触发
 class Index extends StatefulWidget {
@@ -31,7 +32,11 @@ class _IndexState extends State<Index> with TickerProviderStateMixin {
       new NavigationIconView(
           icon: new Icon(Icons.home), label: "首页", vsync: this),
       new NavigationIconView(
-          icon: new Icon(Icons.all_inclusive), label: "摄影师", vsync: this),
+          icon: new Icon(Icons.phone_in_talk),
+          label: "通讯录",
+          vsync: this),
+      new NavigationIconView(
+          icon: new Icon(Icons.all_inclusive), label: "撸大师", vsync: this),
       new NavigationIconView(
           icon: new Icon(Icons.perm_identity), label: "我的", vsync: this)
     ];
@@ -44,6 +49,7 @@ class _IndexState extends State<Index> with TickerProviderStateMixin {
     // 将我们bottomBar上面的图标按钮与页面对应起来
     _pageList = <StatefulWidget>[
       new HomePage(),
+      new ContactPage(),
       new PhotographerPage(),
       new AboutPage()
     ];
@@ -72,8 +78,9 @@ class _IndexState extends State<Index> with TickerProviderStateMixin {
             });
     return new MaterialApp(
       home: new Scaffold(
-        body: new Center(
-          child: _currentPage,
+        body: new IndexedStack(
+          index: _currentIndex,
+          children: _pageList,
         ),
         bottomNavigationBar: bottomNavigationBar,
       ),

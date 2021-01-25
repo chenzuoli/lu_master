@@ -5,12 +5,12 @@ import 'package:lu_master/util/httputil.dart';
 import 'package:lu_master/config/constant.dart';
 import 'dart:developer';
 
-class HomePage extends StatefulWidget {
+class CompetitionPage extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => new _HomePageState();
+  State<StatefulWidget> createState() => new _CompetitionPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _CompetitionPageState extends State<CompetitionPage> {
   List<Widget> _getData() {
     var list = new List<Widget>();
     void _asyncData() {
@@ -40,12 +40,12 @@ class _HomePageState extends State<HomePage> {
     return new MaterialApp(
         home: new Scaffold(
             appBar: new AppBar(
-              title: new Text("首页"),
+              title: new Text("比赛列表"),
               actions: <Widget>[new Container()],
             ),
-            // body: new ListView(
-            //   children: this._getData(),
-            // )),
+            floatingActionButton: FloatingActionButton(
+                child: Icon(Icons.arrow_back),
+                onPressed: () => {Navigator.of(context).pop()}),
             body: new Center(
               child: FutureBuilder(
                 initialData: _getData(),
@@ -57,10 +57,6 @@ class _HomePageState extends State<HomePage> {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(4)),
                         child: InkWell(
-                          // child: FadeInImage.assetNetwork(
-                          //   image: ,
-                          //   placeholder: "images/loading.gif",
-                          // ),
                           child: bean,
                           onTap: () {},
                         ),

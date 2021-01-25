@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'setting_page.dart';
 
 class AboutPage extends StatefulWidget {
   @override
@@ -6,17 +7,10 @@ class AboutPage extends StatefulWidget {
 }
 
 class _AboutPage extends State<AboutPage> {
+  
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(
-        home: new Scaffold(
-      appBar: new AppBar(
-        title: new Text("我的"),
-        actions: <Widget>[new Container()],
-      ),
-      body: new Center(
-        child: null,
-      ),
-    ));
+    return MaterialApp(
+        home: SettingPage());
   }
 }
