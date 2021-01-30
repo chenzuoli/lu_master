@@ -107,7 +107,7 @@ class _PhotographerPage extends State<PhotographerPage> {
     return new MaterialApp(
       home: new Scaffold(
         appBar: new AppBar(
-          title: new Text("撸大师"),
+          title: new Text(Constant.MASTER_PAGE_NAME),
           actions: <Widget>[new Container()],
         ),
         body: new Center(

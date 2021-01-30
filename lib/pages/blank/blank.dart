@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../config/constant.dart';
 
 class BlankPage extends StatelessWidget {
   const BlankPage({Key key}) : super(key: key);
@@ -8,7 +9,7 @@ class BlankPage extends StatelessWidget {
     return MaterialApp(
         home: new Scaffold(
       appBar: AppBar(
-        title: Text("空页面"),
+        title: Text(Constant.BLANK_PAGE_NAME),
       ),
       floatingActionButton: FloatingActionButton(
           child: Icon(Icons.arrow_back),

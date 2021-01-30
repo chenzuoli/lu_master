@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import '../../util/select_text_item.dart';
+import '../../config/constant.dart';
 
 class SettingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: new AppBar(
-        title: new Text('我的'),
+        title: new Text(Constant.ABOUT_PAGE_NAME),
       ),
       body: ListView(
         children: <Widget>[

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lu_master/util/select_text_item.dart';
+import '../../config/constant.dart';
 // 搜索框
 // 联系人，标签，群聊，点击显示所有该分类的联系人
 // 单个联系人
@@ -17,7 +18,7 @@ class _ContactPageState extends State<ContactPage> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(title: Text("通讯录")),
+        appBar: AppBar(title: Text(Constant.CONTACT_PAGE_NAME)),
         body: Container(
           child: ListView(
             children: <Widget>[
@@ -25,7 +26,7 @@ class _ContactPageState extends State<ContactPage> {
               SelectTextItem(title: "联系人"),
               SelectTextItem(title: "标签"),
               SelectTextItem(title: "群聊"),
-              ],
+            ],
           ),
         ),
       ),

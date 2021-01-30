@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:lu_master/util/httputil.dart';
 import 'package:lu_master/config/constant.dart';
 import 'dart:developer';
+import 'info.dart';
 
 class CompetitionPage extends StatefulWidget {
   @override
@@ -21,7 +22,7 @@ class _CompetitionPageState extends State<CompetitionPage> {
       }).then((result) {
         List data = json.decode(result)['data'];
         data.forEach((item) {
-          print(item['name']);
+          // print(item['name']);
           list.add(ListTile(
               title: new Text(item['name']),
               leading: Image.network(item['img_url']),
@@ -58,7 +59,12 @@ class _CompetitionPageState extends State<CompetitionPage> {
                             borderRadius: BorderRadius.circular(4)),
                         child: InkWell(
                           child: bean,
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.of(context)
+                                .push(MaterialPageRoute(builder: (context) {
+                              return CompetitionInfoPage();
+                            }));
+                          },
                         ),
                       );
                     },

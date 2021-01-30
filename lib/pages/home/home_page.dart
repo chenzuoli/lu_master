@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'servie_botton.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import '../../config/constant.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -56,7 +57,7 @@ class _HomePageState extends State<HomePage> {
     return new MaterialApp(
         home: new Scaffold(
             appBar: new AppBar(
-              title: new Text("首页"),
+              title: new Text(Constant.HOME_PAGE_NAME),
               actions: <Widget>[new Container()],
             ),
             body: ListView(

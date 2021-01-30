@@ -4,6 +4,7 @@ import 'package:lu_master/pages/home/home_page.dart';
 import 'package:lu_master/pages/photograpier/photographer.dart';
 import 'package:lu_master/pages/about/about.dart';
 import 'package:lu_master/pages/contact/contact.dart';
+import 'package:lu_master/pages/photograpier/master.dart';
 
 // 创建一个带有状态的widget，因为我们需要事件触发
 class Index extends StatefulWidget {
@@ -32,9 +33,7 @@ class _IndexState extends State<Index> with TickerProviderStateMixin {
       new NavigationIconView(
           icon: new Icon(Icons.home), label: "首页", vsync: this),
       new NavigationIconView(
-          icon: new Icon(Icons.phone_in_talk),
-          label: "通讯录",
-          vsync: this),
+          icon: new Icon(Icons.phone_in_talk), label: "通讯录", vsync: this),
       new NavigationIconView(
           icon: new Icon(Icons.all_inclusive), label: "撸大师", vsync: this),
       new NavigationIconView(
@@ -50,7 +49,8 @@ class _IndexState extends State<Index> with TickerProviderStateMixin {
     _pageList = <StatefulWidget>[
       new HomePage(),
       new ContactPage(),
-      new PhotographerPage(),
+      // new PhotographerPage(),
+      new MasterPage(),
       new AboutPage()
     ];
     _currentPage = _pageList[_currentIndex];
