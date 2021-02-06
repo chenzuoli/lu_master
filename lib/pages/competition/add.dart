@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../config/constant.dart';
+
 /// 添加作品
 ///
 
@@ -162,6 +163,12 @@ class _AddWorkPageState extends State<AddWorkPage> {
     return MaterialApp(
       home: Scaffold(
           appBar: AppBar(
+            leading: BackButton(
+              color: Colors.white,
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
             title: Text(Constant.ADD_WORK_PAGE_NAME),
           ),
           body: Column(

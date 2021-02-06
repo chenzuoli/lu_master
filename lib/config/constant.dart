@@ -1,4 +1,6 @@
 class Constant {
+  static const String APP_NAME = "Lu Master";
+
   static const String LOGIN = 'login';
   static const String BASE_URL = "https://pipilong.pet:7449/photography/";
   static const String COMPETITION_LIST_URL = BASE_URL + "get_competitions";
@@ -18,6 +20,8 @@ class Constant {
   static const String UPDATE_PASSWORD = "更新密码";
 
   static const String COMPETITION_CONDITION_BTN_NAME = "比赛条件";
+  static const String COMPETITION_LIST_PAGE_NAME = "比赛列表";
+  static const String COMPETITION_INFO_NAME = "比赛详情";
 }
 
 class Data {

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import '../pages/about/password.dart';
+import '../pages/competition/info.dart';
 
 //配置路由
 final routes = {
   "/update_password": (context, {arguments}) => PasswordPage(),
+  "/competition_info": (context, {arguments}) => CompetitionInfoPage()
 };
 //固定写法
 var onGenerateRoute = (RouteSettings settings) {

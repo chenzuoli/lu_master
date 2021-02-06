@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:lu_master/pages/competition/competition_model.dart';
 import 'add.dart';
+import '../../config/constant.dart';
 
 /*
 name作为appbar
@@ -10,56 +12,50 @@ name作为appbar
 添加一个add按钮，跳转到编辑作品页面，编辑作品页面添加比赛注意事项链接
 */
 
-class CompetitionInfoPage extends StatefulWidget {
-  CompetitionInfoPage({Key key}) : super(key: key);
+class CompetitionInfoPage extends StatelessWidget {
+  CompetitionItemModel item;
+  CompetitionInfoPage({this.item});
 
-  @override
-  _CompetitionInfoPageState createState() => _CompetitionInfoPageState();
-}
-
-class _CompetitionInfoPageState extends State<CompetitionInfoPage> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(
-          title: Text("比赛名次"),
-        ),
-        floatingActionButton: FloatingActionButton(
-            child: Icon(Icons.add),
-            onPressed: () => {
-                  Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (context) {
-                    return AddWorkPage();
-                  }))
-                }),
-        body: Container(
-          child: Text("比赛详情"),
-        ),
-      ),
+          appBar: AppBar(
+            leading: BackButton(
+              color: Colors.white,
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            title: Text(Constant.COMPETITION_INFO_NAME),
+          ),
+          floatingActionButton: FloatingActionButton(
+              child: Icon(Icons.add),
+              onPressed: () => {
+                    Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (context) {
+                      return AddWorkPage();
+                    }))
+                  }),
+          body: Column(
+            children: [
+              Center(
+                child: Image.network(item.img_url),
+              ),
+              Card(
+                child: Text(item.name),
+              ),
+              Card(
+                child: Text(item.subject),
+              ),
+              Card(
+                child: Text(item.start_date),
+              ),
+              Card(
+                child: Text(item.end_date),
+              ),
+            ],
+          )),
     );
-  }
-}
-
-class CompetitionContent {
-  String competition_id;
-  String name;
-  String subject;
-  String condition;
-  String start_date;
-  String end_date;
-  String img_url;
-  CompetitionContent(String competition_id, String name, String subject,
-      String condition, String start_date, String end_date, String img_url) {
-    this.competition_id = competition_id;
-    this.name = name;
-    this.subject = subject;
-    this.condition = condition;
-    this.start_date = start_date;
-    this.end_date = end_date;
-    this.img_url = img_url;
-  }
-  Widget conditionWidget(String condition) {
-    return Container();
   }
 }
