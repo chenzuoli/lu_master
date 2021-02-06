@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'servie_botton.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import '../../config/constant.dart';
+import '../../config/custom_route.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -55,25 +56,27 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
-        home: new Scaffold(
-            appBar: new AppBar(
-              title: new Text(Constant.HOME_PAGE_NAME),
-              actions: <Widget>[new Container()],
-            ),
-            body: ListView(
-              // 这里使用listView是因为本地写了几组不同样式的展示，太懒了，所以这里就没有改
-              children: <Widget>[
-                swiperView(),
-                ServiceBotton("摄影比赛", ''),
-                // Divider(height: 1.0, indent: 2.0, color: Colors.black),
-                ServiceBotton("溜溜", ''),
-                ServiceBotton("寄养", ''),
-                ServiceBotton("配种", ''),
-                ServiceBotton("领养", ''),
-                ServiceBotton("养宠百科", ''),
-                ServiceBotton("在线寻诊", ''),
-
-              ],
-            )));
+      home: new Scaffold(
+          appBar: new AppBar(
+            title: new Text(Constant.HOME_PAGE_NAME),
+            actions: <Widget>[new Container()],
+          ),
+          body: ListView(
+            // 这里使用listView是因为本地写了几组不同样式的展示，太懒了，所以这里就没有改
+            children: <Widget>[
+              swiperView(),
+              ServiceBotton("摄影比赛", ''),
+              // Divider(height: 1.0, indent: 2.0, color: Colors.black),
+              ServiceBotton("溜溜", ''),
+              ServiceBotton("寄养", ''),
+              ServiceBotton("配种", ''),
+              ServiceBotton("领养", ''),
+              ServiceBotton("养宠百科", ''),
+              ServiceBotton("在线寻诊", ''),
+            ],
+          )),
+      routes: routes,
+      onGenerateRoute: onGenerateRoute,
+    );
   }
 }

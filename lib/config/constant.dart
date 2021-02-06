@@ -15,6 +15,7 @@ class Constant {
   static const String CONTACT_PAGE_NAME = "通讯录";
   static const String BLANK_PAGE_NAME = "空页面";
   static const String ADD_WORK_PAGE_NAME = "添加作品";
+  static const String UPDATE_PASSWORD = "更新密码";
 
   static const String COMPETITION_CONDITION_BTN_NAME = "比赛条件";
 }

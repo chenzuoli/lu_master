@@ -7,6 +7,7 @@ import 'package:lu_master/config/constant.dart';
 import 'package:lu_master/util/dio_util.dart';
 import 'package:http/http.dart' as http;
 import 'work.dart';
+import '../../config/custom_route.dart';
 
 /// 资讯
 class MasterPage extends StatefulWidget {
@@ -92,10 +93,7 @@ class _MasterPageState extends State<MasterPage> {
           body: Container(
             margin: EdgeInsets.only(bottom: 5),
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(5),
-              // border: Border.all(
-              //   color: Colors.blue,
-              // ),
+              borderRadius: BorderRadius.circular(5)
             ),
             child: Container(
                 child: FutureBuilder(
@@ -103,6 +101,8 @@ class _MasterPageState extends State<MasterPage> {
               future: _getDataList(),
             )),
           )),
+      routes: routes,
+      onGenerateRoute: onGenerateRoute,
     );
   }
 }

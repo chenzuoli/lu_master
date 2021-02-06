@@ -14,7 +14,11 @@ class SettingPage extends StatelessWidget {
         children: <Widget>[
           SelectTextItem(
             imageName: 'assets/images/lock.png',
-            title: '修改密码',
+            title: Constant.UPDATE_PASSWORD,
+            onTap: () {
+              Navigator.pushNamed(context, '/update_password',
+                  arguments: Constant.UPDATE_PASSWORD);
+            },
           ),
           SelectTextItem(
             title: '密保手机号',

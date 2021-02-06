@@ -21,6 +21,7 @@ class _ContactPageState extends State<ContactPage> {
         appBar: AppBar(title: Text(Constant.CONTACT_PAGE_NAME)),
         body: Container(
           child: ListView(
+            padding: EdgeInsets.only(top: 20),
             children: <Widget>[
               SelectTextItem(title: "消息"),
               SelectTextItem(title: "联系人"),

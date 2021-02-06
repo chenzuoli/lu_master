@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:lu_master/config/constant.dart';
 import 'package:lu_master/pages/index/index.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'config/custom_route.dart';
 
 void main() {
   runApp(MyApp());
@@ -10,7 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Lu Master',
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -28,6 +31,8 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: MyHomePage(title: 'Lu Master'),
+      routes: routes,
+      onGenerateRoute: onGenerateRoute,
     );
   }
 }
@@ -51,21 +56,34 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  var open_id;
+  /*
+   * 利用SharedPreferences存储数据
+   */
+  Future saveString() async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    sharedPreferences.setString("open_id", "");
+  }
 
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
+  /*
+   * 获取存在SharedPreferences中的数据
+   */
+  Future getString() async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    open_id = sharedPreferences.get("open_id");
+    Data.open_id = open_id;
+    return open_id;
   }
 
   @override
   Widget build(BuildContext context) {
+    getString();
+    // if (open_id == null || open_id == '') {
+    //   Future.delayed(
+    //       Duration.zero,
+    //       () => Navigator.of(context)
+    //           .push(MaterialPageRoute(builder: (context) => LoginPage())));
+    // }
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     //
@@ -78,41 +96,6 @@ class _MyHomePageState extends State<MyHomePage> {
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
       bottomNavigationBar: new Index(),
     );
   }

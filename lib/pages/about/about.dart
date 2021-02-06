@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'setting_page.dart';
+import '../../config/custom_route.dart';
 
 class AboutPage extends StatefulWidget {
   @override
@@ -7,10 +8,12 @@ class AboutPage extends StatefulWidget {
 }
 
 class _AboutPage extends State<AboutPage> {
-  
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        home: SettingPage());
+      home: SettingPage(),
+      routes: routes,
+      onGenerateRoute: onGenerateRoute,
+    );
   }
 }

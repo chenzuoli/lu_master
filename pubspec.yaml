@@ -32,8 +32,13 @@ dependencies:
   http: ^0.12.0+1
   test:
   tuple:
-  shared_preferences:
+  # 添加sharedPreference依赖
+  shared_preferences: ^0.5.0
   flutter_swiper: ^1.0.6
+  permission_handler: ^5.0.1+1
+  flutter_localizations:
+    sdk: flutter
+  fluttertoast: ^7.1.6
 
 dev_dependencies:
   flutter_test:
@@ -54,6 +59,9 @@ flutter:
   assets:
     - assets/images/lock.png
     - assets/images/bitcoin.jpeg
+    - assets/images/disneyland.jpeg
+    - assets/images/wechat.png
+    - assets/images/qq.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
