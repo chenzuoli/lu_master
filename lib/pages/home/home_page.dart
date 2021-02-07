@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'servie_botton.dart';
+import 'service_botton.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import '../../config/constant.dart';
 import '../../config/custom_route.dart';

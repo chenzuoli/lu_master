@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:lu_master/pages/competition/competition_model.dart';
 import 'add.dart';
 import '../../config/constant.dart';
+import '../home/service_botton.dart';
+import 'competition_work.dart';
 
 /*
 name作为appbar
@@ -15,6 +17,13 @@ name作为appbar
 class CompetitionInfoPage extends StatelessWidget {
   CompetitionItemModel item;
   CompetitionInfoPage({this.item});
+
+  Widget getCondition(CompetitionItemModel item) {
+    return ClipRRect(
+      child: Text(item.condition),
+      borderRadius: BorderRadius.circular(8),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,18 +51,59 @@ class CompetitionInfoPage extends StatelessWidget {
               Center(
                 child: Image.network(item.img_url),
               ),
-              Card(
+              Container(
+                alignment: Alignment.center,
+                height: 40,
                 child: Text(item.name),
               ),
-              Card(
+              Divider(),
+              Container(
+                margin: EdgeInsets.only(left: 20),
+                alignment: Alignment.centerLeft,
+                height: 40,
                 child: Text(item.subject),
               ),
-              Card(
-                child: Text(item.start_date),
+              Container(
+                margin: EdgeInsets.only(left: 20),
+                alignment: Alignment.centerLeft,
+                height: 40,
+                child:
+                    Text(Constant.WORK_LIST_START_DATE + "：" + item.start_date),
               ),
-              Card(
-                child: Text(item.end_date),
+              Container(
+                margin: EdgeInsets.only(left: 20),
+                alignment: Alignment.centerLeft,
+                height: 40,
+                child:
+                    Text(Constant.WORK_LIST_END_DATE + "：" + item.start_date),
               ),
+              FlatButton(
+                  child: Container(
+                    alignment: Alignment.centerLeft,
+                    margin: EdgeInsets.only(left: 5),
+                    child: Text(
+                      Constant.COMPETITION_CONDITION_BTN_NAME,
+                      style: TextStyle(color: Colors.blue[400]),
+                    ),
+                  ),
+                  onPressed: () {
+                    showModalBottomSheet<void>(
+                        context: context,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(20),
+                            topRight: Radius.circular(20),
+                          ),
+                        ),
+                        builder: (BuildContext context) {
+                          return Container(
+                              child: SingleChildScrollView(
+                            child: getCondition(item),
+                          ));
+                        });
+                  }),
+              ServiceBotton(Constant.WORK_LIST_NAME, ''),
+              CompetitionWorkPage(item),
             ],
           )),
     );

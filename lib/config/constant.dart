@@ -10,6 +10,7 @@ class Constant {
   static const String WORK_UPDATE_VOTE_API = "update_vote";
   static const String WORK_COMMENT_API = "comment";
   static const String WORK_DELETE_COMMENT_API = "delete_comment";
+  static const String COMPETITION_WORK_LIST_URL = "get_competition";
 
   static const String MASTER_PAGE_NAME = "撸大师";
   static const String HOME_PAGE_NAME = "首页";
@@ -22,6 +23,9 @@ class Constant {
   static const String COMPETITION_CONDITION_BTN_NAME = "比赛条件";
   static const String COMPETITION_LIST_PAGE_NAME = "比赛列表";
   static const String COMPETITION_INFO_NAME = "比赛详情";
+  static const String WORK_LIST_START_DATE = "比赛开始时间";
+  static const String WORK_LIST_END_DATE = "比赛结束时间";
+  static const String WORK_LIST_NAME = "作品列表";
 }
 
 class Data {
