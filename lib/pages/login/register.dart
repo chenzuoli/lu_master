@@ -2,11 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluwx/fluwx.dart' as fluwx;
+import 'package:lu_master/config/custom_route.dart';
 import 'package:lu_master/util/loading.dart';
 import 'package:lu_master/util/util.dart';
 import 'package:lu_master/config/constant.dart';
-import 'package:lu_master/util/util.dart';
 import 'package:lu_master/util/dio_util.dart';
+import 'package:lu_master/pages/index/main.dart';
 
 class RegisterPage extends StatefulWidget {
   @override
@@ -41,14 +42,23 @@ class _RegisterPageState extends State<RegisterPage> {
       Util.showMessageDialog(context, '密码不可为空');
       return;
     }
-    _registerRequest(_userID, _password)
-        .then((value) => {Util.showMessageDialog(context, value.toString())});
+    _registerRequest(_userID, _password).then((value) => {
+          if (value['status'] == 200)
+            {
+              Util.showShortLoading(value['data']),
+              Navigator.pushNamed(context, '/main'),
+              Util.saveString("open_id", _userID)
+            }
+          else
+            {Util.showMessageDialog(context, value['message'])}
+        });
   }
 
   Future _registerRequest(String userId, String pwd) async {
     var params = {"open_id": userId, "password": pwd};
-    var result = await DioUtil.request(Constant.REGISTER_APP_URL,
-        method: DioUtil.POST, data: params);
+    // var result = await DioUtil.request(Constant.REGISTER_APP_API,
+    //     method: DioUtil.POST, data: params);
+    var result = await DioUtil.post(Constant.REGISTER_APP_URL, params);
     return result;
   }
 
@@ -158,6 +168,8 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+        routes: routes,
+        onGenerateRoute: onGenerateRoute,
         home: Scaffold(
             appBar: CupertinoNavigationBar(
               leading: BackButton(

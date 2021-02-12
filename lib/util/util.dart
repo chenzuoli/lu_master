@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:connectivity/connectivity.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:lu_master/config/constant.dart';
 
 class Util {
   static Future checkConnection() async {
@@ -77,5 +80,33 @@ class Util {
       },
     );
     print("弹框关闭 $isSelect");
+  }
+
+  static void showShortLoading(String msg) {
+    Fluttertoast.showToast(
+        msg: msg,
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.blue[300],
+        textColor: Colors.black,
+        fontSize: 16.0);
+  }
+
+  /*
+   * 利用SharedPreferences存储数据
+   */
+  static Future saveString(String key, String value) async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    sharedPreferences.setString(key, value);
+  }
+
+  /*
+   * 获取存在SharedPreferences中的数据
+   */
+  static Future getString(String key) async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    String value = sharedPreferences.get(key);
+    return value;
   }
 }

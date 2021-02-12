@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:lu_master/pages/login/login.dart';
-import '../pages/about/password.dart';
-import '../pages/competition/info.dart';
+import 'package:lu_master/pages/about/password.dart';
+import 'package:lu_master/pages/competition/info.dart';
+import 'package:lu_master/pages/index/main.dart';
 
 //配置路由
 final routes = {
+  "/main": (context, {argument}) => MainPage(),
   "/update_password": (context, {arguments}) => PasswordPage(),
   "/competition_info": (context, {arguments}) => CompetitionInfoPage(),
   "/register": (context, {arguments}) => LoginPage(),
-  
 };
 //固定写法
 var onGenerateRoute = (RouteSettings settings) {

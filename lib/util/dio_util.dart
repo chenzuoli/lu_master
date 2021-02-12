@@ -33,8 +33,8 @@ class DioUtil {
     });
 
     /// 打印请求相关信息：请求地址、请求方式、请求参数
-//    print('请求地址：【' + method + '  ' + url + '】');
-//    print('请求参数：' + data.toString());
+    print('请求地址：【' + method + '  ' + url + '】');
+    print('请求参数：' + data.toString());
 
     Dio dio = createInstance();
     var result;
@@ -42,16 +42,14 @@ class DioUtil {
     try {
       Response response = await dio.request(url,
           data: data, options: new Options(method: method));
-
       result = response.data;
 
       /// 打印响应相关信息
-//      print('响应数据：' + response.toString());
+      print('响应数据：' + response.toString());
     } on DioError catch (e) {
       /// 打印请求失败相关信息
-//      print('请求出错：' + e.toString());
+      print('请求出错：' + e.toString());
     }
-
     return result;
   }
 
@@ -64,15 +62,25 @@ class DioUtil {
         connectTimeout: CONNECT_TIMEOUT,
         receiveTimeout: RECEIVE_TIMEOUT,
       );
-
       dio = new Dio(options);
     }
-
     return dio;
   }
 
   /// 清空 dio 对象
   static clear() {
     dio = null;
+  }
+
+  ///post请求发送json
+  static dynamic post(String url, Map<dynamic, dynamic> data) async {
+    ///创建Dio
+    Dio dio = new Dio();
+
+    ///发起post请求
+    Response response = await dio.post(url, queryParameters: data);
+    print("response: " + response.toString());
+
+    return response.data;
   }
 }

@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:lu_master/config/constant.dart';
 import 'package:lu_master/pages/index/index.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'config/custom_route.dart';
 import 'pages/login/login.dart';
-
+import 'util/util.dart';
 void main() {
   runApp(MyApp());
 }
@@ -58,27 +57,9 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   var open_id;
-  /*
-   * 利用SharedPreferences存储数据
-   */
-  Future saveString() async {
-    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    sharedPreferences.setString("open_id", "");
-  }
-
-  /*
-   * 获取存在SharedPreferences中的数据
-   */
-  Future getString() async {
-    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    open_id = sharedPreferences.get("open_id");
-    Data.open_id = open_id;
-    return open_id;
-  }
-
   @override
   Widget build(BuildContext context) {
-    getString();
+    this.open_id = Util.getString('open_id');
     if (open_id == null || open_id == '') {
       Future.delayed(
           Duration.zero,

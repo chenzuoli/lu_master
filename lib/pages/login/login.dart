@@ -5,6 +5,7 @@ import 'package:fluwx/fluwx.dart' as fluwx;
 import 'register.dart';
 import 'package:lu_master/config/constant.dart';
 import 'package:lu_master/util/util.dart';
+import 'package:lu_master/util/dio_util.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -36,6 +37,24 @@ class _LoginPageState extends State<LoginPage> {
       Util.showMessageDialog(context, '密码不可为空');
       return;
     }
+    _loginAction(_userID, _password).then((value) => {
+          if (value['status'] == 200)
+            {
+              Util.showShortLoading(value['data']),
+              Navigator.pushNamed(context, '/main'),
+              Util.saveString("open_id", _userID)
+            }
+          else
+            {Util.showMessageDialog(context, value['message'])}
+        });
+  }
+
+  Future _loginAction(String userId, String pwd) async {
+    var params = {"open_id": userId, "pwd": pwd};
+    // var result = await DioUtil.request(Constant.REGISTER_APP_API,
+    //     method: DioUtil.POST, data: params);
+    var result = await DioUtil.post(Constant.LOGIN_APP_URL, params);
+    return result;
   }
 
   void _onRegister(BuildContext context) {

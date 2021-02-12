@@ -92,9 +92,7 @@ class _MasterPageState extends State<MasterPage> {
           ),
           body: Container(
             margin: EdgeInsets.only(bottom: 5),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(5)
-            ),
+            decoration: BoxDecoration(borderRadius: BorderRadius.circular(5)),
             child: Container(
                 child: FutureBuilder(
               builder: _buildFuture,

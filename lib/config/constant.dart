@@ -5,13 +5,16 @@ class Constant {
   static const String BASE_URL = "https://pipilong.pet:7449/photography/";
   static const String COMPETITION_LIST_URL = BASE_URL + "get_competitions";
   static const String PHOTOGRAPHY_LIST_URL = BASE_URL + "get_photographies";
+  static const String REGISTER_APP_URL = BASE_URL + "register_app";
+  static const String LOGIN_APP_URL = BASE_URL + "login_app";
+
   static const String PHOTOGRAPHY_LIST_API = "get_photographies";
   static const String WORK_LIKE_COMMENT_API = "get_comment_by_id";
   static const String WORK_UPDATE_VOTE_API = "update_vote";
   static const String WORK_COMMENT_API = "comment";
   static const String WORK_DELETE_COMMENT_API = "delete_comment";
-  static const String COMPETITION_WORK_LIST_URL = "get_competition";
-  static const String REGISTER_APP_URL = "register_app";
+  static const String COMPETITION_WORK_LIST_API = "get_competition";
+  static const String REGISTER_APP_API = "register_app";
 
   static const String MASTER_PAGE_NAME = "撸大师";
   static const String HOME_PAGE_NAME = "首页";
