@@ -1,6 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:fluwx/fluwx.dart' as fluwx;
+import 'register.dart';
+import 'package:lu_master/config/constant.dart';
+import 'package:lu_master/util/util.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -20,39 +24,24 @@ class _LoginPageState extends State<LoginPage> {
     _formKey.currentState.reset();
   }
 
-  void _onLogin() {
+  void _onLogin(BuildContext context) {
     final form = _formKey.currentState;
     form.save();
 
     if (_userID == '') {
-      _showMessageDialog('账号不可为空');
+      Util.showMessageDialog(context, '账号不可为空');
       return;
     }
     if (_password == '') {
-      _showMessageDialog('密码不可为空');
+      Util.showMessageDialog(context, '密码不可为空');
       return;
     }
   }
 
-  void _showMessageDialog(String message) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        // return object of type Dialog
-        return AlertDialog(
-          title: new Text('提示'),
-          content: new Text(message),
-          actions: <Widget>[
-            new FlatButton(
-              child: new Text("好的"),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
-    );
+  void _onRegister(BuildContext context) {
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+      return RegisterPage();
+    }));
   }
 
   Widget _showEmailInput() {
@@ -95,12 +84,20 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
+  String _loginwx() {
+    var response = fluwx.registerWxApi(universalLink: "");
+    // fluwx.responseFromAuth.listen((response) {
+    //   //监听授权登录回调
+    //   print("code: " + response.code);
+    // });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: CupertinoNavigationBar(
           backgroundColor: Colors.blue,
-          middle: const Text('登录'),
+          middle: const Text(Constant.LOGIN_PAGE_NAME),
         ),
         body: ListView(
           children: <Widget>[
@@ -132,21 +129,34 @@ class _LoginPageState extends State<LoginPage> {
             ),
             Container(
               height: 70,
-              padding: const EdgeInsets.fromLTRB(35, 30, 35, 0),
+              padding: const EdgeInsets.fromLTRB(80, 30, 80, 0),
               child: OutlineButton(
-                child: Text('登录'),
-                textColor: Colors.orange,
+                child: Text(Constant.LOGIN_PAGE_NAME),
                 color: Colors.white,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20)),
-                borderSide: BorderSide(color: Colors.orange, width: 1),
+                borderSide: BorderSide(color: Colors.black, width: 1),
                 onPressed: () {
-                  _onLogin();
+                  _onLogin(context);
+                },
+              ),
+            ),
+            Container(
+              height: 70,
+              padding: const EdgeInsets.fromLTRB(80, 30, 80, 0),
+              child: OutlineButton(
+                child: Text(Constant.REGISTER_PAGE_NAME),
+                color: Colors.white,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20)),
+                borderSide: BorderSide(color: Colors.black, width: 1),
+                onPressed: () {
+                  _onRegister(context);
                 },
               ),
             ),
             Row(children: <Widget>[
-              Padding(padding: EdgeInsets.fromLTRB(0, 200, 0, 0)),
+              Padding(padding: EdgeInsets.fromLTRB(0, 100, 0, 0)),
               Expanded(child: Divider()),
               Text(
                 " OR ",
@@ -154,22 +164,15 @@ class _LoginPageState extends State<LoginPage> {
               ),
               Expanded(child: Divider()),
             ]),
-            Row(
+            Column(
               children: [
-                Padding(padding: EdgeInsets.fromLTRB(80, 0, 80, 0)),
                 GestureDetector(
                   child: Image.asset("assets/images/wechat.png"),
                   onTap: () {
                     print("点击了微信");
+                    _loginwx();
                   },
                 ),
-                Text("    "),
-                GestureDetector(
-                  child: Image.asset("assets/images/qq.png"),
-                  onTap: () {
-                    print("点击了qq");
-                  },
-                )
               ],
             ),
             Padding(

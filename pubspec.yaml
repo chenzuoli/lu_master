@@ -30,8 +30,8 @@ dependencies:
   cupertino_icons: ^1.0.0
   dio: ^3.0.9
   http: ^0.12.0+1
-  test:
-  tuple:
+  test: ^1.15.7
+  tuple: ^1.0.3
   # 添加sharedPreference依赖
   shared_preferences: ^0.5.0
   flutter_swiper: ^1.0.6
@@ -39,6 +39,9 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   fluttertoast: ^7.1.6
+  fluwx: ^2.6.0+1
+  flutter_spinkit: ^4.1.2
+  connectivity: ^2.0.2
 
 dev_dependencies:
   flutter_test:

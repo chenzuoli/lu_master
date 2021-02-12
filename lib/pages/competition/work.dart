@@ -1,10 +1,9 @@
 import 'package:lu_master/pages/competition/competition_model.dart';
-import 'package:lu_master/pages/photograpier/work_like_comment.dart';
-
+import 'work_model.dart';
 import 'package:flutter/material.dart';
 import 'package:lu_master/config/constant.dart';
 import 'package:lu_master/util/dio_util.dart';
-import 'competition_work_model.dart';
+import 'work_item_page.dart';
 
 /// 资讯
 class CompetitionWorkPage extends StatefulWidget {
@@ -29,20 +28,6 @@ class _CompetitionWorkPageState extends State<CompetitionWorkPage> {
         method: DioUtil.GET, data: param);
     print(result);
     CompetitionWorkModel workModel = CompetitionWorkModel.fromJson(result);
-    for (WorkItemModel workItemModel in workModel.result) {
-      var params = {
-        "photography_id": workItemModel.id,
-        "open_id": workItemModel.open_id
-      };
-      var comments = await DioUtil.request(Constant.WORK_LIKE_COMMENT_API,
-          data: params, method: DioUtil.GET);
-      print(comments);
-      WorkLikeCommentModel workLikeCommentModel =
-          WorkLikeCommentModel.fromJson(comments);
-      workItemModel.comments = workLikeCommentModel;
-      workLikeCommentModel.printInfo();
-    }
-    print(workModel.result);
     return workModel;
   }
 
@@ -50,14 +35,14 @@ class _CompetitionWorkPageState extends State<CompetitionWorkPage> {
     if (snapshot.hasData) {
       //数据处理
       var data = snapshot.data;
-      List<WorkItemModel> listData = (data.result as List).cast();
+      List<CompetitionWorkItemModel> listData = (data.result as List).cast();
 
       return ListView.builder(
         shrinkWrap: true,
         // physics: NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) {
-          WorkItemModel item = listData[index];
-          return WorkPage(item);
+          CompetitionWorkItemModel item = listData[index];
+          return CompetitionWorkItemPage(item);
         },
         itemCount: listData.length,
       );

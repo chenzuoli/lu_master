@@ -11,6 +11,7 @@ class Constant {
   static const String WORK_COMMENT_API = "comment";
   static const String WORK_DELETE_COMMENT_API = "delete_comment";
   static const String COMPETITION_WORK_LIST_URL = "get_competition";
+  static const String REGISTER_APP_URL = "register_app";
 
   static const String MASTER_PAGE_NAME = "撸大师";
   static const String HOME_PAGE_NAME = "首页";
@@ -26,6 +27,9 @@ class Constant {
   static const String WORK_LIST_START_DATE = "比赛开始时间";
   static const String WORK_LIST_END_DATE = "比赛结束时间";
   static const String WORK_LIST_NAME = "作品列表";
+
+  static const String LOGIN_PAGE_NAME = "登录";
+  static const String REGISTER_PAGE_NAME = "注册";
 }
 
 class Data {

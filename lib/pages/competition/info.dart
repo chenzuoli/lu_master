@@ -3,7 +3,7 @@ import 'package:lu_master/pages/competition/competition_model.dart';
 import 'add.dart';
 import '../../config/constant.dart';
 import '../home/service_botton.dart';
-import 'competition_work.dart';
+import 'work.dart';
 
 /*
 name作为appbar

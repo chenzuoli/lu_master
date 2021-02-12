@@ -3,6 +3,7 @@ import 'package:lu_master/config/constant.dart';
 import 'package:lu_master/pages/index/index.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'config/custom_route.dart';
+import 'pages/login/login.dart';
 
 void main() {
   runApp(MyApp());
@@ -78,12 +79,12 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     getString();
-    // if (open_id == null || open_id == '') {
-    //   Future.delayed(
-    //       Duration.zero,
-    //       () => Navigator.of(context)
-    //           .push(MaterialPageRoute(builder: (context) => LoginPage())));
-    // }
+    if (open_id == null || open_id == '') {
+      Future.delayed(
+          Duration.zero,
+          () => Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => LoginPage())));
+    }
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     //
