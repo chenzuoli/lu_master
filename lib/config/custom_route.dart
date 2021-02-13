@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lu_master/pages/competition/choose_img.dart';
 import 'package:lu_master/pages/login/login.dart';
 import 'package:lu_master/pages/about/password.dart';
 import 'package:lu_master/pages/competition/info.dart';
@@ -10,6 +11,7 @@ final routes = {
   "/update_password": (context, {arguments}) => PasswordPage(),
   "/competition_info": (context, {arguments}) => CompetitionInfoPage(),
   "/register": (context, {arguments}) => LoginPage(),
+  "/choose_img": (context, {arguments}) => ChooseImg()
 };
 //固定写法
 var onGenerateRoute = (RouteSettings settings) {

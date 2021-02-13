@@ -40,9 +40,10 @@ class _LoginPageState extends State<LoginPage> {
     _loginAction(_userID, _password).then((value) => {
           if (value['status'] == 200)
             {
-              Util.showShortLoading(value['data']),
+              Util.showShortLoading("注册成功"),
               Navigator.pushNamed(context, '/main'),
-              Util.saveString("open_id", _userID)
+              Util.saveString("open_id", _userID),
+              Util.saveString('token', value['data'])
             }
           else
             {Util.showMessageDialog(context, value['message'])}

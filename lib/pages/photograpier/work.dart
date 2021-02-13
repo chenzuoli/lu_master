@@ -3,6 +3,7 @@ import '../../config/constant.dart';
 import 'work_model.dart';
 import 'work_like_comment.dart';
 import '../../util/dio_util.dart';
+import 'package:lu_master/util/util.dart';
 
 class WorkPage extends StatefulWidget {
   WorkItemModel item;
@@ -23,12 +24,12 @@ class _WorkPageState extends State<WorkPage> {
 
   @override
   initState() {
-    var open_id = Data.open_id;
+    var open_id = Util.getString('open_id');
     this.is_like = _isLike(item, open_id);
     this.is_comment = _isComment(item, open_id);
   }
 
-  bool _isLike(WorkItemModel item, String open_id) {
+  bool _isLike(WorkItemModel item, dynamic open_id) {
     bool flag = false;
     List<WorkLikeCommentItemModel> comments = item.comments.result;
     if (comments == null) return flag;
@@ -42,7 +43,7 @@ class _WorkPageState extends State<WorkPage> {
     return flag;
   }
 
-  bool _isComment(WorkItemModel item, String open_id) {
+  bool _isComment(WorkItemModel item, dynamic open_id) {
     bool flag = false;
     List<WorkLikeCommentItemModel> comments = item.comments.result;
     if (comments == null) return flag;

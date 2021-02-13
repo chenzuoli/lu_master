@@ -1,6 +1,8 @@
 import 'package:dio/dio.dart';
+import 'dart:io';
 import 'dart:async';
 import 'package:lu_master/config/constant.dart';
+import 'package:lu_master/util/util.dart';
 
 class DioUtil {
   /// global dio object
@@ -58,10 +60,13 @@ class DioUtil {
     if (dio == null) {
       /// 全局属性：请求前缀、连接超时时间、响应超时时间
       BaseOptions options = BaseOptions(
-        baseUrl: API_PREFIX,
-        connectTimeout: CONNECT_TIMEOUT,
-        receiveTimeout: RECEIVE_TIMEOUT,
-      );
+          baseUrl: API_PREFIX,
+          connectTimeout: CONNECT_TIMEOUT,
+          receiveTimeout: RECEIVE_TIMEOUT,
+          headers: {
+            HttpHeaders.acceptHeader: "*",
+            "token": Util.getString("token")
+          });
       dio = new Dio(options);
     }
     return dio;
