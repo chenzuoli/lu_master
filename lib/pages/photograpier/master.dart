@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:lu_master/pages/photograpier/add_photography.dart';
 import 'package:lu_master/pages/photograpier/work_like_comment.dart';
 
 import 'work_model.dart';
@@ -26,7 +27,8 @@ class _MasterPageState extends State<MasterPage> {
 
   // dio
   Future<WorkModel> _getDataList() async {
-    var result = await DioUtil.request(Constant.PHOTOGRAPHY_LIST_API,
+    var result = await DioUtil.request(
+        Constant.PHOTOGRAPHY_LIST_API, Constant.CONTENT_TYPE_JSON,
         method: DioUtil.GET);
     print(result);
     WorkModel workModel = WorkModel.fromJson(result);
@@ -35,8 +37,9 @@ class _MasterPageState extends State<MasterPage> {
         "photography_id": workItemModel.id,
         "open_id": workItemModel.open_id
       };
-      var comments = await DioUtil.request(Constant.WORK_LIKE_COMMENT_API,
-          data: params, method: DioUtil.GET);
+      var comments = await DioUtil.get(
+          Constant.WORK_LIKE_COMMENT_API, Constant.CONTENT_TYPE_JSON,
+          data: params);
       print(comments);
       WorkLikeCommentModel workLikeCommentModel =
           WorkLikeCommentModel.fromJson(comments);
@@ -87,18 +90,28 @@ class _MasterPageState extends State<MasterPage> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-          appBar: new AppBar(
-            title: Text(Constant.MASTER_PAGE_NAME),
-          ),
-          body: Container(
-            margin: EdgeInsets.only(bottom: 5),
-            decoration: BoxDecoration(borderRadius: BorderRadius.circular(5)),
-            child: Container(
-                child: FutureBuilder(
-              builder: _buildFuture,
-              future: _getDataList(),
-            )),
+        appBar: new AppBar(
+          title: Text(Constant.MASTER_PAGE_NAME),
+        ),
+        body: Container(
+          margin: EdgeInsets.only(bottom: 5),
+          decoration: BoxDecoration(borderRadius: BorderRadius.circular(5)),
+          child: Container(
+              child: FutureBuilder(
+            builder: _buildFuture,
+            future: _getDataList(),
           )),
+        ),
+        floatingActionButton: FloatingActionButton(
+            child: Icon(Icons.add),
+            heroTag: 'photographies',
+            onPressed: () => {
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (context) {
+                    return AddPhotographyPage();
+                  }))
+                }),
+      ),
       routes: routes,
       onGenerateRoute: onGenerateRoute,
     );

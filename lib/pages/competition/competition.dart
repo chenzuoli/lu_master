@@ -24,7 +24,8 @@ class _CompetitionPageState extends State<CompetitionPage> {
 
   // dio
   Future<CompetitionModel> _getDataList() async {
-    var result = await DioUtil.request(Constant.COMPETITION_LIST_URL,
+    var result = await DioUtil.request(
+        Constant.COMPETITION_LIST_URL, Constant.CONTENT_TYPE_JSON,
         method: DioUtil.GET);
     print(result);
     CompetitionModel competitionModel = CompetitionModel.fromJson(result);

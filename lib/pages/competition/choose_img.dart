@@ -37,6 +37,7 @@ class _ChooseImgState extends State<ChooseImg> {
         onPressed: getImage,
         tooltip: 'Pick Image',
         child: Icon(Icons.add_a_photo),
+        heroTag: 'choose_img',
       ),
     );
   }

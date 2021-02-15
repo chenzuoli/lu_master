@@ -8,8 +8,10 @@ class Constant {
   static const String REGISTER_APP_URL = BASE_URL + "register_app";
   static const String LOGIN_APP_URL = BASE_URL + "login_app";
   static const String UPLOAD_FILE_URL = BASE_URL + "upload_file";
+  static const String UPDATE_PASSWORD_URL = BASE_URL + "update_app_pass";
 
   static const String PHOTOGRAPHY_LIST_API = "get_photographies";
+  static const String PHOTOGRAPHY_ADD_API = "add_photography";
   static const String WORK_ADD_API = "add_photo";
   static const String WORK_LIKE_COMMENT_API = "get_comment_by_id";
   static const String WORK_UPDATE_VOTE_API = "update_vote";
@@ -18,6 +20,8 @@ class Constant {
   static const String COMPETITION_WORK_LIST_API = "get_competition";
   static const String REGISTER_APP_API = "register_app";
   static const String UPLOAD_FILE_API = "upload_file";
+  static const String UPDATE_PASSWORD_API = "update_app_pass";
+  static const String USER_INFO_API = "get_app_user";
 
   static const String MASTER_PAGE_NAME = "撸大师";
   static const String HOME_PAGE_NAME = "首页";
@@ -33,11 +37,21 @@ class Constant {
   static const String WORK_LIST_START_DATE = "比赛开始时间";
   static const String WORK_LIST_END_DATE = "比赛结束时间";
   static const String WORK_LIST_NAME = "作品列表";
+  static const String WORK_COMMENT_PAGE_NAME = "评论";
 
   static const String LOGIN_PAGE_NAME = "登录";
   static const String REGISTER_PAGE_NAME = "注册";
+
+  static const String NICK_NAME = "噜噜名";
+  static const String PHONE_NUMBER = "手机号";
+
+  static const String CONTENT_TYPE_JSON = "application/json";
+  static const String CONTENT_TYPE_FORM = "application/x-www-form-urlencoded";
+  static const String CONTENT_TYPE_TEXT = "text/plain";
+  static const String CONTENT_TYPE_FILE = "multipart/form-data;charset=utf-8";
 }
 
 class Data {
   static String open_id = "";
+  static String token = "";
 }

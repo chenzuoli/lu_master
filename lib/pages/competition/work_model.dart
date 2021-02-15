@@ -61,6 +61,7 @@ class CompetitionWorkItemModel {
         create_time: json['create_time'],
         update_time: json['update_time']);
   }
+  
   void printInfo() {
     print(
         "----${this.competition_id}----${this.phone}----${this.open_id}----${this.subject}----"

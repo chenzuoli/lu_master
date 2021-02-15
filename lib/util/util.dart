@@ -2,9 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:lu_master/config/constant.dart';
 
 class Util {
+  static SharedPreferences preferences;
+  static SharedPreferences sharedPreferences;
+
+  static Future<void> getSharedPreferences() async {
+    if (preferences == null) {
+      preferences = await SharedPreferences.getInstance();
+    } else {
+      return;
+    }
+  }
+
   static Future checkConnection() async {
     bool flag = false;
     Connectivity().onConnectivityChanged.listen((ConnectivityResult result) {
@@ -93,11 +103,18 @@ class Util {
         fontSize: 16.0);
   }
 
+  static Future<SharedPreferences> _getInstance() async {
+    if (sharedPreferences == null) {
+      sharedPreferences = await SharedPreferences.getInstance();
+    }
+    return sharedPreferences;
+  }
+
   /*
    * 利用SharedPreferences存储数据
    */
   static Future saveString(String key, String value) async {
-    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    sharedPreferences = await _getInstance();
     sharedPreferences.setString(key, value);
   }
 
@@ -105,8 +122,10 @@ class Util {
    * 获取存在SharedPreferences中的数据
    */
   static Future getString(String key) async {
-    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    String value = sharedPreferences.get(key);
-    return value;
+    String v;
+    await _getInstance().then((value) {
+      v = value.get(key);
+    });
+    return v;
   }
 }

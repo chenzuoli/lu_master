@@ -39,13 +39,14 @@ class CompetitionInfoPage extends StatelessWidget {
             title: Text(Constant.COMPETITION_INFO_NAME),
           ),
           floatingActionButton: FloatingActionButton(
-              child: Icon(Icons.add),
-              onPressed: () => {
-                    Navigator.of(context)
-                        .push(MaterialPageRoute(builder: (context) {
-                      return AddWorkPage();
-                    }))
-                  }),
+            child: Icon(Icons.add),
+            onPressed: () => {
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                return AddWorkPage();
+              }))
+            },
+            heroTag: 'competition_info',
+          ),
           body: Column(
             children: [
               Center(

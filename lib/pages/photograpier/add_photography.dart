@@ -10,14 +10,14 @@ import 'package:lu_master/util/util.dart';
 /// 添加作品
 ///
 
-class AddWorkPage extends StatefulWidget {
-  AddWorkPage({Key key}) : super(key: key);
+class AddPhotographyPage extends StatefulWidget {
+  AddPhotographyPage({Key key}) : super(key: key);
 
   @override
-  _AddWorkPageState createState() => _AddWorkPageState();
+  _AddPhotographyPageState createState() => _AddPhotographyPageState();
 }
 
-class _AddWorkPageState extends State<AddWorkPage> {
+class _AddPhotographyPageState extends State<AddPhotographyPage> {
   final _formKey = new GlobalKey<FormState>();
 
   String _nick_name;
@@ -192,7 +192,7 @@ class _AddWorkPageState extends State<AddWorkPage> {
           onPressed: _getImage,
           tooltip: 'Pick Image',
           child: Icon(Icons.add_a_photo),
-          heroTag: "add_competition_work",
+          heroTag: 'add_photography',
         ),
         appBar: AppBar(
           leading: BackButton(

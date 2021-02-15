@@ -13,7 +13,7 @@ class BlankPage extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
           child: Icon(Icons.arrow_back),
-          onPressed: () => {Navigator.of(context).pop()}),
+          onPressed: () => {Navigator.of(context).pop()},heroTag: 'blank',),
       body: Container(
         child: Container(
             alignment: Alignment.center,

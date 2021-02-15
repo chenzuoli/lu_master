@@ -20,6 +20,12 @@ class _LoginPageState extends State<LoginPage> {
   bool _isChecked = true;
   bool _isLoading;
   IconData _checkIcon = Icons.check_box;
+  var futureUtils;
+  @override
+  void initState() {
+    futureUtils = Util.getSharedPreferences();
+    super.initState();
+  }
 
   void _changeFormToLogin() {
     _formKey.currentState.reset();
@@ -37,24 +43,32 @@ class _LoginPageState extends State<LoginPage> {
       Util.showMessageDialog(context, '密码不可为空');
       return;
     }
-    _loginAction(_userID, _password).then((value) => {
-          if (value['status'] == 200)
-            {
-              Util.showShortLoading("注册成功"),
-              Navigator.pushNamed(context, '/main'),
-              Util.saveString("open_id", _userID),
-              Util.saveString('token', value['data'])
-            }
-          else
-            {Util.showMessageDialog(context, value['message'])}
-        });
+    _loginAction(_userID, _password).then((value) {
+      if (value['status'] == 200) {
+        Util.showShortLoading("登录成功");
+        print("保存的open_id：" + _userID);
+        print("保存的token：" + value['data']);
+        Util.preferences.setString("open_id", _userID);
+        Util.preferences.setString("token", value['data']);
+        print("获取到的open_id: " + Util.preferences.getString("open_id"));
+        print("获取到的token: " + Util.preferences.getString("token"));
+
+        Data.open_id = _userID;
+        Data.token = value['data'];
+        Navigator.pushNamed(context, '/main');
+      } else {
+        Util.showMessageDialog(context, value['message']);
+      }
+    });
   }
 
   Future _loginAction(String userId, String pwd) async {
     var params = {"open_id": userId, "pwd": pwd};
     // var result = await DioUtil.request(Constant.REGISTER_APP_API,
     //     method: DioUtil.POST, data: params);
-    var result = await DioUtil.post(Constant.LOGIN_APP_URL, params);
+    var result = await DioUtil.post(
+        Constant.LOGIN_APP_URL, Constant.CONTENT_TYPE_JSON,
+        data: params);
     return result;
   }
 

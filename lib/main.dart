@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:lu_master/config/constant.dart';
-import 'package:lu_master/pages/index/index.dart';
+import 'package:lu_master/pages/index/main.dart';
 import 'config/custom_route.dart';
 import 'pages/login/login.dart';
 import 'util/util.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -56,29 +58,43 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  var open_id;
+  var loginState;
+  var futureUtils;
+
+  void initState() {
+    super.initState();
+    futureUtils = Util.getSharedPreferences();
+    _validateLogin();
+  }
+
   @override
   Widget build(BuildContext context) {
-    this.open_id = Util.getString('open_id');
-    if (open_id == null || open_id == '') {
-      Future.delayed(
-          Duration.zero,
-          () => Navigator.of(context)
-              .push(MaterialPageRoute(builder: (context) => LoginPage())));
+    print(loginState);
+    if (loginState == 0) {
+      return LoginPage();
+    } else {
+      return MainPage();
     }
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      bottomNavigationBar: new Index(),
-    );
+  }
+
+  Future _validateLogin() async {
+    Future<dynamic> future = Future(() async {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      return prefs.getString("open_id");
+    });
+    future.then((val) {
+      if (val == null) {
+        setState(() {
+          loginState = 0;
+        });
+      } else {
+        setState(() {
+          loginState = 1;
+        });
+      }
+    }).catchError((_) {
+      print("catchError");
+      Util.showShortLoading("登录失败");
+    });
   }
 }

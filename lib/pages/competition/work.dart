@@ -24,8 +24,9 @@ class _CompetitionWorkPageState extends State<CompetitionWorkPage> {
   // dio
   Future<CompetitionWorkModel> _getDataList() async {
     Map param = {"competition_id": competition.competition_id};
-    var result = await DioUtil.request(Constant.COMPETITION_WORK_LIST_API,
-        method: DioUtil.GET, data: param);
+    var result = await DioUtil.get(
+        Constant.COMPETITION_WORK_LIST_API, Constant.CONTENT_TYPE_JSON,
+        data: param);
     print(result);
     CompetitionWorkModel workModel = CompetitionWorkModel.fromJson(result);
     return workModel;

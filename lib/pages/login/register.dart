@@ -48,7 +48,9 @@ class _RegisterPageState extends State<RegisterPage> {
               Util.showShortLoading("注册成功"),
               Navigator.pushNamed(context, '/main'),
               Util.saveString("open_id", _userID),
-              Util.saveString('token', value['data'])
+              Util.saveString('token', value['data']),
+              Data.open_id = _userID,
+              Data.token = value['data']
             }
           else
             {Util.showMessageDialog(context, value['message'])}
@@ -57,9 +59,9 @@ class _RegisterPageState extends State<RegisterPage> {
 
   Future _registerRequest(String userId, String pwd) async {
     var params = {"open_id": userId, "password": pwd};
-    // var result = await DioUtil.request(Constant.REGISTER_APP_API,
-    //     method: DioUtil.POST, data: params);
-    var result = await DioUtil.post(Constant.REGISTER_APP_URL, params);
+    var result = await DioUtil.post(
+        Constant.REGISTER_APP_URL, Constant.CONTENT_TYPE_JSON,
+        data: params);
     return result;
   }
 
