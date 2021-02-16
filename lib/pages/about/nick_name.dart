@@ -2,24 +2,29 @@ import 'package:flutter/material.dart';
 import 'package:lu_master/config/constant.dart';
 import 'package:lu_master/util/dio_util.dart';
 import 'package:lu_master/util/util.dart';
+import 'user.dart';
 
-class PasswordPage extends StatefulWidget {
-  PasswordPage({Key key}) : super(key: key);
+class NickNamePage extends StatefulWidget {
+  UserModel user;
+  NickNamePage(UserModel user) : this.user = user;
 
   @override
-  _PasswordPageState createState() => _PasswordPageState();
+  _PasswordPageState createState() => _PasswordPageState(user);
 }
 
-class _PasswordPageState extends State<PasswordPage> {
+class _PasswordPageState extends State<NickNamePage> {
+  UserModel user;
+  String _name;
+  String _newName;
+  var futureUtils;
+
   TextEditingController _controller = new TextEditingController();
   TextEditingController _formFieldController = new TextEditingController();
   GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
-  var passKey = GlobalKey<FormFieldState>();
 
-  String _name;
-  String _password;
-  String _conformPass;
-  var futureUtils;
+  _PasswordPageState(UserModel user) {
+    this.user = user;
+  }
 
   @override
   void initState() {
@@ -35,27 +40,16 @@ class _PasswordPageState extends State<PasswordPage> {
     var _form = _formKey.currentState;
     if (_form.validate()) {
       _form.save();
-      print(_name);
-      print(_password);
-      print(_conformPass);
-      await _updatePassword(_name, _password);
+      print(this.user.open_id);
+      print(_newName);
+      await _updateNickName(this.user.open_id, _newName);
     }
   }
 
-  String _conformPassword(String value) {
-    var password = passKey.currentState.value;
-    if (value.length == 0) {
-      return "Password is Required";
-    } else if (value != password) {
-      return 'Password is not matching';
-    }
-    return null;
-  }
-
-  void _updatePassword(String name, String password) async {
-    var params = {"open_id": name, "pwd": password};
+  void _updateNickName(String name, String _newName) async {
+    var params = {"open_id": name, "nick_name": _newName};
     var response = await DioUtil.post(
-        Constant.UPDATE_PASSWORD_URL, Constant.CONTENT_TYPE_FORM,
+        Constant.UPDATE_NICKNAME_API, Constant.CONTENT_TYPE_FORM,
         data: params);
     if (response['status'] == '200') {
       Util.showShortLoading(response['data']);
@@ -72,7 +66,7 @@ class _PasswordPageState extends State<PasswordPage> {
           if (snapshot.connectionState == ConnectionState.done) {
             return Scaffold(
               appBar: AppBar(
-                title: Text(Constant.PASSWORD_PAGE_NAME),
+                title: Text(Constant.NICKNAME_PAGE_NAME),
               ),
               floatingActionButton: new FloatingActionButton(
                 onPressed: () {
@@ -80,7 +74,7 @@ class _PasswordPageState extends State<PasswordPage> {
                   Navigator.of(context).pop();
                 },
                 child: new Text('Submit'),
-                heroTag: "password",
+                heroTag: "nick_name",
               ),
               body: new Container(
                 padding: const EdgeInsets.all(16.0),
@@ -89,31 +83,17 @@ class _PasswordPageState extends State<PasswordPage> {
                   child: new Column(
                     children: <Widget>[
                       new TextFormField(
-                        decoration: new InputDecoration(
-                          labelText: 'Your Name',
-                        ),
-                        onSaved: (val) {
-                          this._name = val;
-                        },
-                      ),
-                      new TextFormField(
-                        key: passKey,
-                        decoration: new InputDecoration(
-                          labelText: 'Password',
-                        ),
-                        obscureText: true,
-                        onSaved: (val) {
-                          this._password = val;
-                        },
-                      ),
+                          decoration: new InputDecoration(
+                            labelText: 'Your Name',
+                          ),
+                          readOnly: true,
+                          initialValue: this.user.nick_name),
                       new TextFormField(
                         decoration: new InputDecoration(
-                          labelText: 'Comform Password',
+                          labelText: 'Your New Name',
                         ),
-                        obscureText: true,
-                        validator: _conformPassword,
                         onSaved: (val) {
-                          this._conformPass = val;
+                          this._newName = val;
                         },
                       ),
                     ],

@@ -1,11 +1,12 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import '../../util/select_text_item.dart';
-import '../../config/constant.dart';
+import 'package:lu_master/pages/about/feedback/feedback_page.dart';
+import 'package:lu_master/util/select_text_item.dart';
+import 'package:lu_master/config/constant.dart';
 import 'package:lu_master/util/dio_util.dart';
 import 'user.dart';
 import 'package:lu_master/util/util.dart';
+import 'nick_name.dart';
 
 class SettingPage extends StatefulWidget {
   @override
@@ -50,21 +51,31 @@ class _SettingPageState extends State<SettingPage> {
           : ListView(
               children: <Widget>[
                 SelectTextItem(
+                    title: this.user.nick_name,
+                    onTap: () {
+                      Navigator.of(context)
+                          .push(MaterialPageRoute(builder: (context) {
+                        return NickNamePage(user);
+                      }));
+                    }),
+                SelectTextItem(
                   imageName: 'assets/images/lock.png',
-                  title: Constant.UPDATE_PASSWORD,
+                  title: Constant.PASSWORD_PAGE_NAME,
                   onTap: () {
                     Navigator.pushNamed(context, '/update_password',
-                        arguments: Constant.UPDATE_PASSWORD);
+                        arguments: Constant.PASSWORD_PAGE_NAME);
                   },
                 ),
-                SelectTextItem(title: this.user.nick_name),
+                SelectTextItem(title: '消息通知', onTap: () {}),
                 SelectTextItem(
-                  title: '消息通知',
-                ),
-                SelectTextItem(
-                  title: '意见反馈',
-                  content: '一个很长很长的内容一个很长很长的内容一个很长很长的内容一个很长很长的内容一个很长很长的内容',
-                ),
+                    title: '意见反馈',
+                    content: '说说你的意见，我们帮你改进！',
+                    onTap: () {
+                      Navigator.of(context)
+                          .push(MaterialPageRoute(builder: (context) {
+                        return FeedbackPage(user);
+                      }));
+                    }),
               ],
             ),
     );

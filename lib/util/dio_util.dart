@@ -149,9 +149,6 @@ class DioUtil {
     String token = Util.preferences.getString("token");
     Dio dio = createInstance(token, content_type);
 
-    ///创建Dio
-    // Dio dio = new Dio();
-
     ///发起post请求
     Response response = await dio.post(url, queryParameters: data);
     print("response: " + response.toString());
@@ -159,15 +156,11 @@ class DioUtil {
     return response.data;
   }
 
-
   ///get请求发送json
   static dynamic get(String url, String content_type,
       {Map<dynamic, dynamic> data}) async {
     String token = Util.preferences.getString("token");
     Dio dio = createInstance(token, content_type);
-
-    ///创建Dio
-    // Dio dio = new Dio();
 
     ///发起post请求
     Response response = await dio.get(url, queryParameters: data);

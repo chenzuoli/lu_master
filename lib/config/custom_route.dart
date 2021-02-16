@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lu_master/pages/about/nick_name.dart';
 import 'package:lu_master/pages/competition/choose_img.dart';
 import 'package:lu_master/pages/login/login.dart';
 import 'package:lu_master/pages/about/password.dart';
@@ -9,6 +10,7 @@ import 'package:lu_master/pages/index/main.dart';
 final routes = {
   "/main": (context, {argument}) => MainPage(),
   "/update_password": (context, {arguments}) => PasswordPage(),
+  "/update_nick_name": (context, {arguments}) => NickNamePage(arguments),
   "/competition_info": (context, {arguments}) => CompetitionInfoPage(),
   "/register": (context, {arguments}) => LoginPage(),
   "/choose_img": (context, {arguments}) => ChooseImg()

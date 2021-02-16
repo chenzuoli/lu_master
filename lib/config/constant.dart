@@ -22,6 +22,8 @@ class Constant {
   static const String UPLOAD_FILE_API = "upload_file";
   static const String UPDATE_PASSWORD_API = "update_app_pass";
   static const String USER_INFO_API = "get_app_user";
+  static const String UPDATE_NICKNAME_API = "update_nick_name";
+  static const String ADD_FEEDBACK_API = "add_feedback";
 
   static const String MASTER_PAGE_NAME = "撸大师";
   static const String HOME_PAGE_NAME = "首页";
@@ -29,7 +31,9 @@ class Constant {
   static const String CONTACT_PAGE_NAME = "通讯录";
   static const String BLANK_PAGE_NAME = "空页面";
   static const String ADD_WORK_PAGE_NAME = "添加作品";
-  static const String UPDATE_PASSWORD = "更新密码";
+  static const String PASSWORD_PAGE_NAME = "更新密码";
+  static const String NICKNAME_PAGE_NAME = "更新昵称";
+  static const String FEEDBACK_PAGE_NAME = "添加反馈";
 
   static const String COMPETITION_CONDITION_BTN_NAME = "比赛条件";
   static const String COMPETITION_LIST_PAGE_NAME = "比赛列表";

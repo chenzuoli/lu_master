@@ -44,6 +44,7 @@ class _LoginPageState extends State<LoginPage> {
       return;
     }
     _loginAction(_userID, _password).then((value) {
+      print(value);
       if (value['status'] == 200) {
         Util.showShortLoading("登录成功");
         print("保存的open_id：" + _userID);
