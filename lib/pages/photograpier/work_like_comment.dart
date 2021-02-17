@@ -26,7 +26,7 @@ class WorkLikeCommentItemModel {
   int id;
   String photography_id;
   String open_id;
-  String comment_id;
+  int comment_id;
   String comment;
   bool is_vote;
   String create_time;

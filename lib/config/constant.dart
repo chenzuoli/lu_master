@@ -15,6 +15,7 @@ class Constant {
   static const String WORK_ADD_API = "add_photo";
   static const String WORK_LIKE_COMMENT_API = "get_comment_by_id";
   static const String WORK_UPDATE_VOTE_API = "update_vote";
+  static const String WORK_ADD_LIKE_API = "add_like";
   static const String WORK_COMMENT_API = "comment";
   static const String WORK_DELETE_COMMENT_API = "delete_comment";
   static const String COMPETITION_WORK_LIST_API = "get_competition";
@@ -42,6 +43,7 @@ class Constant {
   static const String WORK_LIST_END_DATE = "比赛结束时间";
   static const String WORK_LIST_NAME = "作品列表";
   static const String WORK_COMMENT_PAGE_NAME = "评论";
+  static const String WORK_COMMENT_BTN_NAME = "发表评论";
 
   static const String LOGIN_PAGE_NAME = "登录";
   static const String REGISTER_PAGE_NAME = "注册";

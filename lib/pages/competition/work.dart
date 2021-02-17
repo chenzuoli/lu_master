@@ -27,6 +27,7 @@ class _CompetitionWorkPageState extends State<CompetitionWorkPage> {
     var result = await DioUtil.get(
         Constant.COMPETITION_WORK_LIST_API, Constant.CONTENT_TYPE_JSON,
         data: param);
+    print("works: " + result.toString());
     print(result);
     CompetitionWorkModel workModel = CompetitionWorkModel.fromJson(result);
     return workModel;
@@ -36,8 +37,8 @@ class _CompetitionWorkPageState extends State<CompetitionWorkPage> {
     if (snapshot.hasData) {
       //数据处理
       var data = snapshot.data;
+      print("data: " + data.toString());
       List<CompetitionWorkItemModel> listData = (data.result as List).cast();
-
       return ListView.builder(
         shrinkWrap: true,
         // physics: NeverScrollableScrollPhysics(),

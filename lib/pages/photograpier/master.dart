@@ -1,14 +1,12 @@
-import 'dart:convert';
 import 'package:lu_master/pages/photograpier/add_photography.dart';
-import 'package:lu_master/pages/photograpier/work_like_comment.dart';
 
 import 'work_model.dart';
 import 'package:flutter/material.dart';
 import 'package:lu_master/config/constant.dart';
 import 'package:lu_master/util/dio_util.dart';
-import 'package:http/http.dart' as http;
 import 'work.dart';
-import '../../config/custom_route.dart';
+import 'package:lu_master/config/custom_route.dart';
+import 'package:lu_master/util/util.dart';
 
 /// 资讯
 class MasterPage extends StatefulWidget {
@@ -17,36 +15,33 @@ class MasterPage extends StatefulWidget {
 }
 
 class _MasterPageState extends State<MasterPage> {
-  // http
-  Future<WorkModel> fetchPost() async {
-    final response = await http.get(Constant.PHOTOGRAPHY_LIST_URL);
-    Utf8Decoder utf8decoder = Utf8Decoder(); //fix 中文乱码
-    var result = json.decode(utf8decoder.convert(response.bodyBytes));
-    return WorkModel.fromJson(result);
+  var futureUtil;
+  @override
+  void initState() {
+    super.initState();
   }
 
   // dio
   Future<WorkModel> _getDataList() async {
-    var result = await DioUtil.request(
-        Constant.PHOTOGRAPHY_LIST_API, Constant.CONTENT_TYPE_JSON,
-        method: DioUtil.GET);
-    print(result);
+    await Util.getSharedPreferences();
+    var result = await DioUtil.get(
+        Constant.PHOTOGRAPHY_LIST_API, Constant.CONTENT_TYPE_JSON);
     WorkModel workModel = WorkModel.fromJson(result);
-    for (WorkItemModel workItemModel in workModel.result) {
-      var params = {
-        "photography_id": workItemModel.id,
-        "open_id": workItemModel.open_id
-      };
-      var comments = await DioUtil.get(
-          Constant.WORK_LIKE_COMMENT_API, Constant.CONTENT_TYPE_JSON,
-          data: params);
-      print(comments);
-      WorkLikeCommentModel workLikeCommentModel =
-          WorkLikeCommentModel.fromJson(comments);
-      workItemModel.comments = workLikeCommentModel;
-      workLikeCommentModel.printInfo();
-    }
-    print(workModel.result);
+    workModel.printInfo();
+    // for (WorkItemModel workItemModel in workModel.result) {
+    //   var params = {
+    //     "photography_id": workItemModel.id,
+    //     "open_id": workItemModel.open_id
+    //   };
+    //   print("get comment params: " + params.toString());
+    //   var comments = await DioUtil.get(
+    //       Constant.WORK_LIKE_COMMENT_API, Constant.CONTENT_TYPE_JSON,
+    //       data: params);
+    //   WorkLikeCommentModel workLikeCommentModel =
+    //       WorkLikeCommentModel.fromJson(comments);
+    //   workItemModel.comments = workLikeCommentModel;
+    //   workLikeCommentModel.printInfo();
+    // }
     return workModel;
   }
 

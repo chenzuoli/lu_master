@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:lu_master/pages/photograpier/comment_model.dart';
-import '../../config/constant.dart';
+import 'package:lu_master/config/constant.dart';
 import 'work_model.dart';
 import 'work_like_comment.dart';
-import '../../util/dio_util.dart';
+import 'package:lu_master/util/dio_util.dart';
 import 'package:lu_master/util/util.dart';
 
 class WorkPage extends StatefulWidget {
@@ -17,17 +17,19 @@ class WorkPage extends StatefulWidget {
 
 class _WorkPageState extends State<WorkPage> {
   WorkItemModel item;
-  bool is_like;
-  bool is_comment;
+  bool is_like = false;
+  bool is_comment = false;
   _WorkPageState(WorkItemModel item) {
     this.item = item;
   }
 
   @override
   initState() {
-    var open_id = Util.getString('open_id');
-    this.is_like = _isLike(item, open_id);
-    this.is_comment = _isComment(item, open_id);
+    super.initState();
+    Util.getSharedPreferences();
+    var open_id = Util.preferences.getString('open_id');
+    // this.is_like = _isLike(item, open_id);
+    // this.is_comment = _isComment(item, open_id);
   }
 
   bool _isLike(WorkItemModel item, dynamic open_id) {
@@ -60,32 +62,18 @@ class _WorkPageState extends State<WorkPage> {
 
   void updateVote(bool is_vote, int photography_id, String open_id) async {
     Map<String, dynamic> params = {
+      "is_vote": this.is_like,
       "photography_id": photography_id,
       "open_id": open_id
     };
     var result = await DioUtil.post(
-        Constant.WORK_UPDATE_VOTE_API, Constant.CONTENT_TYPE_JSON,
+        Constant.WORK_ADD_LIKE_API, Constant.CONTENT_TYPE_JSON,
         data: params);
-    print(result);
-  }
-
-  void comment(int photography_id, String open_id, BigInt comment_id,
-      String comment) async {
-    Map<String, dynamic> params = {
-      "photography_id": photography_id,
-      "open_id": open_id,
-      "comment_id": comment_id,
-      "comment": comment
-    };
-    await DioUtil.post(Constant.WORK_COMMENT_API, Constant.CONTENT_TYPE_JSON,
-        data: params);
-  }
-
-  void deleteComment(BigInt id) async {
-    Map<String, dynamic> params = {"id": id};
-    await DioUtil.post(
-        Constant.WORK_DELETE_COMMENT_API, Constant.CONTENT_TYPE_JSON,
-        data: params);
+    if (result['status'] == 200) {
+      Util.showShortLoading(result['data']);
+    } else {
+      Util.showShortLoading(result['message']);
+    }
   }
 
   Widget _listItemBuilder(WorkItemModel item) {
@@ -144,11 +132,11 @@ class _WorkPageState extends State<WorkPage> {
               onPressed: () {
                 setState(() {
                   is_comment = !is_comment;
-                  Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (cotext) {
-                    return CommentPage(item);
-                  }));
                 });
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) {
+                  return CommentPage(item);
+                }));
               },
             ),
           ],

@@ -68,6 +68,18 @@ class WorkItemModel {
         update_time: json['update_time'],
         comments: json['comments']);
   }
+
+
+  List<WorkLikeCommentItemModel> filterNoComment(List<WorkLikeCommentItemModel> comments) {
+    List<WorkLikeCommentItemModel> list = List();
+    for (var i = 0; i < comments.length; i++) {
+      if (comments[i].comment != null && comments[i] != '') {
+        list.add(comments[i]);
+      }
+    }
+    return list;
+  }
+
   void printInfo() {
     print(
         "----${this.id}----${this.phone}----${this.open_id}----${this.url}----${this.type}----${this.subject}----${this.nick_name}----${this.photographer}----${this.vote}----${this.create_time}----${this.update_time}----${this.comments}");
