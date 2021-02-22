@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:lu_master/util/dio_util.dart';
 import 'package:lu_master/util/select_text_item.dart';
 import 'package:lu_master/config/constant.dart';
+import 'package:lu_master/util/util.dart';
 
 class UserPage extends StatefulWidget {
   UserModel user;
@@ -87,6 +89,18 @@ class UserModel {
       this.balance,
       this.create_time,
       this.update_time});
+
+  static Future<UserModel> requestUserInfo(String open_id) async {
+    var param = {"open_id": open_id};
+    print("get user info params: " + param.toString());
+    var result = await DioUtil.get(
+        Constant.USER_INFO_API, Constant.CONTENT_TYPE_JSON,
+        data: param);
+    print("result: " + result.toString());
+    print("state: " + result['data'].toString());
+    UserModel user = UserModel.fromJson(result['data']);
+    return user;
+  }
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
     return UserModel(

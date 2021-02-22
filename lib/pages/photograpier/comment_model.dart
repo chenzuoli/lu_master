@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lu_master/config/constant.dart';
+import 'package:lu_master/pages/about/user.dart';
+import 'package:tuple/tuple.dart';
 import 'work_model.dart';
 import 'package:lu_master/util/dio_util.dart';
 import 'package:lu_master/pages/photograpier/work_like_comment.dart';
@@ -25,6 +27,7 @@ class _CommentPageState extends State<CommentPage> {
   WorkItemModel item;
   Widget page;
   String _comment;
+  Map<int, Tuple2<bool, bool>> status = Map();
 
   _CommentPageState(WorkItemModel item) {
     this.item = item;
@@ -36,15 +39,15 @@ class _CommentPageState extends State<CommentPage> {
     getComments(item);
   }
 
-  void _forSubmitted() {
+  void _forSubmitted(int comment_id) {
     var _form = _formKey.currentState;
     if (_form.validate()) {
       _form.save();
-      comment(this.item.id, "0", _fieldKey.currentState.value);
+      comment(this.item.id, comment_id, _fieldKey.currentState.value);
     }
   }
 
-  void comment(int photography_id, String comment_id, String comment) async {
+  void comment(int photography_id, int comment_id, String comment) async {
     // 评论人
     String open_id = Util.preferences.getString("open_id");
     Map<String, dynamic> params = {
@@ -53,13 +56,15 @@ class _CommentPageState extends State<CommentPage> {
       "comment_id": comment_id,
       "comment": comment
     };
-    print("评论为：" + params.toString());
     Map result = await DioUtil.post(
         Constant.WORK_COMMENT_API, Constant.CONTENT_TYPE_JSON,
         data: params);
     if (result['status'] == '200') {
       Util.showShortLoading(result['data']);
-      Navigator.of(context).pop();
+      setState(() {
+        this.status[comment_id] = Tuple2(
+            !this.status[comment_id].item1, this.status[comment_id].item2);
+      });
     } else {
       Util.showShortLoading(result['msg']);
     }
@@ -75,24 +80,66 @@ class _CommentPageState extends State<CommentPage> {
   Future<List<WorkLikeCommentItemModel>> request_comment(
       WorkItemModel item) async {
     var params = {"photography_id": item.id, "open_id": item.open_id};
-    print("get comment params: " + params.toString());
+    print("request comment params: " + params.toString());
     var comments = await DioUtil.get(
         Constant.WORK_LIKE_COMMENT_API, Constant.CONTENT_TYPE_JSON,
         data: params);
     WorkLikeCommentModel workLikeCommentModel =
         WorkLikeCommentModel.fromJson(comments);
     item.comments = workLikeCommentModel;
-    workLikeCommentModel.printInfo();
     return workLikeCommentModel.result;
   }
 
-  Widget getComments(WorkItemModel item) {
+  static void addCommentVote(
+      bool is_vote, int photography_id, String open_id, int comment_id) async {
+    Map<String, dynamic> params = {
+      "is_vote": is_vote,
+      "photography_id": photography_id,
+      "open_id": open_id,
+      "comment_id": comment_id
+    };
+    var result = await DioUtil.post(
+        Constant.COMMENT_ADD_LIKE_API, Constant.CONTENT_TYPE_JSON,
+        data: params);
+    if (result['status'] == 200) {
+      Util.showShortLoading(result['data']);
+    } else {
+      Util.showShortLoading(result['message']);
+    }
+  }
+
+  Future<Map<int, UserModel>> request_users(
+      List<WorkLikeCommentItemModel> comments) async {
+    Map<int, UserModel> users = {};
+    for (WorkLikeCommentItemModel comment in comments) {
+      var userModel = await UserModel.requestUserInfo(comment.open_id);
+      users[comment.id] = userModel;
+    }
+    return users;
+  }
+
+  void _initStatus(List<WorkLikeCommentItemModel> comments) {
+    for (WorkLikeCommentItemModel comment in comments) {
+      this.status[comment.id] = Tuple2(false, false);
+    }
+  }
+
+  Future<Widget> getComments(WorkItemModel item) async {
     Widget res;
-    request_comment(item).then((comments) {
-      // 过滤只点赞的数据
-      comments = item.filterNoComment(comments);
-      res = Column(
-        children: [
+    // 获取评论
+    var comments = await request_comment(item);
+    // 获取评论用户信息
+    var users = await request_users(comments);
+
+    // 初始化like comment状态
+    _initStatus(comments);
+
+    // 过滤只点赞的数据
+    comments = item.filterNoComment(comments);
+    res = SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Container(
+            child: Column(children: [
           AspectRatio(
             aspectRatio: 16 / 9,
             child: ClipRRect(
@@ -126,32 +173,77 @@ class _CommentPageState extends State<CommentPage> {
             isShowArrow: false,
             titleStyle: TextStyle(fontSize: 20),
           ),
-          Column(
-            children: comments.map((comment) {
-              return Column(
-                children: [
-                  ListTile(
-                    leading: CircleAvatar(
-                      backgroundImage: NetworkImage(item.url),
+          comments.length == 0
+              ? Container(
+                  height: 40,
+                  child: Center(
+                    child: Text(
+                      Constant.WORK_COMMENT_EMPTY_CONTENT,
+                      style: TextStyle(color: Colors.grey[400]),
                     ),
-                    title: Text(comment.comment),
                   ),
-                  Divider(),
-                ],
-              );
-            }).toList(),
-          ),
-        ],
-      );
-      setState(() {
-        flag = true;
-        page = res;
-      });
+                )
+              : Column(
+                  children: comments.map((comment) {
+                    return Container(
+                        child: Row(
+                      children: [
+                        Container(
+                          width: 300,
+                          child: ListTile(
+                            leading: CircleAvatar(
+                              backgroundImage:
+                                  NetworkImage(users[comment.id].avatar_url),
+                            ),
+                            title: Text(users[comment.id].nick_name),
+                            subtitle: Text(comment.comment),
+                          ),
+                        ),
+                        IconButton(
+                            icon: Icon(Icons.favorite),
+                            color: this.status[comment.id].item1
+                                ? Colors.blue
+                                : Colors.grey[400],
+                            onPressed: () {
+                              addCommentVote(status[comment.id].item1, item.id,
+                                  item.open_id, comment.id);
+                              setState(() {
+                                this.status[comment.id] = Tuple2(
+                                    !this.status[comment.id].item1,
+                                    this.status[comment.id].item2);
+                              });
+                            }),
+                        IconButton(
+                            icon: Icon(Icons.chat_bubble),
+                            color: this.status[comment.id].item1
+                                ? Colors.blue
+                                : Colors.grey[400],
+                            onPressed: () {
+                              showModalBottomSheet(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return Container(
+                                      // 评论某个人的评论，comment_id为此评论的id
+                                      // @某人
+                                      child: textField(comment.id,
+                                          '@' + users[comment.id].nick_name),
+                                      padding: EdgeInsets.all(7),
+                                    );
+                                  });
+                            })
+                      ],
+                    ));
+                  }).toList(),
+                )
+        ])));
+    setState(() {
+      flag = true;
+      page = res;
     });
     return res;
   }
 
-  Row textField() {
+  Row textField(int comment_id, String hintText) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.end,
@@ -162,7 +254,7 @@ class _CommentPageState extends State<CommentPage> {
           child: TextFormField(
             key: _fieldKey,
             decoration: InputDecoration(
-              hintText: 'Say something here...', //提示文字
+              hintText: hintText, //提示文字
               border: null,
               focusedBorder: UnderlineInputBorder(
                 //输入框被选中时的边框样式
@@ -181,7 +273,7 @@ class _CommentPageState extends State<CommentPage> {
           icon: Icon(Icons.send),
           onPressed: () {
             // comment this photography work.
-            _forSubmitted();
+            _forSubmitted(comment_id);
           },
         )
       ],
@@ -199,7 +291,8 @@ class _CommentPageState extends State<CommentPage> {
               context: context,
               builder: (BuildContext context) {
                 return Container(
-                  child: textField(),
+                  // 评论作品，作品的comment_id为0
+                  child: textField(0, 'Say something here...'),
                   padding: EdgeInsets.all(7),
                 );
               });
@@ -212,32 +305,15 @@ class _CommentPageState extends State<CommentPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        bottomNavigationBar: BottomAppBar(
-          child: bottomNewCommentButton(),
-        ),
-        appBar: AppBar(title: Text(Constant.WORK_COMMENT_PAGE_NAME)),
-        body: FlatButton(
-          child: flag
-              ? page
-              : Center(
-                  child: Text("加载中..."),
-                ),
-          onPressed: () {
-            // showModalBottomSheet<void>(
-            //     context: context,
-            //     shape: RoundedRectangleBorder(
-            //       borderRadius: BorderRadius.only(
-            //         topLeft: Radius.circular(20),
-            //         topRight: Radius.circular(20),
-            //       ),
-            //     ),
-            //     builder: (BuildContext context) {
-            //       return Container(
-            //           child: SingleChildScrollView(
-            //         child: getComments(item),
-            //       ));
-            //     });
-          },
-        ));
+      bottomNavigationBar: BottomAppBar(
+        child: bottomNewCommentButton(),
+      ),
+      appBar: AppBar(title: Text(Constant.WORK_COMMENT_PAGE_NAME)),
+      body: flag
+          ? this.page
+          : Center(
+              child: Text("加载中..."),
+            ),
+    );
   }
 }

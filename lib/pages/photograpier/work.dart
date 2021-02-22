@@ -60,9 +60,10 @@ class _WorkPageState extends State<WorkPage> {
     return flag;
   }
 
-  void updateVote(bool is_vote, int photography_id, String open_id) async {
+
+  static void updateVote(bool is_vote, int photography_id, String open_id) async {
     Map<String, dynamic> params = {
-      "is_vote": this.is_like,
+      "is_vote": is_vote,
       "photography_id": photography_id,
       "open_id": open_id
     };
