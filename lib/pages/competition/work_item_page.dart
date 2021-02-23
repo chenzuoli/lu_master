@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:lu_master/pages/competition/competition_model.dart';
-import 'info.dart';
 import 'work_model.dart';
 
 class CompetitionWorkItemPage extends StatefulWidget {

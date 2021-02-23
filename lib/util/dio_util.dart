@@ -55,9 +55,6 @@ class DioUtil {
         });
         response.then((value) => {
               result = value.data,
-
-              // 打印响应相关信息
-              print('响应数据：' + response.toString())
             });
       } on DioError catch (e) {
         /// 打印请求失败相关信息
@@ -91,14 +88,10 @@ class DioUtil {
     print('请求参数：' + data.toString());
     Dio dio = createInstance(token, content_type);
     var result;
-
     try {
       Response response = await dio.request(url,
           data: data, options: new Options(method: method));
       result = response.data;
-
-      /// 打印响应相关信息
-      print('响应数据：' + response.toString());
     } on DioError catch (e) {
       /// 打印请求失败相关信息
       print('请求出错：' + e.toString());
@@ -151,8 +144,6 @@ class DioUtil {
 
     ///发起post请求
     Response response = await dio.post(url, queryParameters: data);
-    print("response: " + response.toString());
-
     return response.data;
   }
 
@@ -164,8 +155,6 @@ class DioUtil {
 
     ///发起post请求
     Response response = await dio.get(url, queryParameters: data);
-    print("response: " + response.toString());
-
     return response.data;
   }
 }

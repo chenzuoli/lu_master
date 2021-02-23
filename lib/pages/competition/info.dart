@@ -28,85 +28,90 @@ class CompetitionInfoPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-          appBar: AppBar(
-            leading: BackButton(
-              color: Colors.white,
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
+        home: Scaffold(
+            appBar: AppBar(
+              leading: BackButton(
+                color: Colors.white,
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+              title: Text(Constant.COMPETITION_INFO_NAME),
             ),
-            title: Text(Constant.COMPETITION_INFO_NAME),
-          ),
-          floatingActionButton: FloatingActionButton(
-            child: Icon(Icons.add),
-            onPressed: () => {
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-                return AddWorkPage();
-              }))
-            },
-            heroTag: 'competition_info',
-          ),
-          body: Column(
-            children: [
-              Center(
-                child: Image.network(item.img_url),
-              ),
-              Container(
-                alignment: Alignment.center,
-                height: 40,
-                child: Text(item.name),
-              ),
-              Divider(),
-              Container(
-                margin: EdgeInsets.only(left: 20),
-                alignment: Alignment.centerLeft,
-                height: 40,
-                child: Text(item.subject),
-              ),
-              Container(
-                margin: EdgeInsets.only(left: 20),
-                alignment: Alignment.centerLeft,
-                height: 40,
-                child:
-                    Text(Constant.WORK_LIST_START_DATE + "：" + item.start_date),
-              ),
-              Container(
-                margin: EdgeInsets.only(left: 20),
-                alignment: Alignment.centerLeft,
-                height: 40,
-                child:
-                    Text(Constant.WORK_LIST_END_DATE + "：" + item.start_date),
-              ),
-              FlatButton(
-                  child: Container(
-                    alignment: Alignment.centerLeft,
-                    margin: EdgeInsets.only(left: 5),
-                    child: Text(
-                      Constant.COMPETITION_CONDITION_BTN_NAME,
-                      style: TextStyle(color: Colors.blue[400]),
-                    ),
-                  ),
-                  onPressed: () {
-                    showModalBottomSheet<void>(
-                        context: context,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(20),
-                            topRight: Radius.circular(20),
-                          ),
+            floatingActionButton: FloatingActionButton(
+              child: Icon(Icons.add),
+              onPressed: () => {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) {
+                  return AddWorkPage();
+                }))
+              },
+              heroTag: 'competition_info',
+            ),
+            body: Container(
+                child: SingleChildScrollView(
+                    scrollDirection: Axis.vertical,
+                    child: Column(
+                      children: [
+                        Center(
+                          child: Image.network(item.img_url),
                         ),
-                        builder: (BuildContext context) {
-                          return Container(
-                              child: SingleChildScrollView(
-                            child: getCondition(item),
-                          ));
-                        });
-                  }),
-              ServiceBotton(Constant.WORK_LIST_NAME, ''),
-              CompetitionWorkPage(item),
-            ],
-          )),
-    );
+                        Container(
+                          alignment: Alignment.center,
+                          height: 40,
+                          child: Text(item.name),
+                        ),
+                        Divider(),
+                        Container(
+                          margin: EdgeInsets.only(left: 20),
+                          alignment: Alignment.centerLeft,
+                          height: 40,
+                          child: Text(item.subject),
+                        ),
+                        Container(
+                          margin: EdgeInsets.only(left: 20),
+                          alignment: Alignment.centerLeft,
+                          height: 40,
+                          child: Text(Constant.WORK_LIST_START_DATE +
+                              "：" +
+                              item.start_date),
+                        ),
+                        Container(
+                          margin: EdgeInsets.only(left: 20),
+                          alignment: Alignment.centerLeft,
+                          height: 40,
+                          child: Text(Constant.WORK_LIST_END_DATE +
+                              "：" +
+                              item.start_date),
+                        ),
+                        FlatButton(
+                            child: Container(
+                              alignment: Alignment.centerLeft,
+                              margin: EdgeInsets.only(left: 5),
+                              child: Text(
+                                Constant.COMPETITION_CONDITION_BTN_NAME,
+                                style: TextStyle(color: Colors.blue[400]),
+                              ),
+                            ),
+                            onPressed: () {
+                              showModalBottomSheet<void>(
+                                  context: context,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(20),
+                                      topRight: Radius.circular(20),
+                                    ),
+                                  ),
+                                  builder: (BuildContext context) {
+                                    return Container(
+                                        child: SingleChildScrollView(
+                                      child: getCondition(item),
+                                    ));
+                                  });
+                            }),
+                        ServiceBotton(Constant.WORK_LIST_NAME, ''),
+                        CompetitionWorkPage(item),
+                      ],
+                    )))));
   }
 }

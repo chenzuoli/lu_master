@@ -31,7 +31,7 @@ class CompetitionWorkItemModel {
   String nick_name;
   String type;
   String url;
-  String votes;
+  int votes;
   String create_time;
   String update_time;
 

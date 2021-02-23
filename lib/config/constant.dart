@@ -19,7 +19,7 @@ class Constant {
   static const String COMMENT_ADD_LIKE_API = "add_comment_like";
   static const String WORK_COMMENT_API = "comment";
   static const String WORK_DELETE_COMMENT_API = "delete_comment";
-  static const String COMPETITION_WORK_LIST_API = "get_competition";
+  static const String COMPETITION_WORK_LIST_API = "get_votes";
   static const String REGISTER_APP_API = "register_app";
   static const String UPLOAD_FILE_API = "upload_file";
   static const String UPDATE_PASSWORD_API = "update_app_pass";
