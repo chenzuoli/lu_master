@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:fluwx/fluwx.dart' as fluwx;
+// import 'package:fluwx/fluwx.dart' as fluwx;
 import 'package:lu_master/config/custom_route.dart';
 import 'package:lu_master/util/loading.dart';
 import 'package:lu_master/util/util.dart';
@@ -161,7 +161,7 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 
   String _loginwx() {
-    var response = fluwx.registerWxApi(universalLink: "");
+    // var response = fluwx.registerWxApi(universalLink: "");
     // fluwx.responseFromAuth.listen((response) {
     //   //监听授权登录回调
     //   print("code: " + response.code);

@@ -38,7 +38,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   fluttertoast: ^7.1.6
-  fluwx: ^2.6.0+1
+  # fluwx: ^2.6.0+1
   flutter_spinkit: ^4.1.2
   connectivity: ^2.0.2
   image_picker: ^0.6.7+22

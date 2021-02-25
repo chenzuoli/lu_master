@@ -1,6 +1,5 @@
 import 'dart:developer';
 import 'dart:io';
-import 'package:lu_master/dto/result_dto.dart';
 import 'package:dio/dio.dart';
 
 //网络请求工具类
