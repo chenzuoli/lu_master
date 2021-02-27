@@ -11,7 +11,7 @@ class DioUtil {
 
   /// default options
   static const String API_PREFIX = Constant.BASE_URL;
-  static const int CONNECT_TIMEOUT = 10000;
+  static const int CONNECT_TIMEOUT = 60000;
   static const int RECEIVE_TIMEOUT = 3000;
 
   /// http request methods
@@ -155,6 +155,14 @@ class DioUtil {
 
     ///发起post请求
     Response response = await dio.get(url, queryParameters: data);
+    return response.data;
+  }
+
+  static dynamic uploadFile(
+      String url, String content_type, FormData data) async {
+    String token = Util.preferences.getString("token");
+    Dio dio = createInstance(token, content_type);
+    Response response = await dio.post(url, data: data);
     return response.data;
   }
 }

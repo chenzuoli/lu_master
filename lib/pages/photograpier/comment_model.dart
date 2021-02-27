@@ -59,7 +59,7 @@ class _CommentPageState extends State<CommentPage> {
     Map result = await DioUtil.post(
         Constant.WORK_COMMENT_API, Constant.CONTENT_TYPE_JSON,
         data: params);
-    if (result['status'] == '200') {
+    if (result['status'] == 200) {
       Util.showShortLoading(result['data']);
       setState(() {
         this.status[comment_id] = Tuple2(
@@ -189,7 +189,7 @@ class _CommentPageState extends State<CommentPage> {
                         child: Row(
                       children: [
                         Container(
-                          width: 300,
+                          width: 250,
                           child: ListTile(
                             leading: CircleAvatar(
                               backgroundImage:
@@ -199,6 +199,7 @@ class _CommentPageState extends State<CommentPage> {
                             subtitle: Text(comment.comment),
                           ),
                         ),
+                        Expanded(child: SizedBox()), //自动扩展挤压
                         IconButton(
                             icon: Icon(Icons.favorite),
                             color: this.status[comment.id].item1

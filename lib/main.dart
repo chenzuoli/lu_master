@@ -81,7 +81,8 @@ class _MyHomePageState extends State<MyHomePage> {
   Future _validateLogin() async {
     Future<dynamic> future = Future(() async {
       SharedPreferences prefs = await SharedPreferences.getInstance();
-      return prefs.getString("open_id");
+      var open_id = prefs.getString("open_id");
+      return open_id;
     });
     future.then((val) {
       if (val == null) {

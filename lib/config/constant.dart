@@ -1,3 +1,4 @@
+import 'package:lu_master/pages/about/user.dart';
 class Constant {
   static const String APP_NAME = "Lu Master";
 
@@ -62,4 +63,5 @@ class Constant {
 class Data {
   static String open_id = "";
   static String token = "";
+  static UserModel user;
 }

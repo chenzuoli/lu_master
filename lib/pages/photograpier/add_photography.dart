@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:lu_master/config/custom_route.dart';
 import 'package:lu_master/util/dio_util.dart';
-import '../../config/constant.dart';
 import 'package:dio/dio.dart';
 import 'dart:io';
+import 'package:lu_master/config/constant.dart';
+import 'package:lu_master/pages/about/user.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:lu_master/util/util.dart';
 
@@ -22,7 +23,6 @@ class _AddPhotographyPageState extends State<AddPhotographyPage> {
 
   String _nick_name;
   String _subject;
-  String _url;
 
   File _image;
   final picker = ImagePicker();
@@ -70,9 +70,10 @@ class _AddPhotographyPageState extends State<AddPhotographyPage> {
     return Container(
         width: double.infinity,
         height: 400,
-        child: Icon(
-          Icons.photo_camera_outlined,
-          size: 80,
+        child: IconButton(
+          icon: Icon(Icons.photo_camera_outlined),
+          iconSize: 80,
+          onPressed: _getImage,
         ),
         decoration: BoxDecoration(
           border: Border.all(
@@ -116,65 +117,70 @@ class _AddPhotographyPageState extends State<AddPhotographyPage> {
                 "提交",
                 style: TextStyle(fontSize: 15),
               ),
-              onPressed: () {
-                print("点击了提交");
-                var response = _uploadImage();
-                response.then((value) => {_submitAction()});
-                _submitAction();
+              onPressed: () async {
+                await _uploadImage();
+                await _submitAction();
               }),
         ));
   }
 
   //上传图片到服务器
   Future _uploadImage() async {
+    final form = _formKey.currentState;
+    form.save();
+    print(_image);
+    if (this._nick_name == '' || this._nick_name == null) {
+      Util.showMessageDialog(context, '昵称不能为空');
+      return;
+    }
+    if (this._subject == '' || this._subject == null) {
+      Util.showMessageDialog(context, '主题不能为空');
+      return;
+    }
+    if (this._image == '' || this._image == null) {
+      Util.showMessageDialog(context, "请上传作品");
+      return;
+    }
     FormData formData = FormData.fromMap({
-      "name": "electric barker",
-      "file": await MultipartFile.fromFile(_image.path)
+      "name": "avatarFile",
+      "avatarFile": await MultipartFile.fromFile(_image.path)
     });
-    Dio dio = Dio();
-    Response response =
-        await dio.post(Constant.UPLOAD_FILE_URL, data: formData);
-    if (response.statusCode == 200) {
-      Map responseMap = response.data;
-      print("${responseMap["data"]}");
+    Util.showLoading(context, "上传中，请等待...");
+
+    var response = await DioUtil.uploadFile(
+        Constant.UPLOAD_FILE_URL, Constant.CONTENT_TYPE_FILE, formData);
+    print(response);
+    Navigator.pop(context, true); // close dialog
+    if (response['status'] == 200) {
+      Util.showShortLoading("上传成功");
       setState(() {
-        this._imgServerPath = "${responseMap["path"]}";
+        this._imgServerPath = "${response["data"]}";
       });
+    }
+    if (this._imgServerPath == '' || this._imgServerPath == null) {
+      Util.showMessageDialog(context, "作品不能为空");
+      return;
     }
     return response;
   }
 
   void _submitAction() async {
-    final form = _formKey.currentState;
-    form.save();
-
-    if (this._nick_name == '') {
-      Util.showMessageDialog(context, '昵称不能为空');
-      return;
-    }
-    if (this._subject == '') {
-      Util.showMessageDialog(context, '主题不能为空');
-      return;
-    }
-    if (this._url == '') {
-      Util.showMessageDialog(context, "作品不能为空");
-      return;
-    }
-    if (this._imgServerPath == '') {
-      Util.showMessageDialog(context, "作品不能为空");
-      return;
-    }
+    String open_id = await Util.getString("open_id");
+    Data.user = await UserModel.requestUserInfo(open_id);
     var params = {
       "nick_name": this._nick_name,
       "subject": this._subject,
       "url": this._imgServerPath,
       "type": "img",
-      "open_id": await Util.getString("open_id")
+      "open_id": open_id,
+      "photographer": Data.user.nick_name
     };
+    print("add work: " + params.toString());
     var response = await DioUtil.post(
-        Constant.WORK_ADD_API, Constant.CONTENT_TYPE_JSON,
+        Constant.PHOTOGRAPHY_ADD_API, Constant.CONTENT_TYPE_JSON,
         data: params);
-    if (response['status'] == "200") {
+    print("add work response: " + response.toString());
+    if (response['status'] == 200) {
       Util.showShortLoading(response['data']);
       Navigator.of(context).pop();
     } else {

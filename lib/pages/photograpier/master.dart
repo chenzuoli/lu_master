@@ -28,20 +28,6 @@ class _MasterPageState extends State<MasterPage> {
         Constant.PHOTOGRAPHY_LIST_API, Constant.CONTENT_TYPE_JSON);
     WorkModel workModel = WorkModel.fromJson(result);
     workModel.printInfo();
-    // for (WorkItemModel workItemModel in workModel.result) {
-    //   var params = {
-    //     "photography_id": workItemModel.id,
-    //     "open_id": workItemModel.open_id
-    //   };
-    //   print("get comment params: " + params.toString());
-    //   var comments = await DioUtil.get(
-    //       Constant.WORK_LIKE_COMMENT_API, Constant.CONTENT_TYPE_JSON,
-    //       data: params);
-    //   WorkLikeCommentModel workLikeCommentModel =
-    //       WorkLikeCommentModel.fromJson(comments);
-    //   workItemModel.comments = workLikeCommentModel;
-    //   workLikeCommentModel.printInfo();
-    // }
     return workModel;
   }
 
