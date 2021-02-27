@@ -6,6 +6,11 @@ class CompetitionWorkModel {
   CompetitionWorkModel({this.status, this.message, this.result});
 
   factory CompetitionWorkModel.fromJson(Map<String, dynamic> json) {
+    print(json);
+    if (json['status'] != 200) {
+      return CompetitionWorkModel(
+          status: json['status'], message: json['message'], result: List());
+    }
     final originList = json['data'] as List;
 
     List<CompetitionWorkItemModel> CompetitionWorkItemModelList = originList
@@ -61,7 +66,7 @@ class CompetitionWorkItemModel {
         create_time: json['create_time'],
         update_time: json['update_time']);
   }
-  
+
   void printInfo() {
     print(
         "----${this.competition_id}----${this.phone}----${this.open_id}----${this.subject}----"

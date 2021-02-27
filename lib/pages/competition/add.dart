@@ -168,7 +168,7 @@ class _AddWorkPageState extends State<AddWorkPage> {
       "nick_name": this._nick_name,
       "subject": this._subject,
       "url": this._imgServerPath,
-      "type": "img",
+      "type": "image",
       "open_id": await Util.getString("open_id")
     };
     var response = await DioUtil.post(

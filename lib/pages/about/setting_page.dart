@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:lu_master/pages/about/feedback/feedback_page.dart';
+import 'package:lu_master/pages/about/password.dart';
 import 'package:lu_master/util/select_text_item.dart';
 import 'package:lu_master/config/constant.dart';
 import 'package:lu_master/util/dio_util.dart';
@@ -62,8 +63,12 @@ class _SettingPageState extends State<SettingPage> {
                   imageName: 'assets/images/lock.png',
                   title: Constant.PASSWORD_PAGE_NAME,
                   onTap: () {
-                    Navigator.pushNamed(context, '/update_password',
-                        arguments: Constant.PASSWORD_PAGE_NAME);
+                    print("user info: ");
+                    user.printInfo();
+                    Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (context) {
+                      return PasswordPage(user);
+                    }));
                   },
                 ),
                 SelectTextItem(title: '消息通知', onTap: () {}),

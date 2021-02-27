@@ -171,7 +171,7 @@ class _AddPhotographyPageState extends State<AddPhotographyPage> {
       "nick_name": this._nick_name,
       "subject": this._subject,
       "url": this._imgServerPath,
-      "type": "img",
+      "type": "image",
       "open_id": open_id,
       "photographer": Data.user.nick_name
     };

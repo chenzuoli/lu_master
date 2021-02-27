@@ -21,6 +21,7 @@ class _LoginPageState extends State<LoginPage> {
   bool _isLoading;
   IconData _checkIcon = Icons.check_box;
   var futureUtils;
+  
   @override
   void initState() {
     futureUtils = Util.getSharedPreferences();

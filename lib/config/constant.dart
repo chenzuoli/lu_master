@@ -1,4 +1,5 @@
 import 'package:lu_master/pages/about/user.dart';
+
 class Constant {
   static const String APP_NAME = "Lu Master";
 
@@ -7,6 +8,7 @@ class Constant {
   static const String COMPETITION_LIST_URL = BASE_URL + "get_competitions";
   static const String PHOTOGRAPHY_LIST_URL = BASE_URL + "get_photographies";
   static const String REGISTER_APP_URL = BASE_URL + "register_app";
+  static const String REGISTER_APP_USER_URL = BASE_URL + "register_app_user";
   static const String LOGIN_APP_URL = BASE_URL + "login_app";
   static const String UPLOAD_FILE_URL = BASE_URL + "upload_file";
   static const String UPDATE_PASSWORD_URL = BASE_URL + "update_app_pass";
@@ -58,6 +60,9 @@ class Constant {
   static const String CONTENT_TYPE_FORM = "application/x-www-form-urlencoded";
   static const String CONTENT_TYPE_TEXT = "text/plain";
   static const String CONTENT_TYPE_FILE = "multipart/form-data;charset=utf-8";
+
+  static const String DEFAULT_NICK_NAME = "用户";
+  static const String DEFAULT_AVATAR_URL = "http://cdn.pipilong.pet/dog2.png";
 }
 
 class Data {

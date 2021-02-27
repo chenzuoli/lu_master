@@ -7,7 +7,10 @@ import 'package:lu_master/util/loading.dart';
 import 'package:lu_master/util/util.dart';
 import 'package:lu_master/config/constant.dart';
 import 'package:lu_master/util/dio_util.dart';
-import 'package:lu_master/pages/index/main.dart';
+
+// 用户注册，默认给一个nick_name、avatar_url
+// nick_name: 用户+时间戳
+// avatar_url: http://cdn.pipilong.pet/Cat.png   http://cdn.pipilong.pet/dog2.png
 
 class RegisterPage extends StatefulWidget {
   @override
@@ -25,6 +28,12 @@ class _RegisterPageState extends State<RegisterPage> {
   bool _isLoading;
   bool _autoValidate;
   IconData _checkIcon = Icons.check_box;
+
+  @override
+  void initState() {
+    Util.getSharedPreferences();
+    super.initState();
+  }
 
   void _changeFormToLogin() {
     _formKey.currentState.reset();
@@ -47,8 +56,8 @@ class _RegisterPageState extends State<RegisterPage> {
             {
               Util.showShortLoading("注册成功"),
               Navigator.pushNamed(context, '/main'),
-              Util.saveString("open_id", _userID),
-              Util.saveString('token', value['data']),
+              Util.preferences.setString("open_id", _userID),
+              Util.preferences.setString('token', value['data']),
               Data.open_id = _userID,
               Data.token = value['data']
             }
@@ -58,9 +67,17 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 
   Future _registerRequest(String userId, String pwd) async {
-    var params = {"open_id": userId, "password": pwd};
+    var current_timestamp = new DateTime.now().millisecondsSinceEpoch;
+    var nick_name = Constant.DEFAULT_NICK_NAME + current_timestamp.toString();
+    var avatar_url = Constant.DEFAULT_AVATAR_URL;
+    var params = {
+      "open_id": userId,
+      "password": pwd,
+      "nick_name": nick_name,
+      "avatar_url": avatar_url
+    };
     var result = await DioUtil.post(
-        Constant.REGISTER_APP_URL, Constant.CONTENT_TYPE_JSON,
+        Constant.REGISTER_APP_USER_URL, Constant.CONTENT_TYPE_JSON,
         data: params);
     return result;
   }

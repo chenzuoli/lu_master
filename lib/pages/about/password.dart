@@ -2,15 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:lu_master/config/constant.dart';
 import 'package:lu_master/util/dio_util.dart';
 import 'package:lu_master/util/util.dart';
+import 'package:lu_master/pages/about/user.dart';
 
 class PasswordPage extends StatefulWidget {
-  PasswordPage({Key key}) : super(key: key);
+  UserModel user;
+  PasswordPage(UserModel user) : this.user = user;
 
   @override
-  _PasswordPageState createState() => _PasswordPageState();
+  _PasswordPageState createState() => _PasswordPageState(user);
 }
 
 class _PasswordPageState extends State<PasswordPage> {
+  UserModel user;
+
+  _PasswordPageState(UserModel user) {
+    this.user = user;
+  }
+
   TextEditingController _controller = new TextEditingController();
   TextEditingController _formFieldController = new TextEditingController();
   GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
@@ -54,10 +62,12 @@ class _PasswordPageState extends State<PasswordPage> {
 
   void _updatePassword(String name, String password) async {
     var params = {"open_id": name, "pwd": password};
+    print("params: " + params.toString());
     var response = await DioUtil.post(
         Constant.UPDATE_PASSWORD_URL, Constant.CONTENT_TYPE_FORM,
         data: params);
-    if (response['status'] == '200') {
+    print("response: " + response.toString());
+    if (response['status'] == 200) {
       Util.showShortLoading(response['data']);
     } else {
       Util.showShortLoading(response['message']);
@@ -92,6 +102,9 @@ class _PasswordPageState extends State<PasswordPage> {
                         decoration: new InputDecoration(
                           labelText: 'Your Name',
                         ),
+                        readOnly: true,
+                        initialValue:
+                            this.user == null ? "" : this.user.open_id,
                         onSaved: (val) {
                           this._name = val;
                         },

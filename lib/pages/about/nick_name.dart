@@ -51,7 +51,7 @@ class _PasswordPageState extends State<NickNamePage> {
     var response = await DioUtil.post(
         Constant.UPDATE_NICKNAME_API, Constant.CONTENT_TYPE_FORM,
         data: params);
-    if (response['status'] == '200') {
+    if (response['status'] == 200) {
       Util.showShortLoading(response['data']);
     } else {
       Util.showShortLoading(response['message']);

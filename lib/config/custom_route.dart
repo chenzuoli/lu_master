@@ -9,7 +9,7 @@ import 'package:lu_master/pages/index/main.dart';
 //配置路由
 final routes = {
   "/main": (context, {argument}) => MainPage(),
-  "/update_password": (context, {arguments}) => PasswordPage(),
+  "/update_password": (context, {arguments}) => PasswordPage(arguments),
   "/update_nick_name": (context, {arguments}) => NickNamePage(arguments),
   "/competition_info": (context, {arguments}) => CompetitionInfoPage(),
   "/register": (context, {arguments}) => LoginPage(),

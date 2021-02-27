@@ -36,15 +36,21 @@ class _CompetitionWorkPageState extends State<CompetitionWorkPage> {
       //数据处理
       var data = snapshot.data;
       List<CompetitionWorkItemModel> listData = (data.result as List).cast();
-      return ListView.builder(
-        shrinkWrap: true,
-        // physics: NeverScrollableScrollPhysics(),
-        itemBuilder: (context, index) {
-          CompetitionWorkItemModel item = listData[index];
-          return CompetitionWorkItemPage(item);
-        },
-        itemCount: listData.length,
-      );
+      return listData.length == 0
+          ? Container(
+              height: 60,
+              child: Center(
+                child: Text("暂时没有作品哦，去上传一个吧..."),
+              ))
+          : ListView.builder(
+              shrinkWrap: true,
+              // physics: NeverScrollableScrollPhysics(),
+              itemBuilder: (context, index) {
+                CompetitionWorkItemModel item = listData[index];
+                return CompetitionWorkItemPage(item);
+              },
+              itemCount: listData.length,
+            );
     }
   }
 
