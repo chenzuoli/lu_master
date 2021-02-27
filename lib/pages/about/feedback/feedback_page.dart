@@ -48,7 +48,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
     var response = await DioUtil.post(
         Constant.ADD_FEEDBACK_API, Constant.CONTENT_TYPE_FORM,
         data: params);
-    if (response['status'] == '200') {
+    if (response['status'] == 200) {
       Util.showShortLoading(response['data']);
     } else {
       Util.showShortLoading(response['message']);
@@ -77,9 +77,8 @@ class _FeedbackPageState extends State<FeedbackPage> {
             children: <Widget>[
               new TextFormField(
                 decoration: new InputDecoration(
-                  labelText: 'Your Feedback Content',
-                  labelStyle: TextStyle()
-                ),
+                    labelText: 'Your Feedback Content',
+                    labelStyle: TextStyle()),
                 maxLines: 8,
                 onSaved: (val) {
                   this._content = val;

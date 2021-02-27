@@ -275,6 +275,7 @@ class _CommentPageState extends State<CommentPage> {
           onPressed: () {
             // comment this photography work.
             _forSubmitted(comment_id);
+            Navigator.of(context).pop();
           },
         )
       ],
