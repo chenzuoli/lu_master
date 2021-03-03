@@ -70,9 +70,10 @@ class _AddWorkPageState extends State<AddWorkPage> {
     return Container(
         width: double.infinity,
         height: 400,
-        child: Icon(
-          Icons.photo_camera_outlined,
-          size: 80,
+        child: IconButton(
+          icon: Icon(Icons.photo_camera_outlined),
+          iconSize: 80,
+          onPressed: _getImage,
         ),
         decoration: BoxDecoration(
           border: Border.all(
