@@ -111,6 +111,7 @@ class DioUtil {
       dio = new Dio(options);
     }
     dio.options.contentType = contentType;
+    dio.options.headers['token'] = token;
     print("header: " + dio.options.headers.toString());
     return dio;
   }
@@ -151,6 +152,12 @@ class DioUtil {
   static dynamic get(String url, String content_type,
       {Map<dynamic, dynamic> data}) async {
     String token = Util.preferences.getString("token");
+    if (token == null) {
+      token = Data.token;
+    }
+    if (token == null) {
+      token = data['token'];
+    }
     Dio dio = createInstance(token, content_type);
 
     ///发起post请求

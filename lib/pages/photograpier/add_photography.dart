@@ -108,7 +108,7 @@ class _AddPhotographyPageState extends State<AddPhotographyPage> {
 
   Widget _submitBtn() {
     return Container(
-        padding: EdgeInsets.only(top: 35),
+        padding: EdgeInsets.only(top: 35, bottom: 35),
         child: SizedBox(
           height: 40,
           width: 200,
@@ -210,22 +210,25 @@ class _AddPhotographyPageState extends State<AddPhotographyPage> {
           title: Text(Constant.ADD_WORK_PAGE_NAME),
         ),
         body: Form(
-          key: _formKey,
-          child: Container(
-            child: Card(
-              child: Column(
-                children: <Widget>[
-                  _showNameInput(),
-                  Divider(height: 0.5, indent: 16.0, color: Colors.grey[300]),
-                  _showSubjectInput(),
-                  Divider(height: 0.5, indent: 16.0, color: Colors.grey[300]),
-                  _showImgInput(),
-                  _submitBtn()
-                ],
+            key: _formKey,
+            child: SingleChildScrollView(
+              child: Container(
+                child: Card(
+                  child: Column(
+                    children: <Widget>[
+                      _showNameInput(),
+                      Divider(
+                          height: 0.5, indent: 16.0, color: Colors.grey[300]),
+                      _showSubjectInput(),
+                      Divider(
+                          height: 0.5, indent: 16.0, color: Colors.grey[300]),
+                      _showImgInput(),
+                      _submitBtn()
+                    ],
+                  ),
+                ),
               ),
-            ),
-          ),
-        ),
+            )),
       ),
     );
   }

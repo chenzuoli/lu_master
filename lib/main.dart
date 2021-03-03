@@ -69,8 +69,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    print(loginState);
-    if (loginState == 0) {
+    if (loginState == 0 || loginState == null) {
       return LoginPage();
     } else {
       // return LoginPage();

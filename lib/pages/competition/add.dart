@@ -107,7 +107,7 @@ class _AddWorkPageState extends State<AddWorkPage> {
 
   Widget _submitBtn() {
     return Container(
-        padding: EdgeInsets.only(top: 35),
+        padding: EdgeInsets.only(top: 35, bottom: 35),
         child: SizedBox(
           height: 40,
           width: 200,
@@ -188,39 +188,42 @@ class _AddWorkPageState extends State<AddWorkPage> {
       routes: routes,
       onGenerateRoute: onGenerateRoute,
       home: Scaffold(
-        floatingActionButton: FloatingActionButton(
-          onPressed: _getImage,
-          tooltip: 'Pick Image',
-          child: Icon(Icons.add_a_photo),
-          heroTag: "add_competition_work",
-        ),
-        appBar: AppBar(
-          leading: BackButton(
-            color: Colors.white,
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
+          floatingActionButton: FloatingActionButton(
+            onPressed: _getImage,
+            tooltip: 'Pick Image',
+            child: Icon(Icons.add_a_photo),
+            heroTag: "add_competition_work",
           ),
-          title: Text(Constant.ADD_WORK_PAGE_NAME),
-        ),
-        body: Form(
-          key: _formKey,
-          child: Container(
-            child: Card(
-              child: Column(
-                children: <Widget>[
-                  _showNameInput(),
-                  Divider(height: 0.5, indent: 16.0, color: Colors.grey[300]),
-                  _showSubjectInput(),
-                  Divider(height: 0.5, indent: 16.0, color: Colors.grey[300]),
-                  _showImgInput(),
-                  _submitBtn()
-                ],
+          appBar: AppBar(
+            leading: BackButton(
+              color: Colors.white,
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            title: Text(Constant.ADD_WORK_PAGE_NAME),
+          ),
+          body: Form(
+            key: _formKey,
+            child: SingleChildScrollView(
+              child: Container(
+                child: Card(
+                  child: Column(
+                    children: <Widget>[
+                      _showNameInput(),
+                      Divider(
+                          height: 0.5, indent: 16.0, color: Colors.grey[300]),
+                      _showSubjectInput(),
+                      Divider(
+                          height: 0.5, indent: 16.0, color: Colors.grey[300]),
+                      _showImgInput(),
+                      _submitBtn()
+                    ],
+                  ),
+                ),
               ),
             ),
-          ),
-        ),
-      ),
+          )),
     );
   }
 }

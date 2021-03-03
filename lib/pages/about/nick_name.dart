@@ -65,42 +65,46 @@ class _PasswordPageState extends State<NickNamePage> {
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
             return Scaffold(
-              appBar: AppBar(
-                title: Text(Constant.NICKNAME_PAGE_NAME),
-              ),
-              floatingActionButton: new FloatingActionButton(
-                onPressed: () {
-                  _forSubmitted();
-                  Navigator.of(context).pop();
-                },
-                child: new Text('Submit'),
-                heroTag: "nick_name",
-              ),
-              body: new Container(
-                padding: const EdgeInsets.all(16.0),
-                child: new Form(
-                  key: _formKey,
-                  child: new Column(
-                    children: <Widget>[
-                      new TextFormField(
-                          decoration: new InputDecoration(
-                            labelText: 'Your Name',
-                          ),
-                          readOnly: true,
-                          initialValue: this.user.nick_name),
-                      new TextFormField(
-                        decoration: new InputDecoration(
-                          labelText: 'Your New Name',
-                        ),
-                        onSaved: (val) {
-                          this._newName = val;
-                        },
-                      ),
-                    ],
-                  ),
+                appBar: AppBar(
+                  title: Text(Constant.NICKNAME_PAGE_NAME),
                 ),
-              ),
-            );
+                floatingActionButton: new FloatingActionButton(
+                  onPressed: () {
+                    _forSubmitted();
+                    Navigator.of(context).pop();
+                  },
+                  child: new Text('Submit'),
+                  heroTag: "nick_name",
+                ),
+                body: Container(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Form(
+                    key: _formKey,
+                    child: SingleChildScrollView(
+                      child: Container(
+                          width: double.infinity,
+                          height: double.infinity,
+                          child: Column(
+                            children: <Widget>[
+                              TextFormField(
+                                  decoration: new InputDecoration(
+                                    labelText: 'Your Name',
+                                  ),
+                                  readOnly: true,
+                                  initialValue: this.user.nick_name),
+                              TextFormField(
+                                decoration: new InputDecoration(
+                                  labelText: 'Your New Name',
+                                ),
+                                onSaved: (val) {
+                                  this._newName = val;
+                                },
+                              ),
+                            ],
+                          )),
+                    ),
+                  ),
+                ));
           } else {
             return Container(
               color: Colors.white,

@@ -26,14 +26,13 @@ class _SettingPageState extends State<SettingPage> {
   // dio
   Future<Map> _getDataList() async {
     await Util.getSharedPreferences();
-    var param = {"open_id": Util.preferences.getString("open_id")};
-    print("params: " + param.toString());
+    Data.open_id = Util.preferences.getString("open_id");
+    Data.token = Util.preferences.getString("token");
+    var param = {"open_id": Data.open_id, "token": Data.token};
     var result = await DioUtil.get(
         Constant.USER_INFO_API, Constant.CONTENT_TYPE_JSON,
         data: param);
-    print("result: " + result.toString());
     setState(() {
-      print("state: " + result['data'].toString());
       this.user = UserModel.fromJson(result['data']);
     });
     return result;
