@@ -72,8 +72,12 @@ class _MasterPageState extends State<MasterPage> {
     return MaterialApp(
       home: Scaffold(
         appBar: new AppBar(
-          title: Text(Constant.MASTER_PAGE_NAME),
-        ),
+            title: Text(
+              Constant.MASTER_PAGE_NAME,
+              style: TextStyle(fontSize: 16),
+            ),
+            centerTitle: true,
+            toolbarHeight: 40),
         body: Container(
           margin: EdgeInsets.only(bottom: 5),
           decoration: BoxDecoration(borderRadius: BorderRadius.circular(5)),

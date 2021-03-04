@@ -43,6 +43,9 @@ class _CompetitionWorkPageState extends State<CompetitionWorkPage> {
                 child: Text("暂时没有作品哦，去上传一个吧..."),
               ))
           : ListView.builder(
+              // 父组件SingleChildScrollView中的滑动与子组件ListView的滑动效果冲突
+              // 取消子组件的滑动效果，继承父组件的滑动效果即可
+              physics: NeverScrollableScrollPhysics(),
               shrinkWrap: true,
               // physics: NeverScrollableScrollPhysics(),
               itemBuilder: (context, index) {

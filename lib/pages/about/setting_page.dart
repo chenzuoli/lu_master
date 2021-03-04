@@ -42,7 +42,12 @@ class _SettingPageState extends State<SettingPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: new AppBar(
-        title: new Text(Constant.ABOUT_PAGE_NAME),
+        title: new Text(
+          Constant.ABOUT_PAGE_NAME,
+          style: TextStyle(fontSize: 16),
+        ),
+        centerTitle: true,
+        toolbarHeight: 40,
       ),
       body: this.user == null
           ? Center(

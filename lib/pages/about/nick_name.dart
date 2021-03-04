@@ -82,8 +82,6 @@ class _PasswordPageState extends State<NickNamePage> {
                     key: _formKey,
                     child: SingleChildScrollView(
                       child: Container(
-                          width: double.infinity,
-                          height: double.infinity,
                           child: Column(
                             children: <Widget>[
                               TextFormField(

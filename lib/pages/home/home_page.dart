@@ -58,7 +58,12 @@ class _HomePageState extends State<HomePage> {
     return new MaterialApp(
       home: new Scaffold(
           appBar: new AppBar(
-            title: new Text(Constant.HOME_PAGE_NAME),
+            title: new Text(
+              Constant.HOME_PAGE_NAME,
+              style: TextStyle(fontSize: 16),
+            ),
+            centerTitle: true,
+            toolbarHeight: 40,
             actions: <Widget>[new Container()],
           ),
           body: ListView(
