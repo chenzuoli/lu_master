@@ -59,8 +59,12 @@ class _FeedbackPageState extends State<FeedbackPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(Constant.FEEDBACK_PAGE_NAME),
-      ),
+          title: Text(
+            Constant.FEEDBACK_PAGE_NAME,
+            style: TextStyle(fontSize: 16),
+          ),
+          centerTitle: true,
+          toolbarHeight: 40),
       floatingActionButton: new FloatingActionButton(
         onPressed: () {
           _forSubmitted();

@@ -18,7 +18,13 @@ class _ContactPageState extends State<ContactPage> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(title: Text(Constant.CONTACT_PAGE_NAME)),
+        appBar: AppBar(
+            title: Text(
+              Constant.CONTACT_PAGE_NAME,
+              style: TextStyle(fontSize: 16),
+            ),
+            centerTitle: true,
+            toolbarHeight: 40),
         body: Container(
           child: ListView(
             padding: EdgeInsets.only(top: 20),

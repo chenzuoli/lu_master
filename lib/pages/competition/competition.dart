@@ -73,14 +73,18 @@ class _CompetitionPageState extends State<CompetitionPage> {
     return new MaterialApp(
       home: new Scaffold(
           appBar: new AppBar(
-            leading: BackButton(
-              color: Colors.white,
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-            title: new Text(Constant.COMPETITION_LIST_PAGE_NAME),
-          ),
+              leading: BackButton(
+                color: Colors.white,
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+              title: new Text(
+                Constant.COMPETITION_LIST_PAGE_NAME,
+                style: TextStyle(fontSize: 16),
+              ),
+              centerTitle: true,
+              toolbarHeight: 40),
           // floatingActionButton: FloatingActionButton(
           //     child: Icon(Icons.arrow_back),
           //     onPressed: () => {Navigator.of(context).pop()}),

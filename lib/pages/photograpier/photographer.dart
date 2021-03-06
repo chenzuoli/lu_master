@@ -97,7 +97,6 @@ class _PhotographerPage extends State<PhotographerPage> {
         });
       });
     }
-
     _asyncData();
     return list;
   }
@@ -107,9 +106,12 @@ class _PhotographerPage extends State<PhotographerPage> {
     return new MaterialApp(
       home: new Scaffold(
         appBar: new AppBar(
-          title: new Text(Constant.MASTER_PAGE_NAME),
-          actions: <Widget>[new Container()],
-        ),
+            title: new Text(
+              Constant.MASTER_PAGE_NAME,
+              style: TextStyle(fontSize: 16),
+            ),
+            centerTitle: true,
+            toolbarHeight: 40),
         body: new Center(
           child: FutureBuilder(
             initialData: _getData(),

@@ -9,11 +9,17 @@ class BlankPage extends StatelessWidget {
     return MaterialApp(
         home: new Scaffold(
       appBar: AppBar(
-        title: Text(Constant.BLANK_PAGE_NAME),
-      ),
+          title: Text(
+            Constant.BLANK_PAGE_NAME,
+            style: TextStyle(fontSize: 16),
+          ),
+          centerTitle: true,
+          toolbarHeight: 40),
       floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.arrow_back),
-          onPressed: () => {Navigator.of(context).pop()},heroTag: 'blank',),
+        child: Icon(Icons.arrow_back),
+        onPressed: () => {Navigator.of(context).pop()},
+        heroTag: 'blank',
+      ),
       body: Container(
         child: Container(
             alignment: Alignment.center,

@@ -60,14 +60,21 @@ class _PasswordPageState extends State<NickNamePage> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    final width = size.width;
+    final height = size.height;
     return FutureBuilder(
         future: futureUtils,
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
             return Scaffold(
                 appBar: AppBar(
-                  title: Text(Constant.NICKNAME_PAGE_NAME),
-                ),
+                    title: Text(
+                      Constant.NICKNAME_PAGE_NAME,
+                      style: TextStyle(fontSize: 16),
+                    ),
+                    centerTitle: true,
+                    toolbarHeight: 40),
                 floatingActionButton: new FloatingActionButton(
                   onPressed: () {
                     _forSubmitted();
@@ -77,29 +84,31 @@ class _PasswordPageState extends State<NickNamePage> {
                   heroTag: "nick_name",
                 ),
                 body: Container(
+                  width: width,
+                  height: height,
                   padding: const EdgeInsets.all(16.0),
                   child: Form(
                     key: _formKey,
                     child: SingleChildScrollView(
                       child: Container(
                           child: Column(
-                            children: <Widget>[
-                              TextFormField(
-                                  decoration: new InputDecoration(
-                                    labelText: 'Your Name',
-                                  ),
-                                  readOnly: true,
-                                  initialValue: this.user.nick_name),
-                              TextFormField(
-                                decoration: new InputDecoration(
-                                  labelText: 'Your New Name',
-                                ),
-                                onSaved: (val) {
-                                  this._newName = val;
-                                },
+                        children: <Widget>[
+                          TextFormField(
+                              decoration: new InputDecoration(
+                                labelText: 'Your Name',
                               ),
-                            ],
-                          )),
+                              readOnly: true,
+                              initialValue: this.user.nick_name),
+                          TextFormField(
+                            decoration: new InputDecoration(
+                              labelText: 'Your New Name',
+                            ),
+                            onSaved: (val) {
+                              this._newName = val;
+                            },
+                          ),
+                        ],
+                      )),
                     ),
                   ),
                 ));

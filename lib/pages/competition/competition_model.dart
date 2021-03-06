@@ -24,6 +24,7 @@ class CompetitionModel {
 }
 
 class CompetitionItemModel {
+  int id;
   String competition_id;
   String name;
   String subject;
@@ -35,7 +36,8 @@ class CompetitionItemModel {
   String update_time;
 
   CompetitionItemModel(
-      {this.competition_id,
+      {this.id,
+      this.competition_id,
       this.name,
       this.subject,
       this.condition,
@@ -48,6 +50,7 @@ class CompetitionItemModel {
 
   factory CompetitionItemModel.fromJson(Map<String, dynamic> json) {
     return CompetitionItemModel(
+        id: json['id'],
         competition_id: json['competition_id'],
         name: json['name'],
         subject: json['subject'],
@@ -60,7 +63,7 @@ class CompetitionItemModel {
   }
   void printInfo() {
     print(
-        "----${this.competition_id}----${this.name}----${this.subject}----${this.condition}----"
+        "${this.id}----${this.competition_id}----${this.name}----${this.subject}----${this.condition}----"
         "${this.img_url}----${this.start_date}----${this.end_date}----"
         "${this.create_time}----${this.update_time}");
   }

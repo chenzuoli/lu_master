@@ -310,7 +310,13 @@ class _CommentPageState extends State<CommentPage> {
       bottomNavigationBar: BottomAppBar(
         child: bottomNewCommentButton(),
       ),
-      appBar: AppBar(title: Text(Constant.WORK_COMMENT_PAGE_NAME)),
+      appBar: AppBar(
+          title: Text(
+            Constant.WORK_COMMENT_PAGE_NAME,
+            style: TextStyle(fontSize: 16),
+          ),
+          centerTitle: true,
+          toolbarHeight: 40),
       body: flag
           ? this.page
           : Center(
