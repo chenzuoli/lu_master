@@ -30,7 +30,7 @@ class Constant {
   static const String UPDATE_NICKNAME_API = "update_nick_name";
   static const String ADD_FEEDBACK_API = "add_feedback";
 
-  static const String MASTER_PAGE_NAME = "撸大师";
+  static const String MASTER_PAGE_NAME = "发现";
   static const String HOME_PAGE_NAME = "首页";
   static const String ABOUT_PAGE_NAME = "我的";
   static const String CONTACT_PAGE_NAME = "通讯录";

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lu_master/config/constant.dart';
 import 'package:lu_master/pages/index/navigation_icon_view.dart';
 import 'package:lu_master/pages/home/home_page.dart';
 import 'package:lu_master/pages/about/about.dart';
@@ -29,13 +30,13 @@ class _IndexState extends State<Index> with TickerProviderStateMixin {
     // 初始化导航图标
     _navigationViews = <NavigationIconView>[
       new NavigationIconView(
-          icon: new Icon(Icons.home), label: "首页", vsync: this),
+          icon: new Icon(Icons.home), label: Constant.HOME_PAGE_NAME, vsync: this),
       // new NavigationIconView(
       //     icon: new Icon(Icons.phone_in_talk), label: "通讯录", vsync: this),
       new NavigationIconView(
-          icon: new Icon(Icons.all_inclusive), label: "撸大师", vsync: this),
+          icon: new Icon(Icons.all_inclusive), label: Constant.MASTER_PAGE_NAME, vsync: this),
       new NavigationIconView(
-          icon: new Icon(Icons.perm_identity), label: "我的", vsync: this)
+          icon: new Icon(Icons.perm_identity), label: Constant.ABOUT_PAGE_NAME, vsync: this)
     ];
 
     // 给每个按钮加上监听
