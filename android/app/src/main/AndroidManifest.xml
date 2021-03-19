@@ -7,8 +7,8 @@
          FlutterApplication and put your custom class here. -->
     <application
         android:name="io.flutter.app.FlutterApplication"
-        android:label="lu_master"
-        android:icon="@mipmap/ic_launcher"
+        android:label="邻家宠物"
+        android:icon="@mipmap/app_name"
         android:requestLegacyExternalStorage="true">
         <activity
             android:name=".MainActivity"

@@ -40,12 +40,14 @@ class Constant {
   static const String NICKNAME_PAGE_NAME = "更新昵称";
   static const String FEEDBACK_PAGE_NAME = "添加反馈";
 
+  static const String PHOTOGRAPHY_NAME = "摄影比赛";
   static const String COMPETITION_CONDITION_BTN_NAME = "比赛条件";
   static const String COMPETITION_LIST_PAGE_NAME = "比赛列表";
   static const String COMPETITION_INFO_NAME = "比赛详情";
   static const String WORK_LIST_START_DATE = "比赛开始时间";
   static const String WORK_LIST_END_DATE = "比赛结束时间";
   static const String WORK_LIST_NAME = "作品列表";
+  static const String WORK_RECOMMEND_NAME = "作品推荐";
   static const String WORK_COMMENT_PAGE_NAME = "评论";
   static const String WORK_COMMENT_BTN_NAME = "发表评论";
   static const String WORK_COMMENT_EMPTY_CONTENT = "暂时还没人评论呢...";

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:lu_master/util/select_text_item.dart';
 import 'service_botton.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
-import '../../config/constant.dart';
-import '../../config/custom_route.dart';
+import 'package:lu_master/config/constant.dart';
+import 'package:lu_master/config/custom_route.dart';
+import 'work_recommend.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -70,7 +72,7 @@ class _HomePageState extends State<HomePage> {
             // 这里使用listView是因为本地写了几组不同样式的展示，太懒了，所以这里就没有改
             children: <Widget>[
               swiperView(),
-              ServiceBotton("摄影比赛", ''),
+              ServiceBotton(Constant.PHOTOGRAPHY_NAME, ''),
               // Divider(height: 1.0, indent: 2.0, color: Colors.black),
               // ServiceBotton("溜溜", ''),
               // ServiceBotton("寄养", ''),
@@ -78,6 +80,11 @@ class _HomePageState extends State<HomePage> {
               // ServiceBotton("领养", ''),
               // ServiceBotton("养宠百科", ''),
               // ServiceBotton("在线寻诊", ''),
+              SelectTextItem(
+                title: Constant.WORK_RECOMMEND_NAME,
+                isShowArrow: false,
+              ),
+              // WorkRecommend()
             ],
           )),
       routes: routes,

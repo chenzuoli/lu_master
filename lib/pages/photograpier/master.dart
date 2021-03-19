@@ -27,7 +27,6 @@ class _MasterPageState extends State<MasterPage> {
     var result = await DioUtil.get(
         Constant.PHOTOGRAPHY_LIST_API, Constant.CONTENT_TYPE_JSON);
     WorkModel workModel = WorkModel.fromJson(result);
-    workModel.printInfo();
     return workModel;
   }
 

@@ -27,8 +27,6 @@ class _CompetitionWorkPageState extends State<CompetitionWorkPage> {
     var result = await DioUtil.get(
         Constant.COMPETITION_WORK_LIST_API, Constant.CONTENT_TYPE_JSON,
         data: param);
-    print("=======");
-    print(result);
     CompetitionWorkModel workModel = CompetitionWorkModel.fromJson(result);
     return workModel;
   }
@@ -49,7 +47,6 @@ class _CompetitionWorkPageState extends State<CompetitionWorkPage> {
               // 取消子组件的滑动效果，继承父组件的滑动效果即可
               physics: NeverScrollableScrollPhysics(),
               shrinkWrap: true,
-              // physics: NeverScrollableScrollPhysics(),
               itemBuilder: (context, index) {
                 CompetitionWorkItemModel item = listData[index];
                 return CompetitionWorkItemPage(item);
