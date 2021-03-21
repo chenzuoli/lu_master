@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:lu_master/util/select_text_item.dart';
-import 'service_botton.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:lu_master/config/constant.dart';
 import 'package:lu_master/config/custom_route.dart';
-import 'work_recommend.dart';
+import 'package:lu_master/pages/competition/competition.dart';
+import 'package:lu_master/pages/competition/latest_competition.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -72,7 +72,18 @@ class _HomePageState extends State<HomePage> {
             // 这里使用listView是因为本地写了几组不同样式的展示，太懒了，所以这里就没有改
             children: <Widget>[
               swiperView(),
-              ServiceBotton(Constant.PHOTOGRAPHY_NAME, ''),
+              // ServiceBotton(Constant.PHOTOGRAPHY_NAME, ''),
+              SelectTextItem(
+                title: Constant.PHOTOGRAPHY_NAME,
+                isShowArrow: true,
+                onTap: () {
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (context) {
+                    return CompetitionPage();
+                  }));
+                },
+              ),
+              LatestCompetitionPage(),
               // Divider(height: 1.0, indent: 2.0, color: Colors.black),
               // ServiceBotton("溜溜", ''),
               // ServiceBotton("寄养", ''),

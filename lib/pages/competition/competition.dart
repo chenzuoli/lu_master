@@ -2,11 +2,11 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:lu_master/config/constant.dart';
-import '../../util/dio_util.dart';
+import 'package:lu_master/util/dio_util.dart';
 import 'competition_model.dart';
 import 'package:http/http.dart' as http;
 import 'competition_item_page.dart';
-import '../../config/custom_route.dart';
+import 'package:lu_master/config/custom_route.dart';
 
 class CompetitionPage extends StatefulWidget {
   @override

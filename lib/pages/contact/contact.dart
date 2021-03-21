@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lu_master/util/select_text_item.dart';
-import '../../config/constant.dart';
+import 'package:lu_master/config/constant.dart';
 // 搜索框
 // 联系人，标签，群聊，点击显示所有该分类的联系人
 // 单个联系人

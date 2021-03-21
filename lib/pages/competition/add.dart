@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lu_master/config/custom_route.dart';
 import 'package:lu_master/util/dio_util.dart';
-import '../../config/constant.dart';
+import 'package:lu_master/config/constant.dart';
 import 'package:dio/dio.dart';
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';

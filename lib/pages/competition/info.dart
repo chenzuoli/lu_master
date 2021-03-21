@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:lu_master/pages/competition/competition_model.dart';
+import 'package:lu_master/util/select_text_item.dart';
 import 'add.dart';
-import '../../config/constant.dart';
-import '../home/service_botton.dart';
+import 'package:lu_master/config/constant.dart';
 import 'work.dart';
 
 /*
@@ -113,7 +113,11 @@ class CompetitionInfoPage extends StatelessWidget {
                                     ));
                                   });
                             }),
-                        ServiceBotton(Constant.WORK_LIST_NAME, ''),
+                        // ServiceBotton(Constant.WORK_LIST_NAME, ''),
+                        SelectTextItem(
+                          title: Constant.WORK_LIST_NAME,
+                          isShowArrow: false,
+                        ),
                         CompetitionWorkPage(item),
                       ],
                     )))));
