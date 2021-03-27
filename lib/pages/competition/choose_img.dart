@@ -28,12 +28,18 @@ class _ChooseImgState extends State<ChooseImg> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: Text(
-            'Image Picker Example',
-            style: TextStyle(fontSize: 16),
-          ),
-          centerTitle: true,
-          toolbarHeight: 40),
+        leading: BackButton(
+          color: Colors.black,
+        ),
+        title: Text(
+          'Image Picker Example',
+          style: TextStyle(fontSize: 16, color: Colors.black),
+        ),
+        centerTitle: true,
+        toolbarHeight: 40,
+        backgroundColor: Colors.white, // status bar color
+        brightness: Brightness.light, // status bar brightness
+      ),
       body: Center(
         child: _image == null ? Text('No image selected.') : Image.file(_image),
       ),

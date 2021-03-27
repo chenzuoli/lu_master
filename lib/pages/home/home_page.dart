@@ -5,6 +5,7 @@ import 'package:lu_master/config/constant.dart';
 import 'package:lu_master/config/custom_route.dart';
 import 'package:lu_master/pages/competition/competition.dart';
 import 'package:lu_master/pages/competition/latest_competition.dart';
+import 'work_recommend.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -18,15 +19,15 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     imageList.add(
       Image.network(
-          "http://cdn.pipilong.pet//mnt/pet/avatar/1608557511506wx7ba6300f3f9c05f8.o6zAJs09zvEoKvOGMm5fvNJjD-K0.oSbPwVLjNNFa771df18d8d213320a64e3d6798d9c67b.jpeg",
+          // "http://cdn.pipilong.pet//mnt/pet/avatar/1608557511506wx7ba6300f3f9c05f8.o6zAJs09zvEoKvOGMm5fvNJjD-K0.oSbPwVLjNNFa771df18d8d213320a64e3d6798d9c67b.jpeg",
+          "http://cdn.pipilong.pet/home3.png",
           fit: BoxFit.cover),
     );
     imageList.add(Image.network(
-      "http://cdn.pipilong.pet//mnt/pet/avatar/1608558101301wx7ba6300f3f9c05f8.o6zAJs09zvEoKvOGMm5fvNJjD-K0.HdHkdhNLTbUh141dd346544edfb8410fbfe637268125.jpg",
+      "http://cdn.pipilong.pet//mnt/pet/avatar/1608558850736wx7ba6300f3f9c05f8.o6zAJs09zvEoKvOGMm5fvNJjD-K0.H95waxmF3xfxee6f34906624c247d5139cc54fe0fde8.jpeg",
       fit: BoxFit.cover,
     ));
-    imageList.add(Image.network(
-        "http://cdn.pipilong.pet//mnt/pet/avatar/1608558850736wx7ba6300f3f9c05f8.o6zAJs09zvEoKvOGMm5fvNJjD-K0.H95waxmF3xfxee6f34906624c247d5139cc54fe0fde8.jpeg",
+    imageList.add(Image.network("http://cdn.pipilong.pet/creator.jpeg",
         fit: BoxFit.cover));
   }
 
@@ -57,16 +58,19 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(
-      home: new Scaffold(
-          appBar: new AppBar(
-            title: new Text(
+    final size = MediaQuery.of(context).size;
+    final width = size.width;
+    return MaterialApp(
+      home: Scaffold(
+          appBar: AppBar(
+            title: Text(
               Constant.HOME_PAGE_NAME,
-              style: TextStyle(fontSize: 16),
+              style: TextStyle(fontSize: 16, color: Colors.black),
             ),
             centerTitle: true,
             toolbarHeight: 40,
-            actions: <Widget>[new Container()],
+            backgroundColor: Colors.white, // status bar color
+            brightness: Brightness.light, // status bar brightness
           ),
           body: ListView(
             // 这里使用listView是因为本地写了几组不同样式的展示，太懒了，所以这里就没有改
@@ -74,6 +78,7 @@ class _HomePageState extends State<HomePage> {
               swiperView(),
               // ServiceBotton(Constant.PHOTOGRAPHY_NAME, ''),
               SelectTextItem(
+                imageName: "assets/images/camera.png",
                 title: Constant.PHOTOGRAPHY_NAME,
                 isShowArrow: true,
                 onTap: () {
@@ -84,18 +89,12 @@ class _HomePageState extends State<HomePage> {
                 },
               ),
               LatestCompetitionPage(),
-              // Divider(height: 1.0, indent: 2.0, color: Colors.black),
-              // ServiceBotton("溜溜", ''),
-              // ServiceBotton("寄养", ''),
-              // ServiceBotton("配种", ''),
-              // ServiceBotton("领养", ''),
-              // ServiceBotton("养宠百科", ''),
-              // ServiceBotton("在线寻诊", ''),
               SelectTextItem(
+                imageName: "assets/images/recommend.png",
                 title: Constant.WORK_RECOMMEND_NAME,
                 isShowArrow: false,
               ),
-              // WorkRecommend()
+              WorkRecommend(width)
             ],
           )),
       routes: routes,

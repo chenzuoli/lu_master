@@ -30,18 +30,21 @@ class CompetitionInfoPage extends StatelessWidget {
     return MaterialApp(
         home: Scaffold(
             appBar: AppBar(
-                leading: BackButton(
-                  color: Colors.white,
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                ),
-                title: Text(
-                  Constant.COMPETITION_INFO_NAME,
-                  style: TextStyle(fontSize: 16),
-                ),
-                centerTitle: true,
-                toolbarHeight: 40),
+              leading: BackButton(
+                color: Colors.black,
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+              title: Text(
+                Constant.COMPETITION_INFO_NAME,
+                style: TextStyle(fontSize: 16, color: Colors.black),
+              ),
+              centerTitle: true,
+              toolbarHeight: 40,
+              backgroundColor: Colors.white, // status bar color
+              brightness: Brightness.light, // status bar brightness
+            ),
             floatingActionButton: FloatingActionButton(
               child: Icon(Icons.add),
               onPressed: () => {

@@ -25,6 +25,7 @@ class WorkLikeCommentModel {
 class WorkLikeCommentItemModel {
   int id;
   String photography_id;
+  String competition_id;
   String open_id;
   int comment_id;
   String comment;
@@ -34,6 +35,7 @@ class WorkLikeCommentItemModel {
   WorkLikeCommentItemModel(
       {this.id,
       this.photography_id,
+      this.competition_id,
       this.open_id,
       this.comment_id,
       this.comment,
@@ -45,6 +47,7 @@ class WorkLikeCommentItemModel {
     return WorkLikeCommentItemModel(
         id: json['id'],
         photography_id: json['photography_id'],
+        competition_id: json['competition_id'],
         open_id: json['open_id'],
         comment_id: json['comment_id'],
         comment: json['comment'],
@@ -54,6 +57,6 @@ class WorkLikeCommentItemModel {
   }
   void printInfo() {
     print(
-        "${this.id}----${this.photography_id}----${this.open_id}----${this.comment_id}----${this.comment}----${this.is_vote}----${this.create_time}----${this.update_time}");
+        "${this.id}----${this.photography_id}----${this.competition_id}----${this.open_id}----${this.comment_id}----${this.comment}----${this.is_vote}----${this.create_time}----${this.update_time}");
   }
 }

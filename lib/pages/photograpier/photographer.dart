@@ -97,22 +97,26 @@ class _PhotographerPage extends State<PhotographerPage> {
         });
       });
     }
+
     _asyncData();
     return list;
   }
 
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(
-      home: new Scaffold(
-        appBar: new AppBar(
-            title: new Text(
-              Constant.MASTER_PAGE_NAME,
-              style: TextStyle(fontSize: 16),
-            ),
-            centerTitle: true,
-            toolbarHeight: 40),
-        body: new Center(
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text(
+            Constant.MASTER_PAGE_NAME,
+            style: TextStyle(fontSize: 16, color: Colors.black),
+          ),
+          centerTitle: true,
+          toolbarHeight: 40,
+          backgroundColor: Colors.white, // status bar color
+          brightness: Brightness.light, // status bar brightness
+        ),
+        body: Center(
           child: FutureBuilder(
             initialData: _getData(),
             builder: (context, snapshot) {

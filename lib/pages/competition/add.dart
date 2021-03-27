@@ -196,18 +196,21 @@ class _AddWorkPageState extends State<AddWorkPage> {
             heroTag: "add_competition_work",
           ),
           appBar: AppBar(
-              leading: BackButton(
-                color: Colors.white,
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-              title: Text(
-                Constant.ADD_WORK_PAGE_NAME,
-                style: TextStyle(fontSize: 16),
-              ),
-              centerTitle: true,
-              toolbarHeight: 40),
+            leading: BackButton(
+              color: Colors.black,
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            title: Text(
+              Constant.ADD_WORK_PAGE_NAME,
+              style: TextStyle(fontSize: 16, color: Colors.black),
+            ),
+            centerTitle: true,
+            toolbarHeight: 40,
+            backgroundColor: Colors.white, // status bar color
+            brightness: Brightness.light, // status bar brightness
+          ),
           body: Form(
             key: _formKey,
             child: SingleChildScrollView(

@@ -65,6 +65,8 @@ flutter:
     - assets/images/disneyland.jpeg
     - assets/images/wechat.png
     - assets/images/qq.png
+    - assets/images/camera.png
+    - assets/images/recommend.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

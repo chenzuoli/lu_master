@@ -27,7 +27,6 @@ class _CompetitionPageState extends State<CompetitionPage> {
     var result = await DioUtil.request(
         Constant.COMPETITION_LIST_URL, Constant.CONTENT_TYPE_JSON,
         method: DioUtil.GET);
-    print(result);
     CompetitionModel competitionModel = CompetitionModel.fromJson(result);
     return competitionModel;
   }
@@ -70,21 +69,24 @@ class _CompetitionPageState extends State<CompetitionPage> {
 
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(
-      home: new Scaffold(
-          appBar: new AppBar(
-              leading: BackButton(
-                color: Colors.white,
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-              title: new Text(
-                Constant.COMPETITION_LIST_PAGE_NAME,
-                style: TextStyle(fontSize: 16),
-              ),
-              centerTitle: true,
-              toolbarHeight: 40),
+    return MaterialApp(
+      home: Scaffold(
+          appBar: AppBar(
+            leading: BackButton(
+              color: Colors.black,
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            title: new Text(
+              Constant.COMPETITION_LIST_PAGE_NAME,
+              style: TextStyle(fontSize: 16, color: Colors.black),
+            ),
+            centerTitle: true,
+            toolbarHeight: 40,
+            backgroundColor: Colors.white, // status bar color
+            brightness: Brightness.light, // status bar brightness
+          ),
           // floatingActionButton: FloatingActionButton(
           //     child: Icon(Icons.arrow_back),
           //     onPressed: () => {Navigator.of(context).pop()}),

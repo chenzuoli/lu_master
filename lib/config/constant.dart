@@ -30,6 +30,7 @@ class Constant {
   static const String UPDATE_NICKNAME_API = "update_nick_name";
   static const String ADD_FEEDBACK_API = "add_feedback";
   static const String LATEST_COMPETITION_API = "get_latest_competition";
+  static const String RECOMMEND_WORK_API = "get_popular_competition_works";
 
   static const String MASTER_PAGE_NAME = "发现";
   static const String HOME_PAGE_NAME = "首页";
@@ -64,7 +65,7 @@ class Constant {
   static const String CONTENT_TYPE_TEXT = "text/plain";
   static const String CONTENT_TYPE_FILE = "multipart/form-data;charset=utf-8";
 
-  static const String DEFAULT_NICK_NAME = "用户";
+  static const String DEFAULT_NICK_NAME = "user";
   static const String DEFAULT_AVATAR_URL = "http://cdn.pipilong.pet/dog2.png";
 
   static const String LOADING_TEXT = "加载中...";

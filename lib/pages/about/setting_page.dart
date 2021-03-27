@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:lu_master/pages/about/feedback/feedback_page.dart';
 import 'package:lu_master/pages/about/password.dart';
@@ -41,13 +42,15 @@ class _SettingPageState extends State<SettingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: new AppBar(
-        title: new Text(
+      appBar: AppBar(
+        title: Text(
           Constant.ABOUT_PAGE_NAME,
-          style: TextStyle(fontSize: 16),
+          style: TextStyle(fontSize: 16, color: Colors.black),
         ),
         centerTitle: true,
         toolbarHeight: 40,
+        backgroundColor: Colors.white, // status bar color
+        brightness: Brightness.light, // status bar brightness
       ),
       body: this.user == null
           ? Center(

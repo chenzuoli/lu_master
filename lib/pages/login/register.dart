@@ -193,7 +193,7 @@ class _RegisterPageState extends State<RegisterPage> {
         home: Scaffold(
             appBar: CupertinoNavigationBar(
               leading: BackButton(
-                color: Colors.white,
+                color: Colors.black,
                 onPressed: () {
                   Navigator.of(context).pop();
                 },

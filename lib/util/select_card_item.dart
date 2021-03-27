@@ -24,34 +24,37 @@ class SelectCardItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      alignment: const Alignment(0.0, 0.6),
-      children: [
-        Card(
-            margin: EdgeInsets.all(10),
-            child: AspectRatio(
-              aspectRatio: 16 / 9, //控制子元素的宽高比
-              child: Image.network(
-                this.img_url,
-                fit: BoxFit.cover,
-              ),
-            )),
-        Container(
-          decoration: BoxDecoration(
-            color: Colors.black45,
+    return GestureDetector(
+      child: Stack(
+        alignment: const Alignment(0.0, 0.6),
+        children: [
+          Card(
+              margin: EdgeInsets.all(10),
+              child: AspectRatio(
+                aspectRatio: 16 / 9, //控制子元素的宽高比
+                child: Image.network(
+                  this.img_url,
+                  fit: BoxFit.cover,
+                ),
+              )),
+          Container(
+            decoration: BoxDecoration(
+              color: Colors.black45,
+            ),
+            child: Text(
+              this.title == null ? "" : this.title,
+              style: this.titleStyle == null
+                  ? TextStyle(
+                      fontSize: 20.0,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    )
+                  : this.titleStyle,
+            ),
           ),
-          child: Text(
-            this.title == null ? "" : this.title,
-            style: this.titleStyle == null
-                ? TextStyle(
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  )
-                : this.titleStyle,
-          ),
-        ),
-      ],
+        ],
+      ),
+      onTap: this.onTap,
     );
   }
 }

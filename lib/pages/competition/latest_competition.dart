@@ -3,6 +3,7 @@ import 'package:lu_master/config/constant.dart';
 import 'package:lu_master/util/select_card_item.dart';
 import 'competition_model.dart';
 import 'package:lu_master/util/dio_util.dart';
+import 'info.dart';
 
 class LatestCompetitionPage extends StatefulWidget {
   LatestCompetitionPage({Key key}) : super(key: key);
@@ -23,11 +24,9 @@ class _LatestCompetitionPageState extends State<LatestCompetitionPage> {
   Future _getLatestCompetition() async {
     var response = await DioUtil.get(
         Constant.LATEST_COMPETITION_API, Constant.CONTENT_TYPE_JSON);
-    print(response);
     if (response['status'] == 200) {
       setState(() {
         work = CompetitionItemModel.fromJson(response['data']);
-        print(work);
       });
     }
     return response;
@@ -39,6 +38,13 @@ class _LatestCompetitionPageState extends State<LatestCompetitionPage> {
         ? Center(
             child: Text(Constant.LOADING_TEXT),
           )
-        : SelectCardItem(img_url: work.img_url);
+        : SelectCardItem(
+            img_url: work.img_url,
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                return CompetitionInfoPage(item: work);
+              }));
+            },
+          );
   }
 }

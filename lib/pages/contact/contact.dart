@@ -19,12 +19,18 @@ class _ContactPageState extends State<ContactPage> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-            title: Text(
-              Constant.CONTACT_PAGE_NAME,
-              style: TextStyle(fontSize: 16),
-            ),
-            centerTitle: true,
-            toolbarHeight: 40),
+          leading: BackButton(
+            color: Colors.black,
+          ),
+          title: Text(
+            Constant.CONTACT_PAGE_NAME,
+            style: TextStyle(fontSize: 16, color: Colors.black),
+          ),
+          centerTitle: true,
+          toolbarHeight: 40,
+          backgroundColor: Colors.white, // status bar color
+          brightness: Brightness.light, // status bar brightness
+        ),
         body: Container(
           child: ListView(
             padding: EdgeInsets.only(top: 20),

@@ -9,12 +9,18 @@ class BlankPage extends StatelessWidget {
     return MaterialApp(
         home: new Scaffold(
       appBar: AppBar(
-          title: Text(
-            Constant.BLANK_PAGE_NAME,
-            style: TextStyle(fontSize: 16),
-          ),
-          centerTitle: true,
-          toolbarHeight: 40),
+        leading: BackButton(
+          color: Colors.black,
+        ),
+        title: Text(
+          Constant.BLANK_PAGE_NAME,
+          style: TextStyle(fontSize: 16, color: Colors.black),
+        ),
+        centerTitle: true,
+        toolbarHeight: 40,
+        backgroundColor: Colors.white, // status bar color
+        brightness: Brightness.light, // status bar brightness
+      ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.arrow_back),
         onPressed: () => {Navigator.of(context).pop()},

@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:lu_master/config/constant.dart';
 import 'package:lu_master/pages/index/main.dart';
 import 'config/custom_route.dart';
@@ -8,6 +11,15 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   runApp(MyApp());
+  // 更改顶部状态栏主题颜色
+  // SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);
+  if (Platform.isAndroid) {
+    //设置状态栏颜色
+    SystemUiOverlayStyle systemUiOverlayStyle = SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent, //设置为透明
+    );
+    SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
+  }
 }
 
 class MyApp extends StatelessWidget {

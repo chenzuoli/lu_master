@@ -311,12 +311,18 @@ class _CommentPageState extends State<CommentPage> {
         child: bottomNewCommentButton(),
       ),
       appBar: AppBar(
-          title: Text(
-            Constant.WORK_COMMENT_PAGE_NAME,
-            style: TextStyle(fontSize: 16),
-          ),
-          centerTitle: true,
-          toolbarHeight: 40),
+        leading: BackButton(
+          color: Colors.black,
+        ),
+        title: Text(
+          Constant.WORK_COMMENT_PAGE_NAME,
+          style: TextStyle(fontSize: 16, color: Colors.black),
+        ),
+        centerTitle: true,
+        toolbarHeight: 40,
+        backgroundColor: Colors.white, // status bar color
+        brightness: Brightness.light, // status bar brightness
+      ),
       body: flag
           ? this.page
           : Center(

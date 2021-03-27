@@ -82,12 +82,18 @@ class _PasswordPageState extends State<PasswordPage> {
           if (snapshot.connectionState == ConnectionState.done) {
             return Scaffold(
               appBar: AppBar(
-                  title: Text(
-                    Constant.PASSWORD_PAGE_NAME,
-                    style: TextStyle(fontSize: 16),
-                  ),
-                  centerTitle: true,
-                  toolbarHeight: 40),
+                leading: BackButton(
+                  color: Colors.black,
+                ),
+                title: Text(
+                  Constant.PASSWORD_PAGE_NAME,
+                  style: TextStyle(fontSize: 16, color: Colors.black),
+                ),
+                centerTitle: true,
+                toolbarHeight: 40,
+                backgroundColor: Colors.white, // status bar color
+                brightness: Brightness.light, // status bar brightness
+              ),
               floatingActionButton: new FloatingActionButton(
                 onPressed: () {
                   _forSubmitted();
