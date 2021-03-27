@@ -31,6 +31,7 @@ class Constant {
   static const String ADD_FEEDBACK_API = "add_feedback";
   static const String LATEST_COMPETITION_API = "get_latest_competition";
   static const String RECOMMEND_WORK_API = "get_popular_competition_works";
+  static const String UPDATE_VOTES_API = "update_votes";
 
   static const String MASTER_PAGE_NAME = "发现";
   static const String HOME_PAGE_NAME = "首页";
