@@ -265,7 +265,6 @@ class _RegisterPageState extends State<RegisterPage> {
                     GestureDetector(
                       child: Image.asset("assets/images/wechat.png"),
                       onTap: () {
-                        print("点击了微信注册");
                         _loginwx();
                       },
                     ),

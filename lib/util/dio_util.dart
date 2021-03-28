@@ -28,7 +28,6 @@ class DioUtil {
       return prefs.getString("token");
     });
     future.then((value) async {
-      print("token: " + value);
       data = data ?? {};
       method = method ?? GET;
 
@@ -63,7 +62,6 @@ class DioUtil {
       print("request result: " + result.toString());
       res = result;
     });
-    print("request end");
     return res;
   }
 
@@ -112,7 +110,6 @@ class DioUtil {
     }
     dio.options.contentType = contentType;
     dio.options.headers['token'] = token;
-    print("header: " + dio.options.headers.toString());
     return dio;
   }
 
@@ -125,7 +122,6 @@ class DioUtil {
         connectTimeout: CONNECT_TIMEOUT,
         receiveTimeout: RECEIVE_TIMEOUT,
         headers: {HttpHeaders.acceptHeader: "*", "token": token});
-    print("header: " + options.headers.toString());
     dio = new Dio(options);
     // }
     return dio;

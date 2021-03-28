@@ -118,7 +118,6 @@ class _AddWorkPageState extends State<AddWorkPage> {
                 style: TextStyle(fontSize: 15),
               ),
               onPressed: () {
-                print("点击了提交");
                 var response = _uploadImage();
                 response.then((value) => {_submitAction()});
                 _submitAction();
@@ -137,7 +136,6 @@ class _AddWorkPageState extends State<AddWorkPage> {
         await dio.post(Constant.UPLOAD_FILE_URL, data: formData);
     if (response.statusCode == 200) {
       Map responseMap = response.data;
-      print("${responseMap["data"]}");
       setState(() {
         this._imgServerPath = "${responseMap["path"]}";
       });

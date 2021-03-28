@@ -43,9 +43,6 @@ class _PasswordPageState extends State<PasswordPage> {
     var _form = _formKey.currentState;
     if (_form.validate()) {
       _form.save();
-      print(_name);
-      print(_password);
-      print(_conformPass);
       await _updatePassword(_name, _password);
     }
   }
@@ -62,11 +59,9 @@ class _PasswordPageState extends State<PasswordPage> {
 
   void _updatePassword(String name, String password) async {
     var params = {"open_id": name, "pwd": password};
-    print("params: " + params.toString());
     var response = await DioUtil.post(
         Constant.UPDATE_PASSWORD_URL, Constant.CONTENT_TYPE_FORM,
         data: params);
-    print("response: " + response.toString());
     if (response['status'] == 200) {
       Util.showShortLoading(response['data']);
     } else {

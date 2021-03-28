@@ -45,16 +45,10 @@ class _LoginPageState extends State<LoginPage> {
       return;
     }
     _loginAction(_userID, _password).then((value) {
-      print(value);
       if (value['status'] == 200) {
         Util.showShortLoading("登录成功");
-        print("保存的open_id：" + _userID);
-        print("保存的token：" + value['data']);
         Util.preferences.setString("open_id", _userID);
         Util.preferences.setString("token", value['data']);
-        print("获取到的open_id: " + Util.preferences.getString("open_id"));
-        print("获取到的token: " + Util.preferences.getString("token"));
-
         Data.open_id = _userID;
         Data.token = value['data'];
         Navigator.pushNamed(context, '/main');
@@ -205,7 +199,6 @@ class _LoginPageState extends State<LoginPage> {
                 GestureDetector(
                   child: Image.asset("assets/images/wechat.png"),
                   onTap: () {
-                    print("点击了微信");
                     _loginwx();
                   },
                 ),

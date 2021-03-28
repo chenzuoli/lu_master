@@ -37,8 +37,6 @@ class _FeedbackPageState extends State<FeedbackPage> {
     var _form = _formKey.currentState;
     if (_form.validate()) {
       _form.save();
-      print(this.user.open_id);
-      print(_content);
       await _updateNickName(this.user.open_id, _content);
     }
   }

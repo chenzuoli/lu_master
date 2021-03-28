@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:lu_master/pages/competition/competition_model.dart';
+import 'competition_model.dart';
 import 'package:lu_master/util/select_text_item.dart';
 import 'add.dart';
 import 'package:lu_master/config/constant.dart';
 import 'work.dart';
 
 /*
+比赛详情 competition_info.dart
 name作为appbar
 主题作为一篇文章的标题
 比赛条件链接形式
@@ -116,7 +117,6 @@ class CompetitionInfoPage extends StatelessWidget {
                                     ));
                                   });
                             }),
-                        // ServiceBotton(Constant.WORK_LIST_NAME, ''),
                         SelectTextItem(
                           title: Constant.WORK_LIST_NAME,
                           isShowArrow: false,

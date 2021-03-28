@@ -89,7 +89,6 @@ class Util {
         );
       },
     );
-    print("弹框关闭 $isSelect");
   }
 
   static void showShortLoading(String msg) {

@@ -14,8 +14,6 @@ class _PhotographerPage extends State<PhotographerPage> {
   bool is_comment = false;
 
   List<Widget> _getData() {
-    print(is_like);
-    print(is_comment);
     Icon like = Icon(
       Icons.favorite_border,
       color: is_comment ? Colors.blue : Colors.black,
@@ -33,7 +31,6 @@ class _PhotographerPage extends State<PhotographerPage> {
       }).then((result) {
         List data = json.decode(result)['data'];
         data.forEach((item) {
-          print(item['nick_name']);
           list.add(
             Column(
               children: <Widget>[

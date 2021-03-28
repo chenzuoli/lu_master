@@ -70,7 +70,6 @@ class _SettingPageState extends State<SettingPage> {
                   imageName: 'assets/images/lock.png',
                   title: Constant.PASSWORD_PAGE_NAME,
                   onTap: () {
-                    print("user info: ");
                     user.printInfo();
                     Navigator.of(context)
                         .push(MaterialPageRoute(builder: (context) {

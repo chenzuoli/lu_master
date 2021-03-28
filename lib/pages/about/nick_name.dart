@@ -40,8 +40,6 @@ class _PasswordPageState extends State<NickNamePage> {
     var _form = _formKey.currentState;
     if (_form.validate()) {
       _form.save();
-      print(this.user.open_id);
-      print(_newName);
       await _updateNickName(this.user.open_id, _newName);
     }
   }

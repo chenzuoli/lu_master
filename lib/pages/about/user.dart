@@ -92,12 +92,9 @@ class UserModel {
 
   static Future<UserModel> requestUserInfo(String open_id) async {
     var param = {"open_id": open_id};
-    print("get user info params: " + param.toString());
     var result = await DioUtil.get(
         Constant.USER_INFO_API, Constant.CONTENT_TYPE_JSON,
         data: param);
-    print("result: " + result.toString());
-    print("state: " + result['data'].toString());
     UserModel user = UserModel.fromJson(result['data']);
     return user;
   }

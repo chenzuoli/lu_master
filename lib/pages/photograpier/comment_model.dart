@@ -80,7 +80,6 @@ class _CommentPageState extends State<CommentPage> {
   Future<List<WorkLikeCommentItemModel>> request_comment(
       WorkItemModel item) async {
     var params = {"photography_id": item.id, "open_id": item.open_id};
-    print("request comment params: " + params.toString());
     var comments = await DioUtil.get(
         Constant.WORK_LIKE_COMMENT_API, Constant.CONTENT_TYPE_JSON,
         data: params);

@@ -128,7 +128,6 @@ class _AddPhotographyPageState extends State<AddPhotographyPage> {
   Future _uploadImage() async {
     final form = _formKey.currentState;
     form.save();
-    print(_image);
     if (this._nick_name == '' || this._nick_name == null) {
       Util.showMessageDialog(context, '昵称不能为空');
       return;
@@ -149,7 +148,6 @@ class _AddPhotographyPageState extends State<AddPhotographyPage> {
 
     var response = await DioUtil.uploadFile(
         Constant.UPLOAD_FILE_URL, Constant.CONTENT_TYPE_FILE, formData);
-    print(response);
     Navigator.pop(context, true); // close dialog
     if (response['status'] == 200) {
       Util.showShortLoading("上传成功");
@@ -175,11 +173,9 @@ class _AddPhotographyPageState extends State<AddPhotographyPage> {
       "open_id": open_id,
       "photographer": Data.user.nick_name
     };
-    print("add work: " + params.toString());
     var response = await DioUtil.post(
         Constant.PHOTOGRAPHY_ADD_API, Constant.CONTENT_TYPE_JSON,
         data: params);
-    print("add work response: " + response.toString());
     if (response['status'] == 200) {
       Util.showShortLoading(response['data']);
       Navigator.of(context).pop();

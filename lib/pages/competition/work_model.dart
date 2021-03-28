@@ -6,7 +6,6 @@ class CompetitionWorkModel {
   CompetitionWorkModel({this.status, this.message, this.result});
 
   factory CompetitionWorkModel.fromJson(Map<String, dynamic> json) {
-    print(json);
     if (json['status'] != 200) {
       return CompetitionWorkModel(
           status: json['status'], message: json['message'], result: List());
