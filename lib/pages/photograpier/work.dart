@@ -60,8 +60,8 @@ class _WorkPageState extends State<WorkPage> {
     return flag;
   }
 
-
-  static void updateVote(bool is_vote, int photography_id, String open_id) async {
+  static void updateVote(
+      bool is_vote, int photography_id, String open_id) async {
     Map<String, dynamic> params = {
       "is_vote": is_vote,
       "photography_id": photography_id,
@@ -86,9 +86,16 @@ class _WorkPageState extends State<WorkPage> {
             topLeft: Radius.circular(4.0),
             topRight: Radius.circular(4.0),
           ),
-          child: Image.network(
-            item.url,
-            fit: BoxFit.cover,
+          child: GestureDetector(
+            child: Image.network(
+              item.url,
+              fit: BoxFit.cover,
+            ),
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                return CommentPage(item);
+              }));
+            },
           ),
         ),
       ),

@@ -54,6 +54,7 @@ class Constant {
   static const String WORK_COMMENT_PAGE_NAME = "评论";
   static const String WORK_COMMENT_BTN_NAME = "发表评论";
   static const String WORK_COMMENT_EMPTY_CONTENT = "暂时还没人评论呢...";
+  static const String VOTE_NAME = "点击投票";
 
   static const String LOGIN_PAGE_NAME = "登录";
   static const String REGISTER_PAGE_NAME = "注册";

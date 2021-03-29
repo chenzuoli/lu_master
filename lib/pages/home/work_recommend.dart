@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lu_master/config/constant.dart';
 import 'package:lu_master/util/dio_util.dart';
 import 'package:lu_master/pages/competition/work_model.dart';
+import 'package:lu_master/pages/competition/work_info.dart';
 
 class WorkRecommend extends StatefulWidget {
   double width;
@@ -43,14 +44,36 @@ class _WorkRecommendState extends State<WorkRecommend> {
     List<Widget> listWidget = List();
     for (CompetitionWorkItemModel work in workModel.result) {
       listWidget.add(Container(
-          child: Card(
-              margin: EdgeInsets.all(10),
-              child: AspectRatio(
-                  aspectRatio: 16 / 9, //控制子元素的宽高比
-                  child: Image.network(
-                    work.url,
-                    fit: BoxFit.cover,
-                  )))));
+        child: Card(
+          margin: EdgeInsets.all(10),
+          child: GestureDetector(
+            child: Column(
+              children: [
+                AspectRatio(
+                    aspectRatio: 16 / 9, //控制子元素的宽高比
+                    child: Image.network(
+                      work.url,
+                      fit: BoxFit.cover,
+                    )),
+                ListTile(
+                  title: Text(work.nick_name),
+                  subtitle: Text(
+                    work.subject,
+                    maxLines: 3,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                )
+              ],
+            ),
+            onTap: () {
+              // 跳转到比赛作品详情页
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                return WorkInfoPage(work);
+              }));
+            },
+          ),
+        ),
+      ));
     }
     return listWidget;
   }
@@ -75,11 +98,22 @@ class _WorkRecommendState extends State<WorkRecommend> {
   Widget build(BuildContext context) {
     return dataList == null
         ? Center(child: Text(Constant.LOADING_TEXT))
-        : Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
+        : Column(
             children: [
-              Expanded(child: Column(children: this.dataList[1])),
-              Expanded(child: Column(children: this.dataList[2])),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(child: Column(children: this.dataList[1])),
+                  Expanded(child: Column(children: this.dataList[2])),
+                ],
+              ),
+              Container(
+                margin: EdgeInsets.only(top: 30),
+                child: Text(
+                  "已经到底啦...",
+                  style: TextStyle(color: Colors.grey),
+                ),
+              )
             ],
           );
   }

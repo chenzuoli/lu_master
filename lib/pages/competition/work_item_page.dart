@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lu_master/config/constant.dart';
+import 'package:lu_master/pages/competition/work_info.dart';
 import 'work_model.dart';
 import 'package:lu_master/util/dio_util.dart';
 import 'package:lu_master/util/util.dart';
@@ -41,12 +42,21 @@ class _CompetitionWorkItemPageState extends State<CompetitionWorkItemPage> {
         Row(
           children: [
             Expanded(
-              child: Container(
-                alignment: Alignment.topLeft,
-                child: ListTile(
-                    title: Text(item.nick_name),
-                    leading: Image.network(item.url),
-                    subtitle: Text(item.subject)),
+              child: GestureDetector(
+                child: Container(
+                  alignment: Alignment.topLeft,
+                  child: ListTile(
+                      title: Text(item.nick_name),
+                      leading: Image.network(item.url),
+                      subtitle: Text(item.subject)),
+                ),
+                onTap: () {
+                  // 跳转到比赛作品详情页
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (context) {
+                    return WorkInfoPage(item);
+                  }));
+                },
               ),
             ),
             SizedBox(
