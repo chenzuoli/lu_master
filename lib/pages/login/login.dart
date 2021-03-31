@@ -21,7 +21,7 @@ class _LoginPageState extends State<LoginPage> {
   bool _isLoading;
   IconData _checkIcon = Icons.check_box;
   var futureUtils;
-  
+
   @override
   void initState() {
     futureUtils = Util.getSharedPreferences();
@@ -125,6 +125,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        resizeToAvoidBottomPadding: false,
         appBar: CupertinoNavigationBar(
           backgroundColor: Colors.blue,
           middle: const Text(Constant.LOGIN_PAGE_NAME),

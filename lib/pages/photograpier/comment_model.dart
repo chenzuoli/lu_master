@@ -306,6 +306,7 @@ class _CommentPageState extends State<CommentPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomPadding: false,
       bottomNavigationBar: BottomAppBar(
         child: bottomNewCommentButton(),
       ),

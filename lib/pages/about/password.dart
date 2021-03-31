@@ -19,15 +19,14 @@ class _PasswordPageState extends State<PasswordPage> {
     this.user = user;
   }
 
-  TextEditingController _controller = new TextEditingController();
-  TextEditingController _formFieldController = new TextEditingController();
-  GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
+  TextEditingController _controller = TextEditingController();
+  TextEditingController _formFieldController = TextEditingController();
+  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   var passKey = GlobalKey<FormFieldState>();
 
   String _name;
   String _password;
   String _conformPass;
-  var futureUtils;
 
   @override
   void initState() {
@@ -35,7 +34,7 @@ class _PasswordPageState extends State<PasswordPage> {
     _formFieldController.addListener(() {
       print('listener');
     });
-    futureUtils = Util.getSharedPreferences();
+    Util.getSharedPreferences();
     super.initState();
   }
 
@@ -71,83 +70,72 @@ class _PasswordPageState extends State<PasswordPage> {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-        future: futureUtils,
-        builder: (BuildContext context, AsyncSnapshot snapshot) {
-          if (snapshot.connectionState == ConnectionState.done) {
-            return Scaffold(
-              appBar: AppBar(
-                leading: BackButton(
-                  color: Colors.black,
-                ),
-                title: Text(
-                  Constant.PASSWORD_PAGE_NAME,
-                  style: TextStyle(fontSize: 16, color: Colors.black),
-                ),
-                centerTitle: true,
-                toolbarHeight: 40,
-                backgroundColor: Colors.white, // status bar color
-                brightness: Brightness.light, // status bar brightness
-              ),
-              floatingActionButton: new FloatingActionButton(
-                onPressed: () {
-                  _forSubmitted();
-                  Navigator.of(context).pop();
-                },
-                child: new Text('Submit'),
-                heroTag: "password",
-              ),
-              body: new Container(
-                padding: const EdgeInsets.all(16.0),
-                child: new Form(
-                  key: _formKey,
-                  child: new Column(
-                    children: <Widget>[
-                      new TextFormField(
-                        decoration: new InputDecoration(
-                          labelText: 'Your Name',
-                        ),
-                        readOnly: true,
-                        initialValue:
-                            this.user == null ? "" : this.user.open_id,
-                        onSaved: (val) {
-                          this._name = val;
-                        },
-                      ),
-                      new TextFormField(
-                        key: passKey,
-                        decoration: new InputDecoration(
-                          labelText: 'Password',
-                        ),
-                        obscureText: true,
-                        onSaved: (val) {
-                          this._password = val;
-                        },
-                      ),
-                      new TextFormField(
-                        decoration: new InputDecoration(
-                          labelText: 'Comform Password',
-                        ),
-                        obscureText: true,
-                        validator: _conformPassword,
-                        onSaved: (val) {
-                          this._conformPass = val;
-                        },
-                      ),
-                    ],
+    return Scaffold(
+      resizeToAvoidBottomPadding: false,
+      appBar: AppBar(
+        leading: BackButton(
+          color: Colors.black,
+        ),
+        title: Text(
+          Constant.PASSWORD_PAGE_NAME,
+          style: TextStyle(fontSize: 16, color: Colors.black),
+        ),
+        centerTitle: true,
+        toolbarHeight: 40,
+        backgroundColor: Colors.white, // status bar color
+        brightness: Brightness.light, // status bar brightness
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          _forSubmitted();
+          Navigator.of(context).pop();
+        },
+        child: Text('Submit'),
+        heroTag: "password",
+      ),
+      body: Container(
+        padding: const EdgeInsets.all(16.0),
+        height: 1000,
+        child: SingleChildScrollView(
+          child: Form(
+            key: _formKey,
+            child: Column(
+              children: <Widget>[
+                TextFormField(
+                  decoration: InputDecoration(
+                    labelText: 'Your Name',
                   ),
+                  readOnly: true,
+                  initialValue: this.user == null ? "" : this.user.open_id,
+                  onSaved: (val) {
+                    this._name = val;
+                  },
                 ),
-              ),
-            );
-          } else {
-            return Container(
-              color: Colors.white,
-              child: Center(
-                child: Text("数据加载中……",
-                    style: TextStyle(fontSize: 20, color: Colors.orange)),
-              ),
-            );
-          }
-        });
+                TextFormField(
+                  key: passKey,
+                  decoration: InputDecoration(
+                    labelText: 'Password',
+                  ),
+                  obscureText: true,
+                  onSaved: (val) {
+                    this._password = val;
+                  },
+                ),
+                TextFormField(
+                  decoration: InputDecoration(
+                    labelText: 'Comform Password',
+                  ),
+                  obscureText: true,
+                  validator: _conformPassword,
+                  onSaved: (val) {
+                    this._conformPass = val;
+                  },
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }

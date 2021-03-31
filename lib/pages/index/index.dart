@@ -30,13 +30,19 @@ class _IndexState extends State<Index> with TickerProviderStateMixin {
     // 初始化导航图标
     _navigationViews = <NavigationIconView>[
       new NavigationIconView(
-          icon: new Icon(Icons.home), label: Constant.HOME_PAGE_NAME, vsync: this),
+          icon: new Icon(Icons.home),
+          label: Constant.HOME_PAGE_NAME,
+          vsync: this),
       // new NavigationIconView(
       //     icon: new Icon(Icons.phone_in_talk), label: "通讯录", vsync: this),
       new NavigationIconView(
-          icon: new Icon(Icons.all_inclusive), label: Constant.MASTER_PAGE_NAME, vsync: this),
+          icon: new Icon(Icons.all_inclusive),
+          label: Constant.MASTER_PAGE_NAME,
+          vsync: this),
       new NavigationIconView(
-          icon: new Icon(Icons.perm_identity), label: Constant.ABOUT_PAGE_NAME, vsync: this)
+          icon: new Icon(Icons.perm_identity),
+          label: Constant.ABOUT_PAGE_NAME,
+          vsync: this)
     ];
 
     // 给每个按钮加上监听
@@ -76,6 +82,7 @@ class _IndexState extends State<Index> with TickerProviderStateMixin {
               })
             });
     return Scaffold(
+      resizeToAvoidBottomPadding: false,
       body: new IndexedStack(
         index: _currentIndex,
         children: _pageList,

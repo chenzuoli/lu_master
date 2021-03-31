@@ -16,7 +16,6 @@ class _PasswordPageState extends State<NickNamePage> {
   UserModel user;
   String _name;
   String _newName;
-  var futureUtils;
 
   TextEditingController _controller = new TextEditingController();
   TextEditingController _formFieldController = new TextEditingController();
@@ -32,7 +31,7 @@ class _PasswordPageState extends State<NickNamePage> {
     _formFieldController.addListener(() {
       print('listener');
     });
-    futureUtils = Util.getSharedPreferences();
+    Util.getSharedPreferences();
     super.initState();
   }
 
@@ -61,70 +60,57 @@ class _PasswordPageState extends State<NickNamePage> {
     final size = MediaQuery.of(context).size;
     final width = size.width;
     final height = size.height;
-    return FutureBuilder(
-        future: futureUtils,
-        builder: (BuildContext context, AsyncSnapshot snapshot) {
-          if (snapshot.connectionState == ConnectionState.done) {
-            return Scaffold(
-                appBar: AppBar(
-                  leading: BackButton(
-                    color: Colors.black,
-                  ),
-                  title: Text(
-                    Constant.NICKNAME_PAGE_NAME,
-                    style: TextStyle(fontSize: 16, color: Colors.black),
-                  ),
-                  centerTitle: true,
-                  toolbarHeight: 40,
-                  backgroundColor: Colors.white, // status bar color
-                  brightness: Brightness.light, // status bar brightness
-                ),
-                floatingActionButton: new FloatingActionButton(
-                  onPressed: () {
-                    _forSubmitted();
-                    Navigator.of(context).pop();
-                  },
-                  child: new Text('Submit'),
-                  heroTag: "nick_name",
-                ),
-                body: Container(
-                  width: width,
-                  height: height,
-                  padding: const EdgeInsets.all(16.0),
-                  child: Form(
-                    key: _formKey,
-                    child: SingleChildScrollView(
-                      child: Container(
-                          child: Column(
-                        children: <Widget>[
-                          TextFormField(
-                              decoration: new InputDecoration(
-                                labelText: 'Your Name',
-                              ),
-                              readOnly: true,
-                              initialValue: this.user.nick_name),
-                          TextFormField(
-                            decoration: new InputDecoration(
-                              labelText: 'Your New Name',
-                            ),
-                            onSaved: (val) {
-                              this._newName = val;
-                            },
-                          ),
-                        ],
-                      )),
+    return Scaffold(
+        resizeToAvoidBottomPadding: false,
+        appBar: AppBar(
+          leading: BackButton(
+            color: Colors.black,
+          ),
+          title: Text(
+            Constant.NICKNAME_PAGE_NAME,
+            style: TextStyle(fontSize: 16, color: Colors.black),
+          ),
+          centerTitle: true,
+          toolbarHeight: 40,
+          backgroundColor: Colors.white, // status bar color
+          brightness: Brightness.light, // status bar brightness
+        ),
+        floatingActionButton: new FloatingActionButton(
+          onPressed: () {
+            _forSubmitted();
+            Navigator.of(context).pop();
+          },
+          child: new Text('Submit'),
+          heroTag: "nick_name",
+        ),
+        body: Container(
+          width: width,
+          height: height,
+          padding: const EdgeInsets.all(16.0),
+          child: Form(
+            key: _formKey,
+            child: SingleChildScrollView(
+              child: Container(
+                  child: Column(
+                children: <Widget>[
+                  TextFormField(
+                      decoration: new InputDecoration(
+                        labelText: 'Your Name',
+                      ),
+                      readOnly: true,
+                      initialValue: this.user.nick_name),
+                  TextFormField(
+                    decoration: new InputDecoration(
+                      labelText: 'Your New Name',
                     ),
+                    onSaved: (val) {
+                      this._newName = val;
+                    },
                   ),
-                ));
-          } else {
-            return Container(
-              color: Colors.white,
-              child: Center(
-                child: Text("数据加载中……",
-                    style: TextStyle(fontSize: 20, color: Colors.orange)),
-              ),
-            );
-          }
-        });
+                ],
+              )),
+            ),
+          ),
+        ));
   }
 }

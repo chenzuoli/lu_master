@@ -48,7 +48,8 @@ class _CompetitionWorkItemPageState extends State<CompetitionWorkItemPage> {
                   child: ListTile(
                       title: Text(item.nick_name),
                       leading: Image.network(item.url),
-                      subtitle: Text(item.subject)),
+                      subtitle: Text(item.subject,
+                          overflow: TextOverflow.ellipsis, maxLines: 3)),
                 ),
                 onTap: () {
                   // 跳转到比赛作品详情页

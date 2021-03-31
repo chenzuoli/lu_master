@@ -27,6 +27,7 @@ class _ChooseImgState extends State<ChooseImg> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomPadding: false,
       appBar: AppBar(
         leading: BackButton(
           color: Colors.black,
