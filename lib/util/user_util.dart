@@ -11,4 +11,13 @@ class UserUtil {
     UserModel user = UserModel.fromJson(result['data']);
     return user;
   }
+
+  static Future<UserModel> get_user_info_by_id(String open_id) async {
+    var param = {"open_id": open_id, "token": Data.token};
+    var result = await DioUtil.get(
+        Constant.USER_INFO_API, Constant.CONTENT_TYPE_JSON,
+        data: param);
+    UserModel user = UserModel.fromJson(result['data']);
+    return user;
+  }
 }

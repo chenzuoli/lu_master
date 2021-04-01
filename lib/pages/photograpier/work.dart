@@ -5,6 +5,8 @@ import 'work_model.dart';
 import 'work_like_comment.dart';
 import 'package:lu_master/util/dio_util.dart';
 import 'package:lu_master/util/util.dart';
+import 'package:lu_master/util/user_util.dart';
+import 'package:lu_master/pages/about/user.dart';
 
 class WorkPage extends StatefulWidget {
   WorkItemModel item;
@@ -19,6 +21,8 @@ class _WorkPageState extends State<WorkPage> {
   WorkItemModel item;
   bool is_like = false;
   bool is_comment = false;
+  UserModel user;
+
   _WorkPageState(WorkItemModel item) {
     this.item = item;
   }
@@ -30,6 +34,7 @@ class _WorkPageState extends State<WorkPage> {
     var open_id = Util.preferences.getString('open_id');
     // this.is_like = _isLike(item, open_id);
     // this.is_comment = _isComment(item, open_id);
+    _getUserInfo(this.item.open_id);
   }
 
   bool _isLike(WorkItemModel item, dynamic open_id) {
@@ -77,80 +82,90 @@ class _WorkPageState extends State<WorkPage> {
     }
   }
 
+  void _getUserInfo(String open_id) async {
+    UserModel user = await UserUtil.get_user_info_by_id(open_id);
+    setState(() {
+      this.user = user;
+    });
+  }
+
   Widget _listItemBuilder(WorkItemModel item) {
-    return Column(children: <Widget>[
-      AspectRatio(
-        aspectRatio: 16 / 9,
-        child: ClipRRect(
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(4.0),
-            topRight: Radius.circular(4.0),
-          ),
-          child: GestureDetector(
-            child: Image.network(
-              item.url,
-              fit: BoxFit.cover,
-            ),
-            onTap: () {
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-                return CommentPage(item);
-              }));
-            },
-          ),
-        ),
-      ),
-      ListTile(
-        leading: CircleAvatar(
-          backgroundImage: NetworkImage(item.url),
-        ),
-        title: Text(item.nick_name),
-        subtitle: Text(item.photographer),
-      ),
-      Container(
-        alignment: Alignment.centerLeft,
-        padding: EdgeInsets.all(16.0),
-        child: Text(
-          item.subject,
-          maxLines: 2,
-          overflow: TextOverflow.ellipsis,
-        ),
-      ),
-      ButtonBarTheme(
-        data: ButtonBarThemeData(buttonTextTheme: ButtonTextTheme.accent),
-        child: ButtonBar(
-          buttonPadding: EdgeInsets.all(10),
-          children: <Widget>[
-            FlatButton(
-              child: Icon(
-                Icons.favorite,
-                color: is_like ? Colors.blue : Colors.grey[400],
+    return this.user == null
+        ? Container(child: Text(""))
+        : Column(children: <Widget>[
+            AspectRatio(
+              aspectRatio: 16 / 9,
+              child: ClipRRect(
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(4.0),
+                  topRight: Radius.circular(4.0),
+                ),
+                child: GestureDetector(
+                  child: Image.network(
+                    item.url,
+                    fit: BoxFit.cover,
+                  ),
+                  onTap: () {
+                    Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (context) {
+                      return CommentPage(item);
+                    }));
+                  },
+                ),
               ),
-              onPressed: () {
-                setState(() {
-                  is_like = !is_like;
-                  updateVote(is_like, item.id, item.open_id);
-                });
-              },
             ),
-            FlatButton(
-              child: Icon(
-                Icons.chat_bubble,
-                color: is_comment ? Colors.blue : Colors.grey[400],
+            ListTile(
+              leading: CircleAvatar(
+                backgroundImage: NetworkImage(this.user.avatar_url),
               ),
-              onPressed: () {
-                setState(() {
-                  is_comment = !is_comment;
-                });
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) {
-                  return CommentPage(item);
-                }));
-              },
+              title: Text(item.nick_name),
+              subtitle: Text(item.photographer),
             ),
-          ],
-        ),
-      ),
-    ]);
+            Container(
+              alignment: Alignment.centerLeft,
+              padding: EdgeInsets.all(16.0),
+              child: Text(
+                item.subject,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+            ButtonBarTheme(
+              data: ButtonBarThemeData(buttonTextTheme: ButtonTextTheme.accent),
+              child: ButtonBar(
+                buttonPadding: EdgeInsets.all(10),
+                children: <Widget>[
+                  FlatButton(
+                    child: Icon(
+                      Icons.favorite,
+                      color: is_like ? Colors.blue : Colors.grey[400],
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        is_like = !is_like;
+                        updateVote(is_like, item.id, item.open_id);
+                      });
+                    },
+                  ),
+                  FlatButton(
+                    child: Icon(
+                      Icons.chat_bubble,
+                      color: is_comment ? Colors.blue : Colors.grey[400],
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        is_comment = !is_comment;
+                      });
+                      Navigator.of(context)
+                          .push(MaterialPageRoute(builder: (context) {
+                        return CommentPage(item);
+                      }));
+                    },
+                  ),
+                ],
+              ),
+            ),
+          ]);
   }
 
   @override
