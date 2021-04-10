@@ -51,7 +51,8 @@ class _LoginPageState extends State<LoginPage> {
         Util.preferences.setString("token", value['data']);
         Data.open_id = _userID;
         Data.token = value['data'];
-        Navigator.pushNamed(context, '/main');
+        // Navigator.pushNamed(context, '/main');
+        Navigator.pushNamedAndRemoveUntil(context, "/main", (route) => false);
       } else {
         Util.showMessageDialog(context, value['message']);
       }

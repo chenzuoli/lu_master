@@ -55,7 +55,9 @@ class _RegisterPageState extends State<RegisterPage> {
           if (value['status'] == 200)
             {
               Util.showShortLoading("注册成功"),
-              Navigator.pushNamed(context, '/main'),
+              // Navigator.pushNamed(context, '/main'),
+              Navigator.pushNamedAndRemoveUntil(
+                  context, "/main", (route) => false),
               Util.preferences.setString("open_id", _userID),
               Util.preferences.setString('token', value['data']),
               Data.open_id = _userID,
