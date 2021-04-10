@@ -8,7 +8,7 @@ import 'package:lu_master/pages/about/user.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:lu_master/util/util.dart';
 
-/// 添加作品
+/// 添加动态
 ///
 
 class AddPhotographyPage extends StatefulWidget {
@@ -145,7 +145,6 @@ class _AddPhotographyPageState extends State<AddPhotographyPage> {
       "avatarFile": await MultipartFile.fromFile(_image.path)
     });
     Util.showLoading(context, "上传中，请等待...");
-
     var response = await DioUtil.uploadFile(
         Constant.UPLOAD_FILE_URL, Constant.CONTENT_TYPE_FILE, formData);
     Navigator.pop(context, true); // close dialog
@@ -162,7 +161,7 @@ class _AddPhotographyPageState extends State<AddPhotographyPage> {
     return response;
   }
 
-  void _submitAction() async {
+  Future _submitAction() async {
     String open_id = await Util.getString("open_id");
     Data.user = await UserModel.requestUserInfo(open_id);
     var params = {

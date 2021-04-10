@@ -102,8 +102,8 @@ class Util {
         fontSize: 16.0);
   }
 
-  static void showLoading(context, [String text]) async{
-    text = text ?? "Loading...";
+  static void showLoading(context, [String text]) async {
+    text = text ?? "加载中...";
     showDialog(
         barrierDismissible: false,
         context: context,

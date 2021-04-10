@@ -55,6 +55,7 @@ class CompetitionWorkItemModel {
       this.update_time});
 
   factory CompetitionWorkItemModel.fromJson(Map<String, dynamic> json) {
+    
     return CompetitionWorkItemModel(
       id: json['id'],
         competition_id: json['competition_id'],

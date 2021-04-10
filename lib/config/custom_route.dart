@@ -19,7 +19,6 @@ final routes = {
 var onGenerateRoute = (RouteSettings settings) {
 // 统一处理
   final String name = settings.name;
-  print("name  ---->  " + name);
   final Function pageContentBuilder = routes[name];
   if (pageContentBuilder != null) {
     if (settings.arguments != null) {

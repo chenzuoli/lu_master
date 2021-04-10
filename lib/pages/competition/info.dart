@@ -51,7 +51,7 @@ class CompetitionInfoPage extends StatelessWidget {
               onPressed: () => {
                 Navigator.of(context)
                     .push(MaterialPageRoute(builder: (context) {
-                  return AddWorkPage();
+                  return AddWorkPage(item);
                 }))
               },
               heroTag: 'competition_info',

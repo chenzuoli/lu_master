@@ -6,27 +6,35 @@ import 'package:dio/dio.dart';
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 import 'package:lu_master/util/util.dart';
+import 'competition_model.dart';
 
 /// 添加作品
 ///
 
 class AddWorkPage extends StatefulWidget {
-  AddWorkPage({Key key}) : super(key: key);
+  CompetitionItemModel item;
+  AddWorkPage(CompetitionItemModel item) : this.item = item;
 
   @override
-  _AddWorkPageState createState() => _AddWorkPageState();
+  _AddWorkPageState createState() => _AddWorkPageState(item);
 }
 
 class _AddWorkPageState extends State<AddWorkPage> {
+  CompetitionItemModel item;
+
   final _formKey = new GlobalKey<FormState>();
 
-  String _nick_name;
+  String _nickName;
   String _subject;
   String _url;
 
   File _image;
   final picker = ImagePicker();
   String _imgServerPath;
+
+  _AddWorkPageState(CompetitionItemModel item) {
+    this.item = item;
+  }
 
   Widget _showNameInput() {
     return Padding(
@@ -42,7 +50,7 @@ class _AddWorkPageState extends State<AddWorkPage> {
               Icons.pets,
               color: Colors.grey,
             )),
-        onSaved: (value) => _nick_name = value.trim(),
+        onSaved: (value) => _nickName = value.trim(),
       ),
     );
   }
@@ -106,6 +114,22 @@ class _AddWorkPageState extends State<AddWorkPage> {
     });
   }
 
+  Future<bool> _isVote() async {
+    var param = {
+      "competition_id": this.item.competition_id,
+      "open_id": await Util.getString("open_id")
+    };
+    var response = await DioUtil.get(
+        Constant.CHECK_VOTE_API, Constant.CONTENT_TYPE_JSON,
+        data: param);
+    if (response['status'] != 200) {
+      Util.showShortLoading(response['message']);
+      return false;
+    } else {
+      return true;
+    }
+  }
+
   Widget _submitBtn() {
     return Container(
         padding: EdgeInsets.only(top: 35, bottom: 35),
@@ -117,37 +141,61 @@ class _AddWorkPageState extends State<AddWorkPage> {
                 "提交",
                 style: TextStyle(fontSize: 15),
               ),
-              onPressed: () {
-                var response = _uploadImage();
-                response.then((value) => {_submitAction()});
-                _submitAction();
+              onPressed: () async {
+                bool flag = await _isVote();
+                if (flag) {
+                  await _uploadImage();
+                  await _submitAction();
+                }
               }),
         ));
   }
 
   //上传图片到服务器
   Future _uploadImage() async {
+    final form = _formKey.currentState;
+    form.save();
+    if (this._nickName == '' || this._nickName == null) {
+      Util.showMessageDialog(context, '昵称不能为空');
+      return;
+    }
+    if (this._subject == '' || this._subject == null) {
+      Util.showMessageDialog(context, '主题不能为空');
+      return;
+    }
+    if (this._image == '' || this._image == null) {
+      Util.showMessageDialog(context, "请上传作品");
+      return;
+    }
     FormData formData = FormData.fromMap({
-      "name": "electric barker",
-      "file": await MultipartFile.fromFile(_image.path)
+      "name": "avatarFile",
+      "avatarFile": await MultipartFile.fromFile(_image.path)
     });
-    Dio dio = Dio();
-    Response response =
-        await dio.post(Constant.UPLOAD_FILE_URL, data: formData);
-    if (response.statusCode == 200) {
-      Map responseMap = response.data;
+    Util.showLoading(context, "上传中，请等待...");
+    var response = await DioUtil.uploadFile(
+        Constant.UPLOAD_FILE_URL, Constant.CONTENT_TYPE_FILE, formData);
+    Navigator.pop(context, true); // close dialog
+    if (response['status'] == 200) {
+      Util.showShortLoading("上传成功");
       setState(() {
-        this._imgServerPath = "${responseMap["path"]}";
+        this._imgServerPath = "${response["data"]}";
       });
+    } else {
+      Util.showShortLoading(response['message']);
+      return;
+    }
+    if (this._imgServerPath == '' || this._imgServerPath == null) {
+      Util.showMessageDialog(context, "作品不能为空");
+      return;
     }
     return response;
   }
 
-  void _submitAction() async {
+  Future _submitAction() async {
     final form = _formKey.currentState;
     form.save();
 
-    if (this._nick_name == '') {
+    if (this._nickName == '') {
       Util.showMessageDialog(context, '昵称不能为空');
       return;
     }
@@ -164,16 +212,18 @@ class _AddWorkPageState extends State<AddWorkPage> {
       return;
     }
     var params = {
-      "nick_name": this._nick_name,
+      "nick_name": this._nickName,
       "subject": this._subject,
       "url": this._imgServerPath,
       "type": "image",
-      "open_id": await Util.getString("open_id")
+      "open_id": await Util.getString("open_id"),
+      "competition_id": this.item.competition_id,
+      "phone": ""
     };
     var response = await DioUtil.post(
         Constant.WORK_ADD_API, Constant.CONTENT_TYPE_JSON,
         data: params);
-    if (response['status'] == "200") {
+    if (response['status'] == 200) {
       Util.showShortLoading(response['data']);
       Navigator.of(context).pop();
     } else {
