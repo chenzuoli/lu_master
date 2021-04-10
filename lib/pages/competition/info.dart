@@ -15,9 +15,21 @@ name作为appbar
 添加一个add按钮，跳转到编辑作品页面，编辑作品页面添加比赛注意事项链接
 */
 
-class CompetitionInfoPage extends StatelessWidget {
+class CompetitionInfoPage extends StatefulWidget {
   CompetitionItemModel item;
-  CompetitionInfoPage({this.item});
+  CompetitionInfoPage({CompetitionItemModel item}) {
+    this.item = item;
+  }
+
+  @override
+  _CompetitionInfoPageState createState() => _CompetitionInfoPageState(item);
+}
+
+class _CompetitionInfoPageState extends State<CompetitionInfoPage> {
+  CompetitionItemModel item;
+  _CompetitionInfoPageState(CompetitionItemModel item) {
+    this.item = item;
+  }
 
   Widget getCondition(CompetitionItemModel item) {
     return ClipRRect(
@@ -52,7 +64,10 @@ class CompetitionInfoPage extends StatelessWidget {
                 Navigator.of(context)
                     .push(MaterialPageRoute(builder: (context) {
                   return AddWorkPage(item);
-                }))
+                })).then((resultData) {
+                  //接收 controller 传回的数据并更新页面
+                  setState(() {});
+                })
               },
               heroTag: 'competition_info',
             ),

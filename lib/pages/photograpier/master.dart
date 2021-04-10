@@ -96,7 +96,9 @@ class _MasterPageState extends State<MasterPage> {
                   Navigator.of(context)
                       .push(MaterialPageRoute(builder: (context) {
                     return AddPhotographyPage();
-                  }))
+                  })).then((value) {
+                    setState(() {}); // 返回到此页面时，刷新页面
+                  })
                 }),
       ),
       routes: routes,

@@ -177,7 +177,7 @@ class _AddPhotographyPageState extends State<AddPhotographyPage> {
         data: params);
     if (response['status'] == 200) {
       Util.showShortLoading(response['data']);
-      Navigator.of(context).pop();
+      Navigator.of(context).pop("xxx");
     } else {
       Util.showShortLoading(response['message']);
     }

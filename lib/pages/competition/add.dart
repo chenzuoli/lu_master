@@ -174,7 +174,8 @@ class _AddWorkPageState extends State<AddWorkPage> {
     Util.showLoading(context, "上传中，请等待...");
     var response = await DioUtil.uploadFile(
         Constant.UPLOAD_FILE_URL, Constant.CONTENT_TYPE_FILE, formData);
-    Navigator.pop(context, true); // close dialog
+    Navigator.of(context).pop("xxx");
+    // Navigator.pop(context, true); // close dialog
     if (response['status'] == 200) {
       Util.showShortLoading("上传成功");
       setState(() {
