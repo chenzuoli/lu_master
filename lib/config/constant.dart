@@ -72,6 +72,15 @@ class Constant {
   static const String DEFAULT_AVATAR_URL = "http://cdn.pipilong.pet/dog2.png";
 
   static const String LOADING_TEXT = "加载中...";
+
+  static const String FEEDBACK_CONTENT = "体验怎么样?告诉我们吧。";
+  static const String FEEDBACK_SUBMIT = "反馈";
+  static const String OLD_NICK_NAME = "你的昵称";
+  static const String NEW_NICK_NAME = "新的昵称";
+  static const String OLD_PASSWORD = "旧密码";
+  static const String NEW_PASSWORD = "新密码";
+  static const String CONFIRM_PASSWORD = "确认密码";
+  static const String UPDATE_BTN_NAME = "更新";
 }
 
 class Data {

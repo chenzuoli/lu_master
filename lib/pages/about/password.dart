@@ -4,6 +4,8 @@ import 'package:lu_master/util/dio_util.dart';
 import 'package:lu_master/util/util.dart';
 import 'package:lu_master/pages/about/user.dart';
 
+/// 更新密码
+
 class PasswordPage extends StatefulWidget {
   UserModel user;
   PasswordPage(UserModel user) : this.user = user;
@@ -90,7 +92,7 @@ class _PasswordPageState extends State<PasswordPage> {
           _forSubmitted();
           Navigator.of(context).pop();
         },
-        child: Text('Submit'),
+        child: Text(Constant.UPDATE_BTN_NAME),
         heroTag: "password",
       ),
       body: Container(
@@ -103,10 +105,10 @@ class _PasswordPageState extends State<PasswordPage> {
               children: <Widget>[
                 TextFormField(
                   decoration: InputDecoration(
-                    labelText: 'Your Name',
+                    labelText: Constant.OLD_NICK_NAME,
                   ),
                   readOnly: true,
-                  initialValue: this.user == null ? "" : this.user.open_id,
+                  initialValue: this.user == null ? "" : this.user.nick_name,
                   onSaved: (val) {
                     this._name = val;
                   },
@@ -114,7 +116,7 @@ class _PasswordPageState extends State<PasswordPage> {
                 TextFormField(
                   key: passKey,
                   decoration: InputDecoration(
-                    labelText: 'Password',
+                    labelText: Constant.NEW_PASSWORD,
                   ),
                   obscureText: true,
                   onSaved: (val) {
@@ -123,7 +125,7 @@ class _PasswordPageState extends State<PasswordPage> {
                 ),
                 TextFormField(
                   decoration: InputDecoration(
-                    labelText: 'Comform Password',
+                    labelText: Constant.CONFIRM_PASSWORD,
                   ),
                   obscureText: true,
                   validator: _conformPassword,

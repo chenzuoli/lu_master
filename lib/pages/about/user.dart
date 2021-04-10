@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:lu_master/util/dio_util.dart';
 import 'package:lu_master/util/select_text_item.dart';
 import 'package:lu_master/config/constant.dart';
-import 'package:lu_master/util/util.dart';
 
 class UserPage extends StatefulWidget {
   UserModel user;

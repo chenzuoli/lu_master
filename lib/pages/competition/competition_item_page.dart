@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:lu_master/pages/competition/competition_model.dart';
 import 'info.dart';
 
+/// 比赛列表中单个比赛样式
+
 class CompetitionItemPage extends StatefulWidget {
   CompetitionItemModel item;
   CompetitionItemPage(CompetitionItemModel item) {

@@ -4,6 +4,8 @@ import 'package:lu_master/util/dio_util.dart';
 import 'package:lu_master/util/util.dart';
 import 'user.dart';
 
+/// 更新昵称
+
 class NickNamePage extends StatefulWidget {
   UserModel user;
   NickNamePage(UserModel user) : this.user = user;
@@ -75,12 +77,12 @@ class _PasswordPageState extends State<NickNamePage> {
           backgroundColor: Colors.white, // status bar color
           brightness: Brightness.light, // status bar brightness
         ),
-        floatingActionButton: new FloatingActionButton(
+        floatingActionButton: FloatingActionButton(
           onPressed: () {
             _forSubmitted();
             Navigator.of(context).pop();
           },
-          child: new Text('Submit'),
+          child: Text(Constant.UPDATE_BTN_NAME),
           heroTag: "nick_name",
         ),
         body: Container(
@@ -94,14 +96,14 @@ class _PasswordPageState extends State<NickNamePage> {
                   child: Column(
                 children: <Widget>[
                   TextFormField(
-                      decoration: new InputDecoration(
-                        labelText: 'Your Name',
+                      decoration: InputDecoration(
+                        labelText: Constant.OLD_NICK_NAME,
                       ),
                       readOnly: true,
                       initialValue: this.user.nick_name),
                   TextFormField(
-                    decoration: new InputDecoration(
-                      labelText: 'Your New Name',
+                    decoration: InputDecoration(
+                      labelText: Constant.NEW_NICK_NAME,
                     ),
                     onSaved: (val) {
                       this._newName = val;

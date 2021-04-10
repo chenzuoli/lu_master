@@ -8,9 +8,11 @@ import 'package:http/http.dart' as http;
 import 'competition_item_page.dart';
 import 'package:lu_master/config/custom_route.dart';
 
+/// 比赛列表
+
 class CompetitionPage extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => new _CompetitionPageState();
+  State<StatefulWidget> createState() => _CompetitionPageState();
 }
 
 class _CompetitionPageState extends State<CompetitionPage> {
@@ -70,33 +72,27 @@ class _CompetitionPageState extends State<CompetitionPage> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-          appBar: AppBar(
-            leading: BackButton(
-              color: Colors.black,
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
+        home: Scaffold(
+            appBar: AppBar(
+              leading: BackButton(
+                color: Colors.black,
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+              title: Text(
+                Constant.COMPETITION_LIST_PAGE_NAME,
+                style: TextStyle(fontSize: 16, color: Colors.black),
+              ),
+              centerTitle: true,
+              toolbarHeight: 40,
+              backgroundColor: Colors.white, // status bar color
+              brightness: Brightness.light, // status bar brightness
             ),
-            title: new Text(
-              Constant.COMPETITION_LIST_PAGE_NAME,
-              style: TextStyle(fontSize: 16, color: Colors.black),
-            ),
-            centerTitle: true,
-            toolbarHeight: 40,
-            backgroundColor: Colors.white, // status bar color
-            brightness: Brightness.light, // status bar brightness
-          ),
-          // floatingActionButton: FloatingActionButton(
-          //     child: Icon(Icons.arrow_back),
-          //     onPressed: () => {Navigator.of(context).pop()}),
-          body: new Container(
-              child: FutureBuilder(
-            builder: _buildFuture,
-            future: _getDataList(),
-          ))),
-      routes: routes,
-      onGenerateRoute: onGenerateRoute,
-    );
+            body: Container(
+                child: FutureBuilder(
+              builder: _buildFuture,
+              future: _getDataList(),
+            ))));
   }
 }

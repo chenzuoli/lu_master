@@ -70,23 +70,23 @@ class _FeedbackPageState extends State<FeedbackPage> {
         backgroundColor: Colors.white, // status bar color
         brightness: Brightness.light, // status bar brightness
       ),
-      floatingActionButton: new FloatingActionButton(
+      floatingActionButton: FloatingActionButton(
         onPressed: () {
           _forSubmitted();
           Navigator.of(context).pop();
         },
-        child: new Text('Submit'),
+        child: Text(Constant.FEEDBACK_SUBMIT),
         heroTag: "feedback",
       ),
-      body: new Container(
+      body: Container(
         padding: const EdgeInsets.all(16.0),
-        child: new Form(
+        child: Form(
           key: _formKey,
-          child: new Column(
+          child: Column(
             children: <Widget>[
-              new TextFormField(
-                decoration: new InputDecoration(
-                    labelText: 'Your Feedback Content',
+              TextFormField(
+                decoration: InputDecoration(
+                    labelText: Constant.FEEDBACK_CONTENT,
                     labelStyle: TextStyle()),
                 maxLines: 8,
                 onSaved: (val) {
