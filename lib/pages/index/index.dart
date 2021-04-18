@@ -8,7 +8,7 @@ import 'package:lu_master/pages/photograpier/master.dart';
 // 创建一个带有状态的widget，因为我们需要事件触发
 class Index extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => new _IndexState();
+  State<StatefulWidget> createState() => _IndexState();
 }
 
 // 要让主页面支持动效，就需要在他的定义中附加Mixin类型的对象TickerProviderStateMixin
@@ -29,18 +29,16 @@ class _IndexState extends State<Index> with TickerProviderStateMixin {
 
     // 初始化导航图标
     _navigationViews = <NavigationIconView>[
-      new NavigationIconView(
-          icon: new Icon(Icons.home),
-          label: Constant.HOME_PAGE_NAME,
-          vsync: this),
+      NavigationIconView(
+          icon: Icon(Icons.home), label: Constant.HOME_PAGE_NAME, vsync: this),
       // new NavigationIconView(
       //     icon: new Icon(Icons.phone_in_talk), label: "通讯录", vsync: this),
-      new NavigationIconView(
-          icon: new Icon(Icons.all_inclusive),
+      NavigationIconView(
+          icon: Icon(Icons.all_inclusive),
           label: Constant.MASTER_PAGE_NAME,
           vsync: this),
-      new NavigationIconView(
-          icon: new Icon(Icons.perm_identity),
+      NavigationIconView(
+          icon: Icon(Icons.perm_identity),
           label: Constant.ABOUT_PAGE_NAME,
           vsync: this)
     ];
@@ -52,11 +50,11 @@ class _IndexState extends State<Index> with TickerProviderStateMixin {
 
     // 将我们bottomBar上面的图标按钮与页面对应起来
     _pageList = <StatefulWidget>[
-      new HomePage(),
+      HomePage(),
       // new ContactPage(),
       // new PhotographerPage(),
-      new MasterPage(),
-      new AboutPage()
+      MasterPage(),
+      AboutPage()
     ];
     _currentPage = _pageList[_currentIndex];
   }
@@ -64,7 +62,7 @@ class _IndexState extends State<Index> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     // 声明定义一个底部导航的工具栏
-    final BottomNavigationBar bottomNavigationBar = new BottomNavigationBar(
+    final BottomNavigationBar bottomNavigationBar = BottomNavigationBar(
         items: _navigationViews
             .map((NavigationIconView navigationIconView) =>
                 navigationIconView.item)
@@ -83,7 +81,7 @@ class _IndexState extends State<Index> with TickerProviderStateMixin {
             });
     return Scaffold(
       resizeToAvoidBottomPadding: false,
-      body: new IndexedStack(
+      body: IndexedStack(
         index: _currentIndex,
         children: _pageList,
       ),

@@ -78,15 +78,15 @@ class _LoginPageState extends State<LoginPage> {
   Widget _showEmailInput() {
     return Padding(
       padding: const EdgeInsets.fromLTRB(15.0, 10.0, 0.0, 0.0),
-      child: new TextFormField(
+      child: TextFormField(
         maxLines: 1,
         keyboardType: TextInputType.emailAddress,
         autofocus: false,
         style: TextStyle(fontSize: 15),
-        decoration: new InputDecoration(
+        decoration: InputDecoration(
             border: InputBorder.none,
             hintText: '请输入帐号',
-            icon: new Icon(
+            icon: Icon(
               Icons.email,
               color: Colors.grey,
             )),
@@ -98,15 +98,15 @@ class _LoginPageState extends State<LoginPage> {
   Widget _showPasswordInput() {
     return Padding(
       padding: const EdgeInsets.fromLTRB(15.0, 10.0, 0.0, 0.0),
-      child: new TextFormField(
+      child: TextFormField(
         maxLines: 1,
         obscureText: true,
         autofocus: false,
         style: TextStyle(fontSize: 15),
-        decoration: new InputDecoration(
+        decoration: InputDecoration(
             border: InputBorder.none,
             hintText: '请输入密码',
-            icon: new Icon(
+            icon: Icon(
               Icons.lock,
               color: Colors.grey,
             )),
@@ -127,17 +127,24 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         resizeToAvoidBottomPadding: false,
-        appBar: CupertinoNavigationBar(
-          backgroundColor: Colors.blue,
-          middle: const Text(Constant.LOGIN_PAGE_NAME),
+        appBar: AppBar(
+          title: const Text(
+            Constant.LOGIN_PAGE_NAME,
+            style: TextStyle(fontSize: 16, color: Colors.black),
+          ),
+          centerTitle: true,
+          toolbarHeight: 40,
+          backgroundColor: Colors.white, // status bar color
+          brightness: Brightness.light, // status bar brightness
         ),
         body: ListView(
           children: <Widget>[
-            Container(
-              padding: const EdgeInsets.only(top: 30),
-              height: 220,
-              child: Image(image: AssetImage('assets/images/disneyland.jpeg')),
-            ),
+            AspectRatio(
+                aspectRatio: 16 / 9, //控制子元素的宽高比
+                child: Image.network(
+                  Constant.DEFAULT_IMAGE_URL,
+                  fit: BoxFit.cover,
+                )),
             Padding(padding: EdgeInsets.only(top: 30)),
             Form(
               key: _formKey,
@@ -187,65 +194,65 @@ class _LoginPageState extends State<LoginPage> {
                 },
               ),
             ),
-            Row(children: <Widget>[
-              Padding(padding: EdgeInsets.fromLTRB(0, 100, 0, 0)),
-              Expanded(child: Divider()),
-              Text(
-                " OR ",
-                style: TextStyle(color: Colors.grey),
-              ),
-              Expanded(child: Divider()),
-            ]),
-            Column(
-              children: [
-                GestureDetector(
-                  child: Image.asset("assets/images/wechat.png"),
-                  onTap: () {
-                    _loginwx();
-                  },
-                ),
-              ],
-            ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(40, 10, 50, 0),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: <Widget>[
-                  IconButton(
-                      icon: Icon(_checkIcon),
-                      color: Colors.orange,
-                      onPressed: () {
-                        setState(() {
-                          _isChecked = !_isChecked;
-                          if (_isChecked) {
-                            _checkIcon = Icons.check_box;
-                          } else {
-                            _checkIcon = Icons.check_box_outline_blank;
-                          }
-                        });
-                      }),
-                  Expanded(
-                    child: RichText(
-                        text: TextSpan(
-                            text: '我已经详细阅读并同意',
-                            style: TextStyle(color: Colors.black, fontSize: 13),
-                            children: <TextSpan>[
-                          TextSpan(
-                              text: '《隐私政策》',
-                              style: TextStyle(
-                                  color: Colors.blue,
-                                  decoration: TextDecoration.underline)),
-                          TextSpan(text: '和'),
-                          TextSpan(
-                              text: '《用户协议》',
-                              style: TextStyle(
-                                  color: Colors.blue,
-                                  decoration: TextDecoration.underline))
-                        ])),
-                  )
-                ],
-              ),
-            )
+            // Row(children: <Widget>[
+            //   Padding(padding: EdgeInsets.fromLTRB(0, 100, 0, 0)),
+            //   Expanded(child: Divider()),
+            //   Text(
+            //     " OR ",
+            //     style: TextStyle(color: Colors.grey),
+            //   ),
+            //   Expanded(child: Divider()),
+            // ]),
+            // Column(
+            //   children: [
+            //     GestureDetector(
+            //       child: Image.asset("assets/images/wechat.png"),
+            //       onTap: () {
+            //         _loginwx();
+            //       },
+            //     ),
+            //   ],
+            // ),
+            // Padding(
+            //   padding: const EdgeInsets.fromLTRB(40, 10, 50, 0),
+            //   child: Row(
+            //     crossAxisAlignment: CrossAxisAlignment.end,
+            //     children: <Widget>[
+            //       IconButton(
+            //           icon: Icon(_checkIcon),
+            //           color: Colors.orange,
+            //           onPressed: () {
+            //             setState(() {
+            //               _isChecked = !_isChecked;
+            //               if (_isChecked) {
+            //                 _checkIcon = Icons.check_box;
+            //               } else {
+            //                 _checkIcon = Icons.check_box_outline_blank;
+            //               }
+            //             });
+            //           }),
+            //       Expanded(
+            //         child: RichText(
+            //             text: TextSpan(
+            //                 text: '我已经详细阅读并同意',
+            //                 style: TextStyle(color: Colors.black, fontSize: 13),
+            //                 children: <TextSpan>[
+            //               TextSpan(
+            //                   text: '《隐私政策》',
+            //                   style: TextStyle(
+            //                       color: Colors.blue,
+            //                       decoration: TextDecoration.underline)),
+            //               TextSpan(text: '和'),
+            //               TextSpan(
+            //                   text: '《用户协议》',
+            //                   style: TextStyle(
+            //                       color: Colors.blue,
+            //                       decoration: TextDecoration.underline))
+            //             ])),
+            //       )
+            //     ],
+            //   ),
+            // )
           ],
         ));
   }

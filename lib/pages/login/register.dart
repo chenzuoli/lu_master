@@ -193,24 +193,30 @@ class _RegisterPageState extends State<RegisterPage> {
         routes: routes,
         onGenerateRoute: onGenerateRoute,
         home: Scaffold(
-            appBar: CupertinoNavigationBar(
+            appBar: AppBar(
               leading: BackButton(
                 color: Colors.black,
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
               ),
-              backgroundColor: Colors.blue,
-              middle: const Text(Constant.REGISTER_PAGE_NAME),
+              title: const Text(
+                Constant.REGISTER_PAGE_NAME,
+                style: TextStyle(fontSize: 16, color: Colors.black),
+              ),
+              centerTitle: true,
+              toolbarHeight: 40,
+              backgroundColor: Colors.white, // status bar color
+              brightness: Brightness.light, // status bar brightness
             ),
             body: ListView(
               children: <Widget>[
-                Container(
-                  padding: const EdgeInsets.only(top: 30),
-                  height: 220,
-                  child:
-                      Image(image: AssetImage('assets/images/disneyland.jpeg')),
-                ),
+                AspectRatio(
+                    aspectRatio: 16 / 9, //控制子元素的宽高比
+                    child: Image.network(
+                      Constant.DEFAULT_IMAGE_URL,
+                      fit: BoxFit.cover,
+                    )),
                 Padding(padding: EdgeInsets.only(top: 30)),
                 Form(
                   key: _formKey,
@@ -253,66 +259,66 @@ class _RegisterPageState extends State<RegisterPage> {
                     },
                   ),
                 ),
-                Row(children: <Widget>[
-                  Padding(padding: EdgeInsets.fromLTRB(0, 100, 0, 0)),
-                  Expanded(child: Divider()),
-                  Text(
-                    " OR ",
-                    style: TextStyle(color: Colors.grey),
-                  ),
-                  Expanded(child: Divider()),
-                ]),
-                Column(
-                  children: [
-                    GestureDetector(
-                      child: Image.asset("assets/images/wechat.png"),
-                      onTap: () {
-                        _loginwx();
-                      },
-                    ),
-                  ],
-                ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(40, 10, 50, 0),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: <Widget>[
-                      IconButton(
-                          icon: Icon(_checkIcon),
-                          color: Colors.orange,
-                          onPressed: () {
-                            setState(() {
-                              _isChecked = !_isChecked;
-                              if (_isChecked) {
-                                _checkIcon = Icons.check_box;
-                              } else {
-                                _checkIcon = Icons.check_box_outline_blank;
-                              }
-                            });
-                          }),
-                      Expanded(
-                        child: RichText(
-                            text: TextSpan(
-                                text: '我已经详细阅读并同意',
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 13),
-                                children: <TextSpan>[
-                              TextSpan(
-                                  text: '《隐私政策》',
-                                  style: TextStyle(
-                                      color: Colors.blue,
-                                      decoration: TextDecoration.underline)),
-                              TextSpan(text: '和'),
-                              TextSpan(
-                                  text: '《用户协议》',
-                                  style: TextStyle(
-                                      color: Colors.blue,
-                                      decoration: TextDecoration.underline))
-                            ])),
-                      )
-                    ],
-                  ),
-                )
+                // Row(children: <Widget>[
+                //   Padding(padding: EdgeInsets.fromLTRB(0, 100, 0, 0)),
+                //   Expanded(child: Divider()),
+                //   Text(
+                //     " OR ",
+                //     style: TextStyle(color: Colors.grey),
+                //   ),
+                //   Expanded(child: Divider()),
+                // ]),
+                // Column(
+                //   children: [
+                //     GestureDetector(
+                //       child: Image.asset("assets/images/wechat.png"),
+                //       onTap: () {
+                //         _loginwx();
+                //       },
+                //     ),
+                //   ],
+                // ),
+                // Padding(
+                //   padding: const EdgeInsets.fromLTRB(40, 10, 50, 0),
+                //   child: Row(
+                //     crossAxisAlignment: CrossAxisAlignment.end,
+                //     children: <Widget>[
+                //       IconButton(
+                //           icon: Icon(_checkIcon),
+                //           color: Colors.orange,
+                //           onPressed: () {
+                //             setState(() {
+                //               _isChecked = !_isChecked;
+                //               if (_isChecked) {
+                //                 _checkIcon = Icons.check_box;
+                //               } else {
+                //                 _checkIcon = Icons.check_box_outline_blank;
+                //               }
+                //             });
+                //           }),
+                //       Expanded(
+                //         child: RichText(
+                //             text: TextSpan(
+                //                 text: '我已经详细阅读并同意',
+                //                 style: TextStyle(
+                //                     color: Colors.black, fontSize: 13),
+                //                 children: <TextSpan>[
+                //               TextSpan(
+                //                   text: '《隐私政策》',
+                //                   style: TextStyle(
+                //                       color: Colors.blue,
+                //                       decoration: TextDecoration.underline)),
+                //               TextSpan(text: '和'),
+                //               TextSpan(
+                //                   text: '《用户协议》',
+                //                   style: TextStyle(
+                //                       color: Colors.blue,
+                //                       decoration: TextDecoration.underline))
+                //             ])),
+                //       )
+                //     ],
+                //   ),
+                // )
               ],
             )));
   }

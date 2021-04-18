@@ -26,7 +26,7 @@ class _MainPageState extends State<MainPage> {
         backgroundColor: Colors.white, // status bar color
         brightness: Brightness.light, // status bar brightness
       ),
-      bottomNavigationBar: new Index(),
+      bottomNavigationBar: Index(),
     );
   }
 }

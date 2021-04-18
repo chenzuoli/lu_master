@@ -48,73 +48,106 @@ class _WorkInfoPageState extends State<WorkInfoPage> {
     }
   }
 
+  Future<bool> sendDataToBackScreen() async{
+    Navigator.pop(context, true);
+return true;
+  }
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          leading: BackButton(
-            color: Colors.black,
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
+    return WillPopScope(
+        onWillPop: sendDataToBackScreen,
+        child: Scaffold(
+          appBar: AppBar(
+            leading: BackButton(
+              color: Colors.black,
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            title: Text(
+              this.work.subject,
+              style: TextStyle(fontSize: 16, color: Colors.black),
+            ),
+            centerTitle: true,
+            toolbarHeight: 40,
+            backgroundColor: Colors.white, // status bar color
+            brightness: Brightness.light, // status bar brightness
           ),
-          title: Text(
-            this.work.subject,
-            style: TextStyle(fontSize: 16, color: Colors.black),
-          ),
-          centerTitle: true,
-          toolbarHeight: 40,
-          backgroundColor: Colors.white, // status bar color
-          brightness: Brightness.light, // status bar brightness
-        ),
-        body: Column(
-          children: [
-            this.user == null
-                ? Center(child: Text(Constant.LOADING_TEXT))
-                : Container(
-                    child: SingleChildScrollView(
-                      child: Column(
-                        children: [
-                          AspectRatio(
-                            aspectRatio: 16 / 9,
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(4.0),
-                                topRight: Radius.circular(4.0),
-                              ),
-                              child: Image.network(
-                                this.work.url,
-                                fit: BoxFit.cover,
+          body: Column(
+            children: [
+              this.user == null
+                  ? Center(child: Text(Constant.LOADING_TEXT))
+                  : Container(
+                      child: SingleChildScrollView(
+                        child: Column(
+                          children: [
+                            AspectRatio(
+                              aspectRatio: 16 / 9,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(4.0),
+                                  topRight: Radius.circular(4.0),
+                                ),
+                                child: Image.network(
+                                  this.work.url,
+                                  fit: BoxFit.cover,
+                                ),
                               ),
                             ),
-                          ),
-                          ListTile(
-                            leading: CircleAvatar(
-                              backgroundImage:
-                                  NetworkImage(this.user.avatar_url),
+                            ListTile(
+                              leading: CircleAvatar(
+                                backgroundImage:
+                                    NetworkImage(this.user.avatar_url),
+                              ),
+                              title: Text(this.user.nick_name),
                             ),
-                            title: Text(this.user.nick_name),
-                          ),
-                          Container(
-                            alignment: Alignment.centerLeft,
-                            padding: EdgeInsets.all(16.0),
-                            child: Text(
-                              this.work.subject,
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
+                            Container(
+                              alignment: Alignment.centerLeft,
+                              padding: EdgeInsets.all(16.0),
+                              child: Text(
+                                this.work.subject,
+                                maxLines: 10,
+                                overflow: TextOverflow.ellipsis,
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-            ButtonUtil.flatButton(Constant.VOTE_NAME, Colors.blue[200], () {
-              _addVote(this.work);
-            })
-          ],
-        ),
-      ),
-    );
+              ButtonUtil.flatButton(Constant.VOTE_NAME, Colors.blue[200], () {
+                _addVote(this.work);
+              })
+            ],
+          ),
+        ));
   }
+}
+
+Future<bool> _showMessage(BuildContext context, String title, String message) {
+  return showDialog<void>(
+    context: context,
+    barrierDismissible: false, // user must tap button!
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text(title),
+        content: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              Text(message),
+            ],
+          ),
+        ),
+        actions: <Widget>[
+          FlatButton(
+            child: Text('OK'),
+            onPressed: () {
+              Navigator.of(context).pop();
+              // Navigator.of(context).pop();
+            },
+          ),
+        ],
+      );
+    },
+  );
 }

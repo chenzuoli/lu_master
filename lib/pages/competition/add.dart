@@ -234,53 +234,47 @@ class _AddWorkPageState extends State<AddWorkPage> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      routes: routes,
-      onGenerateRoute: onGenerateRoute,
-      home: Scaffold(
-          floatingActionButton: FloatingActionButton(
-            onPressed: _getImage,
-            tooltip: 'Pick Image',
-            child: Icon(Icons.add_a_photo),
-            heroTag: "add_competition_work",
+    return Scaffold(
+        floatingActionButton: FloatingActionButton(
+          onPressed: _getImage,
+          tooltip: 'Pick Image',
+          child: Icon(Icons.add_a_photo),
+          heroTag: "add_competition_work",
+        ),
+        appBar: AppBar(
+          leading: BackButton(
+            color: Colors.black,
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
           ),
-          appBar: AppBar(
-            leading: BackButton(
-              color: Colors.black,
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-            title: Text(
-              Constant.ADD_WORK_PAGE_NAME,
-              style: TextStyle(fontSize: 16, color: Colors.black),
-            ),
-            centerTitle: true,
-            toolbarHeight: 40,
-            backgroundColor: Colors.white, // status bar color
-            brightness: Brightness.light, // status bar brightness
+          title: Text(
+            Constant.ADD_WORK_PAGE_NAME,
+            style: TextStyle(fontSize: 16, color: Colors.black),
           ),
-          body: Form(
-            key: _formKey,
-            child: SingleChildScrollView(
-              child: Container(
-                child: Card(
-                  child: Column(
-                    children: <Widget>[
-                      _showNameInput(),
-                      Divider(
-                          height: 0.5, indent: 16.0, color: Colors.grey[300]),
-                      _showSubjectInput(),
-                      Divider(
-                          height: 0.5, indent: 16.0, color: Colors.grey[300]),
-                      _showImgInput(),
-                      _submitBtn()
-                    ],
-                  ),
+          centerTitle: true,
+          toolbarHeight: 40,
+          backgroundColor: Colors.white, // status bar color
+          brightness: Brightness.light, // status bar brightness
+        ),
+        body: Form(
+          key: _formKey,
+          child: SingleChildScrollView(
+            child: Container(
+              child: Card(
+                child: Column(
+                  children: <Widget>[
+                    _showNameInput(),
+                    Divider(height: 0.5, indent: 16.0, color: Colors.grey[300]),
+                    _showSubjectInput(),
+                    Divider(height: 0.5, indent: 16.0, color: Colors.grey[300]),
+                    _showImgInput(),
+                    _submitBtn()
+                  ],
                 ),
               ),
             ),
-          )),
-    );
+          ),
+        ));
   }
 }

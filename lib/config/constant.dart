@@ -70,6 +70,7 @@ class Constant {
 
   static const String DEFAULT_NICK_NAME = "user";
   static const String DEFAULT_AVATAR_URL = "http://cdn.pipilong.pet/dog2.png";
+  static const String DEFAULT_IMAGE_URL = "http://cdn.pipilong.pet/login2.png";
 
   static const String LOADING_TEXT = "加载中...";
 
