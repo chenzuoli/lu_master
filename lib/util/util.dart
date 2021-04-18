@@ -102,12 +102,14 @@ class Util {
         fontSize: 16.0);
   }
 
-  static void showLoading(context, [String text]) async {
+  static Future<BuildContext> showLoading(context, [String text]) async{
+    BuildContext dialogContext;
     text = text ?? "加载中...";
     showDialog(
         barrierDismissible: false,
         context: context,
         builder: (context) {
+          dialogContext = context;
           return Center(
             child: Container(
               decoration: BoxDecoration(
@@ -147,6 +149,7 @@ class Util {
             ),
           );
         });
+    return dialogContext;
   }
 
   static Future<SharedPreferences> _getInstance() async {

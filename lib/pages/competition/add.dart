@@ -171,10 +171,11 @@ class _AddWorkPageState extends State<AddWorkPage> {
       "name": "avatarFile",
       "avatarFile": await MultipartFile.fromFile(_image.path)
     });
-    Util.showLoading(context, "上传中，请等待...");
+    BuildContext dialogContext = await Util.showLoading(context, "上传中，请等待...");
     var response = await DioUtil.uploadFile(
         Constant.UPLOAD_FILE_URL, Constant.CONTENT_TYPE_FILE, formData);
-    Navigator.of(context).pop("xxx");
+    // Navigator.pop(dialogContext);
+    Navigator.of(context, rootNavigator: true).pop();
     // Navigator.pop(context, true); // close dialog
     if (response['status'] == 200) {
       Util.showShortLoading("上传成功");

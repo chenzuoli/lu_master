@@ -16,7 +16,7 @@ class Constant {
   static const String PHOTOGRAPHY_LIST_API = "get_photographies";
   static const String PHOTOGRAPHY_ADD_API = "add_photography";
   static const String WORK_ADD_API = "add_photo";
-  static const String WORK_LIKE_COMMENT_API = "get_comment_by_id";
+  static const String WORK_LIKE_COMMENT_API = "get_comments";
   static const String WORK_UPDATE_VOTE_API = "update_vote";
   static const String WORK_ADD_LIKE_API = "add_like";
   static const String COMMENT_ADD_LIKE_API = "add_comment_like";
@@ -55,6 +55,7 @@ class Constant {
   static const String WORK_COMMENT_PAGE_NAME = "评论";
   static const String WORK_COMMENT_BTN_NAME = "发表评论";
   static const String WORK_COMMENT_EMPTY_CONTENT = "暂时还没人评论呢...";
+  static const String WORK_COMMENT_DESC = "说的什么吧...";
   static const String VOTE_NAME = "点击投票";
 
   static const String LOGIN_PAGE_NAME = "登录";

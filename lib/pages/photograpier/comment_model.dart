@@ -275,6 +275,9 @@ class _CommentPageState extends State<CommentPage> {
             // comment this photography work.
             _forSubmitted(comment_id);
             Navigator.of(context).pop();
+            setState(() {
+              getComments(item);
+            });
           },
         )
       ],
@@ -293,7 +296,7 @@ class _CommentPageState extends State<CommentPage> {
               builder: (BuildContext context) {
                 return Container(
                   // 评论作品，作品的comment_id为0
-                  child: textField(0, 'Say something here...'),
+                  child: textField(0, Constant.WORK_COMMENT_DESC),
                   padding: EdgeInsets.all(7),
                 );
               });
