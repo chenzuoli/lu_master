@@ -30,6 +30,9 @@ class _CompetitionWorkItemPageState extends State<CompetitionWorkItemPage> {
         data: param);
     if (response['status'] == 200) {
       Util.showShortLoading(response['data']);
+      setState(() {
+        item.votes = item.votes + 1;
+      });
     } else {
       Util.showShortLoading(response['message']);
     }
@@ -61,19 +64,21 @@ class _CompetitionWorkItemPageState extends State<CompetitionWorkItemPage> {
               ),
             ),
             SizedBox(
-              width: 120,
+              width: 60,
               child: FlatButton(
                   child: Icon(
                     Icons.favorite,
                     color: isLike ? Colors.blue : Colors.grey[400],
                   ),
                   onPressed: () {
-                    setState(() {
+                    setState(()  {
                       isLike = !isLike;
                       _addVote();
                     });
                   }),
-            )
+            ),
+            SizedBox(
+                width: 60, child: Container(child: Text(item.votes.toString())))
           ],
         ),
         Divider()
