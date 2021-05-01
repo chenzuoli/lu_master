@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 // import 'package:fluwx/fluwx.dart' as fluwx;
@@ -49,6 +50,10 @@ class _RegisterPageState extends State<RegisterPage> {
     }
     if (_password == '') {
       Util.showMessageDialog(context, '密码不可为空');
+      return;
+    }
+    if (!_isChecked) {
+      Util.showMessageDialog(context, "请查看服务条例与隐私协议");
       return;
     }
     _registerRequest(_userID, _password).then((value) => {
@@ -278,47 +283,86 @@ class _RegisterPageState extends State<RegisterPage> {
                 //     ),
                 //   ],
                 // ),
-                // Padding(
-                //   padding: const EdgeInsets.fromLTRB(40, 10, 50, 0),
-                //   child: Row(
-                //     crossAxisAlignment: CrossAxisAlignment.end,
-                //     children: <Widget>[
-                //       IconButton(
-                //           icon: Icon(_checkIcon),
-                //           color: Colors.orange,
-                //           onPressed: () {
-                //             setState(() {
-                //               _isChecked = !_isChecked;
-                //               if (_isChecked) {
-                //                 _checkIcon = Icons.check_box;
-                //               } else {
-                //                 _checkIcon = Icons.check_box_outline_blank;
-                //               }
-                //             });
-                //           }),
-                //       Expanded(
-                //         child: RichText(
-                //             text: TextSpan(
-                //                 text: '我已经详细阅读并同意',
-                //                 style: TextStyle(
-                //                     color: Colors.black, fontSize: 13),
-                //                 children: <TextSpan>[
-                //               TextSpan(
-                //                   text: '《隐私政策》',
-                //                   style: TextStyle(
-                //                       color: Colors.blue,
-                //                       decoration: TextDecoration.underline)),
-                //               TextSpan(text: '和'),
-                //               TextSpan(
-                //                   text: '《用户协议》',
-                //                   style: TextStyle(
-                //                       color: Colors.blue,
-                //                       decoration: TextDecoration.underline))
-                //             ])),
-                //       )
-                //     ],
-                //   ),
-                // )
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(40, 20, 50, 0),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: <Widget>[
+                      IconButton(
+                          icon: Icon(_checkIcon),
+                          color: Colors.orange,
+                          onPressed: () {
+                            setState(() {
+                              _isChecked = !_isChecked;
+                              if (_isChecked) {
+                                _checkIcon = Icons.check_box;
+                              } else {
+                                _checkIcon = Icons.check_box_outline_blank;
+                              }
+                            });
+                          }),
+                      Expanded(
+                        child: RichText(
+                            text: TextSpan(
+                                text: '我已经详细阅读并同意',
+                                style: TextStyle(
+                                    color: Colors.black, fontSize: 13),
+                                children: <TextSpan>[
+                              TextSpan(
+                                  text: '《隐私政策》',
+                                  style: TextStyle(
+                                      color: Colors.blue,
+                                      decoration: TextDecoration.underline),
+                                  recognizer: TapGestureRecognizer()
+                                    ..onTap = () => {
+                                          print('abc'),
+
+                                          showModalBottomSheet<void>(
+                                              context: context,
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.only(
+                                                  topLeft: Radius.circular(20),
+                                                  topRight: Radius.circular(20),
+                                                ),
+                                              ),
+                                              builder: (BuildContext context) {
+                                                return Container(
+                                                    child:
+                                                        SingleChildScrollView(
+                                                  child: Text(Data.privacy_content),
+                                                ));
+                                              })
+                                        }),
+                              TextSpan(text: '和'),
+                              TextSpan(
+                                  text: '《用户协议》',
+                                  style: TextStyle(
+                                      color: Colors.blue,
+                                      decoration: TextDecoration.underline),
+                                  recognizer: TapGestureRecognizer()
+                                    ..onTap = () => {
+                                          print('def'),
+                                          showModalBottomSheet<void>(
+                                              context: context,
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.only(
+                                                  topLeft: Radius.circular(20),
+                                                  topRight: Radius.circular(20),
+                                                ),
+                                              ),
+                                              builder: (BuildContext context) {
+                                                return Container(
+                                                    child:
+                                                        SingleChildScrollView(
+                                                  child: Text(Data.service_content),
+                                                ));
+                                              })
+                                        })
+                            ])),
+                      )
+                    ],
+                  ),
+                )
               ],
             )));
   }
