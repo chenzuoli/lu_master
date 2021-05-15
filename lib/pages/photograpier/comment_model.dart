@@ -161,10 +161,12 @@ class _CommentPageState extends State<CommentPage> {
           Container(
             alignment: Alignment.centerLeft,
             padding: EdgeInsets.all(16.0),
-            child: Text(
+            height: 80,
+            // 可选择的文本
+            child: SelectableText(
               item.subject,
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
+              maxLines: 200,
+              scrollPhysics: ClampingScrollPhysics(),
             ),
           ),
           SelectTextItem(

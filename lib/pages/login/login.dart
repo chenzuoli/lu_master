@@ -243,55 +243,51 @@ class _LoginPageState extends State<LoginPage> {
                             style: TextStyle(color: Colors.black, fontSize: 13),
                             children: <TextSpan>[
                           TextSpan(
-                                  text: '《隐私政策》',
-                                  style: TextStyle(
-                                      color: Colors.blue,
-                                      decoration: TextDecoration.underline),
-                                  recognizer: TapGestureRecognizer()
-                                    ..onTap = () => {
-                                          print('abc'),
-                                          showModalBottomSheet<void>(
-                                              context: context,
-                                              shape: RoundedRectangleBorder(
-                                                borderRadius: BorderRadius.only(
-                                                  topLeft: Radius.circular(20),
-                                                  topRight: Radius.circular(20),
-                                                ),
-                                              ),
-                                              builder: (BuildContext context) {
-                                                return Container(
-                                                    child:
-                                                        SingleChildScrollView(
-                                                  child: Text(Data.privacy_content),
-                                                ));
-                                              })
-                                        }),
-                              TextSpan(text: '和'),
-                              TextSpan(
-                                  text: '《用户协议》',
-                                  style: TextStyle(
-                                      color: Colors.blue,
-                                      decoration: TextDecoration.underline),
-                                  recognizer: TapGestureRecognizer()
-                                    ..onTap = () => {
-                                          print('def'),
-                                          showModalBottomSheet<void>(
-                                              context: context,
-                                              shape: RoundedRectangleBorder(
-                                                borderRadius: BorderRadius.only(
-                                                  topLeft: Radius.circular(20),
-                                                  topRight: Radius.circular(20),
-                                                ),
-                                              ),
-                                              builder: (BuildContext context) {
-                                                return Container(
-                                                    child:
-                                                        SingleChildScrollView(
-                                                  child: Text(Data.service_content),
-                                                ));
-                                              })
-                                        })
-                            ])),
+                              text: '《隐私政策》',
+                              style: TextStyle(
+                                  color: Colors.blue,
+                                  decoration: TextDecoration.underline),
+                              recognizer: TapGestureRecognizer()
+                                ..onTap = () => {
+                                      showModalBottomSheet<void>(
+                                          context: context,
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.only(
+                                              topLeft: Radius.circular(20),
+                                              topRight: Radius.circular(20),
+                                            ),
+                                          ),
+                                          builder: (BuildContext context) {
+                                            return Container(
+                                                child: SingleChildScrollView(
+                                              child: Text(Data.privacy_content),
+                                            ));
+                                          })
+                                    }),
+                          TextSpan(text: '和'),
+                          TextSpan(
+                              text: '《用户协议》',
+                              style: TextStyle(
+                                  color: Colors.blue,
+                                  decoration: TextDecoration.underline),
+                              recognizer: TapGestureRecognizer()
+                                ..onTap = () => {
+                                      showModalBottomSheet<void>(
+                                          context: context,
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.only(
+                                              topLeft: Radius.circular(20),
+                                              topRight: Radius.circular(20),
+                                            ),
+                                          ),
+                                          builder: (BuildContext context) {
+                                            return Container(
+                                                child: SingleChildScrollView(
+                                              child: Text(Data.service_content),
+                                            ));
+                                          })
+                                    })
+                        ])),
                   )
                 ],
               ),

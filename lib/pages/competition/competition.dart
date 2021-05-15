@@ -6,7 +6,6 @@ import 'package:lu_master/util/dio_util.dart';
 import 'competition_model.dart';
 import 'package:http/http.dart' as http;
 import 'competition_item_page.dart';
-import 'package:lu_master/config/custom_route.dart';
 
 /// 比赛列表
 

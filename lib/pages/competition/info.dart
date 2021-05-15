@@ -33,7 +33,11 @@ class _CompetitionInfoPageState extends State<CompetitionInfoPage> {
 
   Widget getCondition(CompetitionItemModel item) {
     return ClipRRect(
-      child: Text(item.condition),
+      child: SelectableText(
+        item.condition,
+        maxLines: 100,
+        scrollPhysics: ClampingScrollPhysics(),
+      ),
       borderRadius: BorderRadius.circular(8),
     );
   }

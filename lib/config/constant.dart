@@ -89,6 +89,9 @@ class Data {
   static String open_id = "";
   static String token = "";
   static UserModel user;
+
+  static String wxAppid = "wxc0c7df466c9d8bc1";
+  static String wxAppSecret = "bd90ecdf95ed118e4f3431bf35d64b93";
   static String service_content = """会员服务协议
 
 一、首部及导言

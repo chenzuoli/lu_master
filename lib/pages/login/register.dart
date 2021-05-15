@@ -315,8 +315,6 @@ class _RegisterPageState extends State<RegisterPage> {
                                       decoration: TextDecoration.underline),
                                   recognizer: TapGestureRecognizer()
                                     ..onTap = () => {
-                                          print('abc'),
-
                                           showModalBottomSheet<void>(
                                               context: context,
                                               shape: RoundedRectangleBorder(
@@ -329,7 +327,8 @@ class _RegisterPageState extends State<RegisterPage> {
                                                 return Container(
                                                     child:
                                                         SingleChildScrollView(
-                                                  child: Text(Data.privacy_content),
+                                                  child: Text(
+                                                      Data.privacy_content),
                                                 ));
                                               })
                                         }),
@@ -341,7 +340,6 @@ class _RegisterPageState extends State<RegisterPage> {
                                       decoration: TextDecoration.underline),
                                   recognizer: TapGestureRecognizer()
                                     ..onTap = () => {
-                                          print('def'),
                                           showModalBottomSheet<void>(
                                               context: context,
                                               shape: RoundedRectangleBorder(
@@ -354,7 +352,8 @@ class _RegisterPageState extends State<RegisterPage> {
                                                 return Container(
                                                     child:
                                                         SingleChildScrollView(
-                                                  child: Text(Data.service_content),
+                                                  child: Text(
+                                                      Data.service_content),
                                                 ));
                                               })
                                         })

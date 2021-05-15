@@ -22,9 +22,9 @@ class _CompetitionItemPageState extends State<CompetitionItemPage> {
 
   Widget _listItemBuilder(CompetitionItemModel item) {
     return ListTile(
-      title: new Text(item.name),
+      title:  Text(item.name),
       leading: Image.network(item.img_url),
-      subtitle: new Text(item.subject),
+      subtitle:  Text(item.subject),
       onTap: () {
         // Navigator.pushNamed(context, "/competition_info",
         //     arguments: {"item": item});

@@ -48,9 +48,9 @@ class _WorkInfoPageState extends State<WorkInfoPage> {
     }
   }
 
-  Future<bool> sendDataToBackScreen() async{
+  Future<bool> sendDataToBackScreen() async {
     Navigator.pop(context, true);
-return true;
+    return true;
   }
 
   @override
@@ -105,10 +105,12 @@ return true;
                             Container(
                               alignment: Alignment.centerLeft,
                               padding: EdgeInsets.all(16.0),
-                              child: Text(
+                              height: 80,
+                              // 可选择的文本
+                              child: SelectableText(
                                 this.work.subject,
-                                maxLines: 10,
-                                overflow: TextOverflow.ellipsis,
+                                maxLines: 200,
+                                scrollPhysics: ClampingScrollPhysics(),
                               ),
                             ),
                           ],

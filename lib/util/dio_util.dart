@@ -41,8 +41,8 @@ class DioUtil {
       });
 
       /// 打印请求相关信息：请求地址、请求方式、请求参数
-      print('请求地址：【' + method + '  ' + url + '】');
-      print('请求参数：' + data.toString());
+      // print('请求地址：【' + method + '  ' + url + '】');
+      // print('请求参数：' + data.toString());
       Dio dio = _createTokenInstance(value);
       var result;
 
