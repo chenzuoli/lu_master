@@ -33,6 +33,7 @@ class Constant {
   static const String RECOMMEND_WORK_API = "get_popular_competition_works";
   static const String UPDATE_VOTES_API = "update_votes";
   static const String CHECK_VOTE_API = "check_vote";
+  static const String WORK_TAG_API = "get_tags";
 
   static const String MASTER_PAGE_NAME = "发现";
   static const String HOME_PAGE_NAME = "首页";
@@ -43,6 +44,7 @@ class Constant {
   static const String PASSWORD_PAGE_NAME = "更新密码";
   static const String NICKNAME_PAGE_NAME = "更新昵称";
   static const String FEEDBACK_PAGE_NAME = "添加反馈";
+  static const String SUBMIT_BTN_NAME = "提交";
 
   static const String PHOTOGRAPHY_NAME = "摄影比赛";
   static const String COMPETITION_CONDITION_BTN_NAME = "比赛条件";
@@ -91,16 +93,7 @@ class Data {
   static String token = "";
   static UserModel user;
 
-  static List<String> tags = [
-    "# 猫",
-    "# 狗",
-    "# 哈士奇",
-    "# 金毛",
-    "# 可爱",
-    "# 搞笑",
-    "# 百科",
-    "# 科学养宠"
-  ];
+  static List<dynamic> tags = [];
 
   static String wxAppid = "wxc0c7df466c9d8bc1";
   static String wxAppSecret = "bd90ecdf95ed118e4f3431bf35d64b93";

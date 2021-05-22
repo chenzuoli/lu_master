@@ -7,7 +7,6 @@ import 'package:lu_master/config/constant.dart';
 import 'package:lu_master/pages/about/user.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:lu_master/util/select_text_item.dart';
-import 'package:lu_master/util/tag_page.dart';
 import 'package:lu_master/util/util.dart';
 
 /// 添加动态
@@ -30,6 +29,13 @@ class _AddPhotographyPageState extends State<AddPhotographyPage> {
   File _image;
   final picker = ImagePicker();
   String _imgServerPath;
+  dynamic tag;
+
+  @override
+  void initState() {
+    _getTags();
+    super.initState();
+  }
 
   Widget _showNameInput() {
     return Padding(
@@ -85,13 +91,55 @@ class _AddPhotographyPageState extends State<AddPhotographyPage> {
         ));
   }
 
-  Widget _search() {
-    return IconButton(
-      icon: Icon(Icons.search),
-      onPressed: () {
-        // showSearch(context: context, delegate: SearchDelegate());
-      },
+  Future<List<dynamic>> _getTags() async {
+    // 获取所有tag_id
+    var response =
+        await DioUtil.get(Constant.WORK_TAG_API, Constant.CONTENT_TYPE_JSON);
+    var res = [];
+    if (response['status'] == 200) {
+      var tags = response['data'];
+      for (var tag in tags) {
+        res.add(tag["tag_id"]);
+      }
+      Data.tags = tags;
+    }
+    return res;
+  }
+
+  Widget getTags() {
+    return Container(
+      child: Column(
+        children: Data.tags
+            .map((e) => SelectTextItem(
+                  title: "# " + e['tag_name'],
+                  isShowArrow: false,
+                  onTap: () {
+                    Navigator.pop(context, e);
+                    this.tag = e;
+                  },
+                ))
+            .toList(),
+      ),
     );
+  }
+
+  void f() async {
+    await showModalBottomSheet<void>(
+        context: context,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(20),
+            topRight: Radius.circular(20),
+          ),
+        ),
+        builder: (BuildContext context) {
+          return Container(
+              height: 700,
+              child: SingleChildScrollView(
+                child: Column(children: [getTags()]),
+              ));
+        });
+    setState(() {});
   }
 
   Widget _showTag() {
@@ -101,25 +149,12 @@ class _AddPhotographyPageState extends State<AddPhotographyPage> {
       imageName: "assets/images/tag.png",
       height: 60,
       width: 16,
-      onTap: () => {
-        showModalBottomSheet<void>(
-            context: context,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(20),
-                topRight: Radius.circular(20),
-              ),
-            ),
-            builder: (BuildContext context) {
-              return Container(
-                  height: 700,
-                  child: SingleChildScrollView(
-                    child: Column(children: [
-                      // _search(),
-                      TagPage(Data.tags)]),
-                  ));
-            })
-      },
+      content: this.tag != null ? "# " + this.tag['tag_name'] : "",
+      contentStyle: TextStyle(
+        fontSize: 14.0,
+        color: Color(0xFFCCCCCC),
+      ),
+      onTap: f,
     );
   }
 
@@ -155,7 +190,7 @@ class _AddPhotographyPageState extends State<AddPhotographyPage> {
           width: 200,
           child: OutlineButton(
               child: Text(
-                "提交",
+                Constant.SUBMIT_BTN_NAME,
                 style: TextStyle(fontSize: 15),
               ),
               onPressed: () async {
@@ -211,7 +246,8 @@ class _AddPhotographyPageState extends State<AddPhotographyPage> {
       "url": this._imgServerPath,
       "type": "image",
       "open_id": open_id,
-      "photographer": Data.user.nick_name
+      "photographer": Data.user.nick_name,
+      "tag_id": this.tag != null ? this.tag['tag_id'] : ""
     };
     var response = await DioUtil.post(
         Constant.PHOTOGRAPHY_ADD_API, Constant.CONTENT_TYPE_JSON,

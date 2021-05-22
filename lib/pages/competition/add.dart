@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:lu_master/config/custom_route.dart';
 import 'package:lu_master/util/dio_util.dart';
 import 'package:lu_master/config/constant.dart';
 import 'package:dio/dio.dart';
@@ -7,6 +6,8 @@ import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 import 'package:lu_master/util/util.dart';
 import 'competition_model.dart';
+import 'package:lu_master/util/select_text_item.dart';
+
 
 /// 添加作品
 ///
@@ -31,9 +32,16 @@ class _AddWorkPageState extends State<AddWorkPage> {
   File _image;
   final picker = ImagePicker();
   String _imgServerPath;
+  dynamic tag;
 
   _AddWorkPageState(CompetitionItemModel item) {
     this.item = item;
+  }
+
+  @override
+  void initState() {
+    _getTags();
+    super.initState();
   }
 
   Widget _showNameInput() {
@@ -90,6 +98,77 @@ class _AddWorkPageState extends State<AddWorkPage> {
         ));
   }
 
+  
+  Future<List<dynamic>> _getTags() async {
+    // 获取所有tag_id
+    var response =
+        await DioUtil.get(Constant.WORK_TAG_API, Constant.CONTENT_TYPE_JSON);
+    var res = [];
+    if (response['status'] == 200) {
+      var tags = response['data'];
+      for (var tag in tags) {
+        res.add(tag["tag_id"]);
+      }
+      Data.tags = tags;
+    }
+    return res;
+  }
+
+
+  Widget getTags() {
+    return Container(
+      child: Column(
+        children: Data.tags
+            .map((e) => SelectTextItem(
+                  title: "# " + e['tag_name'],
+                  isShowArrow: false,
+                  onTap: () {
+                    Navigator.pop(context, e);
+                    this.tag = e;
+                  },
+                ))
+            .toList(),
+      ),
+    );
+  }
+
+  void f() async {
+    await showModalBottomSheet<void>(
+        context: context,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(20),
+            topRight: Radius.circular(20),
+          ),
+        ),
+        builder: (BuildContext context) {
+          return Container(
+              height: 700,
+              child: SingleChildScrollView(
+                child: Column(children: [
+                  getTags()
+                ]),
+              ));
+        });
+    setState(() {});
+  }
+
+  Widget _showTag() {
+    return SelectTextItem(
+      title: Constant.PHOTOGRAPHY_TAG_NAME,
+      titleStyle: TextStyle(fontSize: 15, color: Colors.grey[600]),
+      imageName: "assets/images/tag.png",
+      height: 60,
+      width: 16,
+      content: this.tag != null ? "# " + this.tag['tag_name'] : "",
+      contentStyle: TextStyle(
+        fontSize: 14.0,
+        color: Color(0xFFCCCCCC),
+      ),
+      onTap: f,
+    );
+  }
+
   Widget _showImgInput() {
     return Padding(
         padding: const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 0.0),
@@ -138,7 +217,7 @@ class _AddWorkPageState extends State<AddWorkPage> {
           width: 200,
           child: OutlineButton(
               child: Text(
-                "提交",
+                Constant.SUBMIT_BTN_NAME,
                 style: TextStyle(fontSize: 15),
               ),
               onPressed: () async {
@@ -220,7 +299,8 @@ class _AddWorkPageState extends State<AddWorkPage> {
       "type": "image",
       "open_id": await Util.getString("open_id"),
       "competition_id": this.item.competition_id,
-      "phone": ""
+      "phone": "",
+      "tag_id": this.tag != null ? this.tag['tag_name'] : ""
     };
     var response = await DioUtil.post(
         Constant.WORK_ADD_API, Constant.CONTENT_TYPE_JSON,
@@ -269,6 +349,7 @@ class _AddWorkPageState extends State<AddWorkPage> {
                     Divider(height: 0.5, indent: 16.0, color: Colors.grey[300]),
                     _showSubjectInput(),
                     Divider(height: 0.5, indent: 16.0, color: Colors.grey[300]),
+                    _showTag(),
                     _showImgInput(),
                     _submitBtn()
                   ],
