@@ -19,9 +19,9 @@ class _PasswordPageState extends State<NickNamePage> {
   String _name;
   String _newName;
 
-  TextEditingController _controller = new TextEditingController();
-  TextEditingController _formFieldController = new TextEditingController();
-  GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
+  TextEditingController _controller = TextEditingController();
+  TextEditingController _formFieldController = TextEditingController();
+  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   _PasswordPageState(UserModel user) {
     this.user = user;
@@ -29,7 +29,7 @@ class _PasswordPageState extends State<NickNamePage> {
 
   @override
   void initState() {
-    _controller.value = new TextEditingValue(text: 'Hello');
+    _controller.value = TextEditingValue(text: 'Hello');
     _formFieldController.addListener(() {
       print('listener');
     });

@@ -49,7 +49,7 @@ class DioUtil {
       try {
         Future response = Future(() async {
           Response response = await dio.request(url,
-              data: data, options: new Options(method: method));
+              data: data, options: Options(method: method));
           return response;
         });
         response.then((value) => {
@@ -87,8 +87,8 @@ class DioUtil {
     Dio dio = createInstance(token, content_type);
     var result;
     try {
-      Response response = await dio.request(url,
-          data: data, options: new Options(method: method));
+      Response response =
+          await dio.request(url, data: data, options: Options(method: method));
       result = response.data;
     } on DioError catch (e) {
       /// 打印请求失败相关信息
@@ -106,7 +106,7 @@ class DioUtil {
           connectTimeout: CONNECT_TIMEOUT,
           receiveTimeout: RECEIVE_TIMEOUT,
           headers: {HttpHeaders.acceptHeader: "*", "token": token});
-      dio = new Dio(options);
+      dio = Dio(options);
     }
     dio.options.contentType = contentType;
     dio.options.headers['token'] = token;
@@ -122,7 +122,7 @@ class DioUtil {
         connectTimeout: CONNECT_TIMEOUT,
         receiveTimeout: RECEIVE_TIMEOUT,
         headers: {HttpHeaders.acceptHeader: "*", "token": token});
-    dio = new Dio(options);
+    dio = Dio(options);
     // }
     return dio;
   }

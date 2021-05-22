@@ -2,21 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 Widget childWidget() {
-  Widget childWidget = new Stack(
+  Widget childWidget = Stack(
     children: <Widget>[
-      new Padding(
-        padding: new EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 35.0),
-        child: new Center(
+      Padding(
+        padding: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 35.0),
+        child: Center(
           child: SpinKitFadingCircle(
             color: Colors.blueAccent,
             size: 30.0,
           ),
         ),
       ),
-      new Padding(
-        padding: new EdgeInsets.fromLTRB(0.0, 35.0, 0.0, 0.0),
-        child: new Center(
-          child: new Text("加载中~~"),
+      Padding(
+        padding: EdgeInsets.fromLTRB(0.0, 35.0, 0.0, 0.0),
+        child: Center(
+          child: Text("加载中~~"),
         ),
       ),
     ],

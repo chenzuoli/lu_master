@@ -20,8 +20,8 @@ class CommentPage extends StatefulWidget {
 }
 
 class _CommentPageState extends State<CommentPage> {
-  GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
-  GlobalKey<FormFieldState> _fieldKey = new GlobalKey<FormFieldState>();
+  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
 
   bool flag = false;
   WorkItemModel item;

@@ -22,7 +22,7 @@ class AddWorkPage extends StatefulWidget {
 class _AddWorkPageState extends State<AddWorkPage> {
   CompetitionItemModel item;
 
-  final _formKey = new GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
 
   String _nickName;
   String _subject;
@@ -39,14 +39,14 @@ class _AddWorkPageState extends State<AddWorkPage> {
   Widget _showNameInput() {
     return Padding(
       padding: const EdgeInsets.fromLTRB(15.0, 10.0, 0.0, 0.0),
-      child: new TextFormField(
+      child: TextFormField(
         maxLines: 1,
         autofocus: false,
         style: TextStyle(fontSize: 15),
-        decoration: new InputDecoration(
+        decoration: InputDecoration(
             border: InputBorder.none,
             hintText: '请输入宠物昵称',
-            icon: new Icon(
+            icon: Icon(
               Icons.pets,
               color: Colors.grey,
             )),
@@ -58,14 +58,14 @@ class _AddWorkPageState extends State<AddWorkPage> {
   Widget _showSubjectInput() {
     return Padding(
       padding: const EdgeInsets.fromLTRB(15.0, 10.0, 0.0, 0.0),
-      child: new TextFormField(
+      child: TextFormField(
         maxLines: 1,
         autofocus: false,
         style: TextStyle(fontSize: 15),
-        decoration: new InputDecoration(
+        decoration: InputDecoration(
             border: InputBorder.none,
             hintText: '请输入作品主题',
-            icon: new Icon(
+            icon: Icon(
               Icons.subject,
               color: Colors.grey,
             )),

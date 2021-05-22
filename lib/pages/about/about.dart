@@ -5,7 +5,7 @@ import 'package:lu_master/util/util.dart';
 
 class AboutPage extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => new _AboutPage();
+  State<StatefulWidget> createState() => _AboutPage();
 }
 
 class _AboutPage extends State<AboutPage> {

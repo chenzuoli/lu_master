@@ -12,6 +12,7 @@ class SelectTextItem extends StatelessWidget {
     this.height,
     this.isShowArrow: true,
     this.imageName,
+    this.width,
   }) : super(key: key);
 
   final GestureTapCallback onTap;
@@ -21,6 +22,7 @@ class SelectTextItem extends StatelessWidget {
   final TextStyle titleStyle;
   final TextStyle contentStyle;
   final double height;
+  final double width;
   final bool isShowArrow; //是否显示右侧箭头
   final String imageName; //左侧图片名字 不传则不显示图片
   @override
@@ -45,9 +47,12 @@ class SelectTextItem extends StatelessWidget {
                     width: 22,
                     height: 22,
                   ),
+            SizedBox(
+              width: this.width,
+            ),
             Text(this.title,
                 style: this.titleStyle ??
-                    new TextStyle(
+                    TextStyle(
                       color: Color(0xFF333333),
                       fontSize: 14.0,
                     )),
@@ -58,7 +63,7 @@ class SelectTextItem extends StatelessWidget {
                     textAlign: this.textAlign,
                     overflow: TextOverflow.ellipsis,
                     style: this.contentStyle ??
-                        new TextStyle(
+                        TextStyle(
                           fontSize: 14.0,
                           color: Color(0xFFCCCCCC),
                         )),

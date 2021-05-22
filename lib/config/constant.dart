@@ -57,6 +57,7 @@ class Constant {
   static const String WORK_COMMENT_EMPTY_CONTENT = "暂时还没人评论呢...";
   static const String WORK_COMMENT_DESC = "说的什么吧...";
   static const String VOTE_NAME = "点击投票";
+  static const String PHOTOGRAPHY_TAG_NAME = "选择标签";
 
   static const String LOGIN_PAGE_NAME = "登录";
   static const String REGISTER_PAGE_NAME = "注册";
@@ -89,6 +90,17 @@ class Data {
   static String open_id = "";
   static String token = "";
   static UserModel user;
+
+  static List<String> tags = [
+    "# 猫",
+    "# 狗",
+    "# 哈士奇",
+    "# 金毛",
+    "# 可爱",
+    "# 搞笑",
+    "# 百科",
+    "# 科学养宠"
+  ];
 
   static String wxAppid = "wxc0c7df466c9d8bc1";
   static String wxAppSecret = "bd90ecdf95ed118e4f3431bf35d64b93";

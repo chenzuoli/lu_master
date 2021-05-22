@@ -7,8 +7,8 @@ class NavigationIconView {
   AnimationController controller;
   // 构造方法
   NavigationIconView({Widget icon, String label, TickerProvider vsync}) {
-    item = new BottomNavigationBarItem(icon: icon, label: label);
-    controller = new AnimationController(
-        vsync: vsync, duration: kThemeAnimationDuration);
+    item = BottomNavigationBarItem(icon: icon, label: label);
+    controller =
+        AnimationController(vsync: vsync, duration: kThemeAnimationDuration);
   }
 }

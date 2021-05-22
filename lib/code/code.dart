@@ -14,22 +14,22 @@ enum EnumCode {
 Tuple2 enumCodeToString(EnumCode code) {
   switch (code) {
     case EnumCode.NETWORK_ERROR:
-      return new Tuple2<int, String>(1001, "网络错误，请重试");
+      return Tuple2<int, String>(1001, "网络错误，请重试");
     case EnumCode.INVALID_PARAMS:
-      return new Tuple2<int, String>(1002, "参数传递有误");
+      return Tuple2<int, String>(1002, "参数传递有误");
     case EnumCode.OBTAIN_OPENID_ERROR:
-      return new Tuple2<int, String>(1003, "登录失败，请重新尝试");
+      return Tuple2<int, String>(1003, "登录失败，请重新尝试");
     case EnumCode.UNKOWN_ERROR:
-      return new Tuple2<int, String>(1004, "未知错误，请重试");
+      return Tuple2<int, String>(1004, "未知错误，请重试");
     case EnumCode.NO_USER:
-      return new Tuple2<int, String>(1005, "登录异常，请重新登录");
+      return Tuple2<int, String>(1005, "登录异常，请重新登录");
     case EnumCode.SIGNATURE_ERROR:
-      return new Tuple2<int, String>(1006, "验证失败，传递信息有误");
+      return Tuple2<int, String>(1006, "验证失败，传递信息有误");
     case EnumCode.CODE_INVALID:
-      return new Tuple2<int, String>(1007, "验证码错误");
+      return Tuple2<int, String>(1007, "验证码错误");
     case EnumCode.CODE_EXPIRED:
-      return new Tuple2<int, String>(1008, "验证码失效");
+      return Tuple2<int, String>(1008, "验证码失效");
     default:
-      return new Tuple2<int, String>(1200, "未知错误");
+      return Tuple2<int, String>(1200, "未知错误");
   }
 }

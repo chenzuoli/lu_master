@@ -18,7 +18,7 @@ class Util {
   static Future checkConnection() async {
     bool flag = false;
     Connectivity().onConnectivityChanged.listen((ConnectivityResult result) {
-      // Got a new connectivity status!
+      // Got a connectivity status!
       if (result == ConnectivityResult.mobile) {
         // I am connected to a mobile network.
         flag = true;
@@ -36,11 +36,11 @@ class Util {
       builder: (BuildContext context) {
         // return object of type Dialog
         return AlertDialog(
-          title: new Text('提示'),
-          content: new Text(message),
+          title: Text('提示'),
+          content: Text(message),
           actions: <Widget>[
-            new FlatButton(
-              child: new Text("好的"),
+            FlatButton(
+              child: Text("好的"),
               onPressed: () {
                 Navigator.of(context).pop();
               },
@@ -102,7 +102,7 @@ class Util {
         fontSize: 16.0);
   }
 
-  static Future<BuildContext> showLoading(context, [String text]) async{
+  static Future<BuildContext> showLoading(context, [String text]) async {
     BuildContext dialogContext;
     text = text ?? "加载中...";
     showDialog(

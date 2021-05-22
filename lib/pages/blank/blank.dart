@@ -7,7 +7,7 @@ class BlankPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        home: new Scaffold(
+        home: Scaffold(
       appBar: AppBar(
         leading: BackButton(
           color: Colors.black,

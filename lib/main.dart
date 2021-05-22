@@ -84,6 +84,7 @@ class _MyHomePageState extends State<MyHomePage> {
     if (loginState == 0 || loginState == null) {
       return LoginPage();
     } else {
+      // return LoginPage();
       return MainPage();
     }
   }

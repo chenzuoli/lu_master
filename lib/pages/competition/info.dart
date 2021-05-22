@@ -35,7 +35,7 @@ class _CompetitionInfoPageState extends State<CompetitionInfoPage> {
     return ClipRRect(
       child: SelectableText(
         item.condition,
-        maxLines: 100,
+        maxLines: 500,
         scrollPhysics: ClampingScrollPhysics(),
       ),
       borderRadius: BorderRadius.circular(8),

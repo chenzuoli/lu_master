@@ -6,7 +6,7 @@ import 'package:dio/dio.dart';
 class HttpUtil {
   static const String TAG = 'DioUtil';
   static Dio _dio;
-  static BaseOptions _options = new BaseOptions(
+  static BaseOptions _options = BaseOptions(
     connectTimeout: 5000,
     receiveTimeout: 3000,
     contentType: ContentType.json.toString(),
@@ -62,7 +62,7 @@ class HttpUtil {
 
   static Dio buildDio() {
     if (_dio == null) {
-      _dio = new Dio(_options);
+      _dio = Dio(_options);
 //      _dio.interceptors.add(CookieManager(CookieJar()));
     }
     return _dio;

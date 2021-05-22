@@ -26,7 +26,7 @@ class _UserPageState extends State<UserPage> {
           title: Constant.NICK_NAME,
           content: user.nick_name,
           textAlign: TextAlign.end,
-          contentStyle: new TextStyle(
+          contentStyle: TextStyle(
             fontSize: 15,
             color: Color(0xFF333333),
           ),
@@ -35,7 +35,7 @@ class _UserPageState extends State<UserPage> {
           title: Constant.PHONE_NUMBER,
           content: user.phone,
           textAlign: TextAlign.end,
-          contentStyle: new TextStyle(
+          contentStyle: TextStyle(
             fontSize: 15,
             color: Color(0xFF333333),
           ),

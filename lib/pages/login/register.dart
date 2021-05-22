@@ -19,7 +19,7 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
-  final _formKey = new GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
   var passKey = GlobalKey<FormFieldState>();
 
   String _userID;
@@ -74,7 +74,7 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 
   Future _registerRequest(String userId, String pwd) async {
-    var current_timestamp = new DateTime.now().millisecondsSinceEpoch;
+    var current_timestamp = DateTime.now().millisecondsSinceEpoch;
     var nick_name = Constant.DEFAULT_NICK_NAME + current_timestamp.toString();
     var avatar_url = Constant.DEFAULT_AVATAR_URL;
     var params = {
@@ -92,15 +92,15 @@ class _RegisterPageState extends State<RegisterPage> {
   Widget _showEmailInput() {
     return Padding(
       padding: const EdgeInsets.fromLTRB(15.0, 10.0, 0.0, 0.0),
-      child: new TextFormField(
+      child: TextFormField(
           maxLines: 1,
           keyboardType: TextInputType.emailAddress,
           autofocus: false,
           style: TextStyle(fontSize: 15),
-          decoration: new InputDecoration(
+          decoration: InputDecoration(
               border: InputBorder.none,
               hintText: '请输入帐号',
-              icon: new Icon(
+              icon: Icon(
                 Icons.email,
                 color: Colors.grey,
               )),
@@ -111,16 +111,16 @@ class _RegisterPageState extends State<RegisterPage> {
   Widget _showPasswordInput() {
     return Padding(
       padding: const EdgeInsets.fromLTRB(15.0, 10.0, 0.0, 0.0),
-      child: new TextFormField(
+      child: TextFormField(
         key: passKey,
         maxLines: 1,
         obscureText: true,
         autofocus: false,
         style: TextStyle(fontSize: 15),
-        decoration: new InputDecoration(
+        decoration: InputDecoration(
             border: InputBorder.none,
             hintText: '请输入密码',
-            icon: new Icon(
+            icon: Icon(
               Icons.lock,
               color: Colors.grey,
             )),
@@ -132,16 +132,16 @@ class _RegisterPageState extends State<RegisterPage> {
   Widget _confirmPasswordInput() {
     return Padding(
       padding: const EdgeInsets.fromLTRB(15.0, 10.0, 0.0, 0.0),
-      child: new TextFormField(
+      child: TextFormField(
         maxLines: 1,
         obscureText: true,
         autofocus: false,
         style: TextStyle(fontSize: 15),
         validator: validatePasswordMatching,
-        decoration: new InputDecoration(
+        decoration: InputDecoration(
             border: InputBorder.none,
             hintText: '请确认密码',
-            icon: new Icon(
+            icon: Icon(
               Icons.lock,
               color: Colors.grey,
             )),

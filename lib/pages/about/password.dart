@@ -32,7 +32,7 @@ class _PasswordPageState extends State<PasswordPage> {
 
   @override
   void initState() {
-    _controller.value = new TextEditingValue(text: 'Hello');
+    _controller.value = TextEditingValue(text: 'Hello');
     _formFieldController.addListener(() {
       print('listener');
     });

@@ -9,7 +9,7 @@ import 'work_recommend.dart';
 
 class HomePage extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => new _HomePageState();
+  State<StatefulWidget> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
@@ -27,8 +27,8 @@ class _HomePageState extends State<HomePage> {
       "http://cdn.pipilong.pet//mnt/pet/avatar/1608558850736wx7ba6300f3f9c05f8.o6zAJs09zvEoKvOGMm5fvNJjD-K0.H95waxmF3xfxee6f34906624c247d5139cc54fe0fde8.jpeg",
       fit: BoxFit.cover,
     ));
-    imageList.add(Image.network("http://cdn.pipilong.pet/home4.png",
-        fit: BoxFit.cover));
+    imageList.add(
+        Image.network("http://cdn.pipilong.pet/home4.png", fit: BoxFit.cover));
   }
 
   Widget _swiperBuilder(BuildContext context, int index) {

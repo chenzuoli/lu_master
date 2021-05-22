@@ -6,7 +6,7 @@ import 'package:lu_master/config/constant.dart';
 
 class PhotographerPage extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => new _PhotographerPage();
+  State<StatefulWidget> createState() => _PhotographerPage();
 }
 
 class _PhotographerPage extends State<PhotographerPage> {
@@ -22,7 +22,7 @@ class _PhotographerPage extends State<PhotographerPage> {
       Icons.chat_bubble_outline,
       color: is_comment ? Colors.blue : Colors.black,
     );
-    var list = new List<Widget>();
+    var list = List<Widget>();
     void _asyncData() {
       HttpUtil.get(Constant.PHOTOGRAPHY_LIST_URL, success: (value) {
         print(value);

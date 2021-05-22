@@ -21,7 +21,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
   String _content;
   var futureUtils;
 
-  GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
+  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   _PasswordPageState(UserModel user) {
     this.user = user;

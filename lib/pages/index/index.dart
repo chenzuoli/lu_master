@@ -31,8 +31,8 @@ class _IndexState extends State<Index> with TickerProviderStateMixin {
     _navigationViews = <NavigationIconView>[
       NavigationIconView(
           icon: Icon(Icons.home), label: Constant.HOME_PAGE_NAME, vsync: this),
-      // new NavigationIconView(
-      //     icon: new Icon(Icons.phone_in_talk), label: "通讯录", vsync: this),
+      // NavigationIconView(
+      //     icon: Icon(Icons.phone_in_talk), label: "通讯录", vsync: this),
       NavigationIconView(
           icon: Icon(Icons.all_inclusive),
           label: Constant.MASTER_PAGE_NAME,
@@ -51,8 +51,8 @@ class _IndexState extends State<Index> with TickerProviderStateMixin {
     // 将我们bottomBar上面的图标按钮与页面对应起来
     _pageList = <StatefulWidget>[
       HomePage(),
-      // new ContactPage(),
-      // new PhotographerPage(),
+      // ContactPage(),
+      // PhotographerPage(),
       MasterPage(),
       AboutPage()
     ];

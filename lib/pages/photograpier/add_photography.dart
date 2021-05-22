@@ -6,10 +6,13 @@ import 'dart:io';
 import 'package:lu_master/config/constant.dart';
 import 'package:lu_master/pages/about/user.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:lu_master/util/select_text_item.dart';
+import 'package:lu_master/util/tag_page.dart';
 import 'package:lu_master/util/util.dart';
 
 /// 添加动态
-///
+/// 2021-05-17 添加作品标签，最多添加3个标签，标签从底部弹出到标签栏高度
+///   可以搜索标签，也可以直接选择热门标签（热门标签不打印对应使用量）
 
 class AddPhotographyPage extends StatefulWidget {
   AddPhotographyPage({Key key}) : super(key: key);
@@ -19,7 +22,7 @@ class AddPhotographyPage extends StatefulWidget {
 }
 
 class _AddPhotographyPageState extends State<AddPhotographyPage> {
-  final _formKey = new GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
 
   String _nick_name;
   String _subject;
@@ -31,14 +34,14 @@ class _AddPhotographyPageState extends State<AddPhotographyPage> {
   Widget _showNameInput() {
     return Padding(
       padding: const EdgeInsets.fromLTRB(15.0, 10.0, 0.0, 0.0),
-      child: new TextFormField(
+      child: TextFormField(
         maxLines: 1,
         autofocus: false,
         style: TextStyle(fontSize: 15),
-        decoration: new InputDecoration(
+        decoration: InputDecoration(
             border: InputBorder.none,
             hintText: '请输入宠物昵称',
-            icon: new Icon(
+            icon: Icon(
               Icons.pets,
               color: Colors.grey,
             )),
@@ -50,14 +53,14 @@ class _AddPhotographyPageState extends State<AddPhotographyPage> {
   Widget _showSubjectInput() {
     return Padding(
       padding: const EdgeInsets.fromLTRB(15.0, 10.0, 0.0, 0.0),
-      child: new TextFormField(
+      child: TextFormField(
         maxLines: 1,
         autofocus: false,
         style: TextStyle(fontSize: 15),
-        decoration: new InputDecoration(
+        decoration: InputDecoration(
             border: InputBorder.none,
             hintText: '请输入作品主题',
-            icon: new Icon(
+            icon: Icon(
               Icons.subject,
               color: Colors.grey,
             )),
@@ -80,6 +83,44 @@ class _AddPhotographyPageState extends State<AddPhotographyPage> {
               width: 0.5, style: BorderStyle.solid, color: Colors.grey[400]),
           borderRadius: BorderRadius.all(Radius.circular(5.0)),
         ));
+  }
+
+  Widget _search() {
+    return IconButton(
+      icon: Icon(Icons.search),
+      onPressed: () {
+        // showSearch(context: context, delegate: SearchDelegate());
+      },
+    );
+  }
+
+  Widget _showTag() {
+    return SelectTextItem(
+      title: Constant.PHOTOGRAPHY_TAG_NAME,
+      titleStyle: TextStyle(fontSize: 15, color: Colors.grey[600]),
+      imageName: "assets/images/tag.png",
+      height: 60,
+      width: 16,
+      onTap: () => {
+        showModalBottomSheet<void>(
+            context: context,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(20),
+                topRight: Radius.circular(20),
+              ),
+            ),
+            builder: (BuildContext context) {
+              return Container(
+                  height: 700,
+                  child: SingleChildScrollView(
+                    child: Column(children: [
+                      // _search(),
+                      TagPage(Data.tags)]),
+                  ));
+            })
+      },
+    );
   }
 
   Widget _showImgInput() {
@@ -222,6 +263,9 @@ class _AddPhotographyPageState extends State<AddPhotographyPage> {
                       Divider(
                           height: 0.5, indent: 16.0, color: Colors.grey[300]),
                       _showSubjectInput(),
+                      Divider(
+                          height: 0.5, indent: 16.0, color: Colors.grey[300]),
+                      _showTag(),
                       Divider(
                           height: 0.5, indent: 16.0, color: Colors.grey[300]),
                       _showImgInput(),

@@ -70,7 +70,7 @@ class _MasterPageState extends State<MasterPage> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: new AppBar(
+        appBar: AppBar(
           title: Text(
             Constant.MASTER_PAGE_NAME,
             style: TextStyle(fontSize: 16, color: Colors.black),
