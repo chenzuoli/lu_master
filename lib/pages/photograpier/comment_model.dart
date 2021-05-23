@@ -37,7 +37,6 @@ class _CommentPageState extends State<CommentPage> {
 
   void _get_tag_info(tag_id) async {
     var tag_name = await TagPage.get_tag_by_id(tag_id);
-    print("tag_name: " + tag_name.toString());
     setState(() {
       this.tag_name = tag_name;
     });
@@ -46,8 +45,6 @@ class _CommentPageState extends State<CommentPage> {
   @override
   void initState() {
     super.initState();
-    print("item: ");
-    item.printInfo();
     getComments(item);
     _get_tag_info(this.item.tag_id);
   }
