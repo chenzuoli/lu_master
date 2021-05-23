@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lu_master/config/constant.dart';
 import 'package:lu_master/util/button_util.dart';
+import 'package:lu_master/util/tag_page.dart';
 import 'work_model.dart';
 import 'package:lu_master/pages/about/user.dart';
 import 'package:lu_master/util/user_util.dart';
@@ -20,6 +21,7 @@ class WorkInfoPage extends StatefulWidget {
 class _WorkInfoPageState extends State<WorkInfoPage> {
   CompetitionWorkItemModel work;
   UserModel user;
+  String tag_name;
   _WorkInfoPageState(CompetitionWorkItemModel work) {
     this.work = work;
   }
@@ -27,12 +29,20 @@ class _WorkInfoPageState extends State<WorkInfoPage> {
   @override
   void initState() {
     _get_user_info();
+    _get_tag_info(this.work.tag_id);
   }
 
   void _get_user_info() async {
     UserModel user = await UserUtil.get_user_info();
     setState(() {
       this.user = user;
+    });
+  }
+
+  void _get_tag_info(tag_id) async {
+    var tag_name = await TagPage.get_tag_by_id(tag_id);
+    setState(() {
+      this.tag_name = tag_name;
     });
   }
 
@@ -105,10 +115,24 @@ class _WorkInfoPageState extends State<WorkInfoPage> {
                             Container(
                               alignment: Alignment.centerLeft,
                               padding: EdgeInsets.all(16.0),
-                              height: 80,
+                              height: 100,
                               // 可选择的文本
                               child: SelectableText(
                                 this.work.subject,
+                                maxLines: 200,
+                                scrollPhysics: ClampingScrollPhysics(),
+                              ),
+                            ),
+                            Container(
+                              alignment: Alignment.centerLeft,
+                              padding: EdgeInsets.all(16.0),
+                              height: 80,
+                              // 可选择的文本
+                              child: SelectableText(
+                                (this.tag_name != "" && this.tag_name != null)
+                                    ? "# " + this.tag_name
+                                    : "",
+                                style: TextStyle(color: Colors.blue),
                                 maxLines: 200,
                                 scrollPhysics: ClampingScrollPhysics(),
                               ),

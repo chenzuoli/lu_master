@@ -34,7 +34,8 @@ class WorkItemModel {
   String subject;
   String nick_name;
   String photographer;
-  int vote;
+  int votes;
+  String tag_id;
   String create_time;
   String update_time;
   WorkLikeCommentModel comments;
@@ -48,7 +49,8 @@ class WorkItemModel {
       this.subject,
       this.nick_name,
       this.photographer,
-      this.vote,
+      this.votes,
+      this.tag_id,
       this.create_time,
       this.update_time,
       this.comments});
@@ -63,14 +65,15 @@ class WorkItemModel {
         subject: json['subject'],
         nick_name: json['nick_name'],
         photographer: json['photographer'],
-        vote: json['vote'],
+        votes: json['votes'],
+        tag_id: json['tag_id'],
         create_time: json['create_time'],
         update_time: json['update_time'],
         comments: json['comments']);
   }
 
-
-  List<WorkLikeCommentItemModel> filterNoComment(List<WorkLikeCommentItemModel> comments) {
+  List<WorkLikeCommentItemModel> filterNoComment(
+      List<WorkLikeCommentItemModel> comments) {
     List<WorkLikeCommentItemModel> list = List();
     for (var i = 0; i < comments.length; i++) {
       if (comments[i].comment != null && comments[i] != '') {
@@ -82,6 +85,9 @@ class WorkItemModel {
 
   void printInfo() {
     print(
-        "----${this.id}----${this.phone}----${this.open_id}----${this.url}----${this.type}----${this.subject}----${this.nick_name}----${this.photographer}----${this.vote}----${this.create_time}----${this.update_time}----${this.comments}");
+        "----${this.id}----${this.phone}----${this.open_id}----${this.url}---" + 
+        "-${this.type}----${this.subject}----${this.nick_name}----" + 
+        "${this.photographer}----${this.votes}----${this.tag_id}-----${this.create_time}----"+
+        "${this.update_time}----${this.comments}");
   }
 }

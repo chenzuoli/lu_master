@@ -12,9 +12,10 @@ class CompetitionWorkModel {
     }
     final originList = json['data'] as List;
 
-    List<CompetitionWorkItemModel> CompetitionWorkItemModelList = originList
-        .map((value) => CompetitionWorkItemModel.fromJson(value))
-        .toList();
+    List<CompetitionWorkItemModel> CompetitionWorkItemModelList =
+        originList.map((value) {
+      return CompetitionWorkItemModel.fromJson(value);
+    }).toList();
 
     return CompetitionWorkModel(
         status: json['status'],
@@ -37,12 +38,13 @@ class CompetitionWorkItemModel {
   String type;
   String url;
   int votes;
+  String tag_id;
   String create_time;
   String update_time;
 
   CompetitionWorkItemModel(
       {this.id,
-        this.competition_id,
+      this.competition_id,
       this.phone,
       this.open_id,
       this.subject,
@@ -50,14 +52,14 @@ class CompetitionWorkItemModel {
       this.type,
       this.url,
       this.votes,
+      this.tag_id,
       // ignore: non_constant_identifier_names
       this.create_time,
       this.update_time});
 
   factory CompetitionWorkItemModel.fromJson(Map<String, dynamic> json) {
-    
     return CompetitionWorkItemModel(
-      id: json['id'],
+        id: json['id'],
         competition_id: json['competition_id'],
         phone: json['phone'],
         open_id: json['open_id'],
@@ -66,6 +68,7 @@ class CompetitionWorkItemModel {
         type: json['type'],
         url: json['url'],
         votes: json['votes'],
+        tag_id: json['tag_id'],
         create_time: json['create_time'],
         update_time: json['update_time']);
   }
@@ -73,7 +76,7 @@ class CompetitionWorkItemModel {
   void printInfo() {
     print(
         "${this.id}----${this.competition_id}----${this.phone}----${this.open_id}----${this.subject}----"
-        "${this.nick_name}----${this.type}----${this.url}----${this.votes}----"
+        "${this.nick_name}----${this.type}----${this.url}----${this.votes}----${this.tag_id}-----"
         "${this.create_time}----${this.update_time}");
   }
 }

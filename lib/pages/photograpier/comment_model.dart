@@ -7,6 +7,7 @@ import 'package:lu_master/util/dio_util.dart';
 import 'package:lu_master/pages/photograpier/work_like_comment.dart';
 import 'package:lu_master/util/select_text_item.dart';
 import 'package:lu_master/util/util.dart';
+import 'package:lu_master/util/tag_page.dart';
 
 class CommentPage extends StatefulWidget {
   WorkItemModel item;
@@ -28,15 +29,27 @@ class _CommentPageState extends State<CommentPage> {
   Widget page;
   String _comment;
   Map<int, Tuple2<bool, bool>> status = Map();
+  String tag_name;
 
   _CommentPageState(WorkItemModel item) {
     this.item = item;
   }
 
+  void _get_tag_info(tag_id) async {
+    var tag_name = await TagPage.get_tag_by_id(tag_id);
+    print("tag_name: " + tag_name.toString());
+    setState(() {
+      this.tag_name = tag_name;
+    });
+  }
+
   @override
   void initState() {
     super.initState();
+    print("item: ");
+    item.printInfo();
     getComments(item);
+    _get_tag_info(this.item.tag_id);
   }
 
   void _forSubmitted(int comment_id) {
@@ -165,6 +178,20 @@ class _CommentPageState extends State<CommentPage> {
             // 可选择的文本
             child: SelectableText(
               item.subject,
+              maxLines: 200,
+              scrollPhysics: ClampingScrollPhysics(),
+            ),
+          ),
+          Container(
+            alignment: Alignment.centerLeft,
+            padding: EdgeInsets.all(16.0),
+            height: 80,
+            // 可选择的文本
+            child: SelectableText(
+              (this.tag_name != "" && this.tag_name != null)
+                  ? "# " + this.tag_name
+                  : "",
+              style: TextStyle(color: Colors.blue),
               maxLines: 200,
               scrollPhysics: ClampingScrollPhysics(),
             ),

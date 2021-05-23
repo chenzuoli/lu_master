@@ -34,6 +34,7 @@ class Constant {
   static const String UPDATE_VOTES_API = "update_votes";
   static const String CHECK_VOTE_API = "check_vote";
   static const String WORK_TAG_API = "get_tags";
+  static const String TAG_NAME_API = "get_tag_by_id";
 
   static const String MASTER_PAGE_NAME = "发现";
   static const String HOME_PAGE_NAME = "首页";
