@@ -1,3 +1,4 @@
+import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 import 'dart:io';
 import 'dart:async';
@@ -110,6 +111,12 @@ class DioUtil {
     }
     dio.options.contentType = contentType;
     dio.options.headers['token'] = token;
+    (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
+        (client) {
+      client.badCertificateCallback = (cert, host, port) {
+        return true;
+      };
+    };
     return dio;
   }
 
@@ -124,6 +131,12 @@ class DioUtil {
         headers: {HttpHeaders.acceptHeader: "*", "token": token});
     dio = Dio(options);
     // }
+    (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
+        (client) {
+      client.badCertificateCallback = (cert, host, port) {
+        return true;
+      };
+    };
     return dio;
   }
 
