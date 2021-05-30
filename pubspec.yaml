@@ -38,7 +38,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   fluttertoast: ^7.1.6
-  # fluwx: ^2.6.0+1
+  fluwx: ^2.4.0
   flutter_spinkit: ^4.1.2
   connectivity: ^2.0.2
   image_picker: ^0.6.7+22
@@ -68,6 +68,10 @@ flutter:
     - assets/images/camera.png
     - assets/images/recommend.png
     - assets/images/tag.png
+    - assets/images/icon_copy.png
+    - assets/images/icon_wechat_moments.jpg
+    - assets/images/icon_wechat.jpg
+    - assets/images/icon_copylink.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

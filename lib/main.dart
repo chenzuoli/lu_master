@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:lu_master/config/constant.dart';
@@ -7,7 +8,6 @@ import 'package:lu_master/pages/index/main.dart';
 import 'config/custom_route.dart';
 import 'pages/login/login.dart';
 import 'util/util.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   runApp(MyApp());
