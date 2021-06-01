@@ -266,20 +266,22 @@ class _CommentPageState extends State<CommentPage> {
           ),
 
           // 标签
-          Container(
-            alignment: Alignment.centerLeft,
-            padding: EdgeInsets.all(16.0),
-            height: 80,
-            // 可选择的文本
-            child: SelectableText(
-              (this.tag_name != "" && this.tag_name != null)
-                  ? "# " + this.tag_name
-                  : "",
-              style: TextStyle(color: Colors.blue),
-              maxLines: 200,
-              scrollPhysics: ClampingScrollPhysics(),
-            ),
-          ),
+          (this.tag_name != "" && this.tag_name != null)
+              ? Container(
+                  alignment: Alignment.centerLeft,
+                  padding: EdgeInsets.all(16.0),
+                  height: 80,
+                  // 可选择的文本
+                  child: SelectableText(
+                    (this.tag_name != "" && this.tag_name != null)
+                        ? "# " + this.tag_name
+                        : "",
+                    style: TextStyle(color: Colors.blue),
+                    maxLines: 200,
+                    scrollPhysics: ClampingScrollPhysics(),
+                  ),
+                )
+              : Container(),
 
           // 分享按钮
           // IconButton(icon: Icon(Icons.share), onPressed: () => _shareComment()),
@@ -442,7 +444,8 @@ class _CommentPageState extends State<CommentPage> {
             context: context,
             builder: (BuildContext context) {
               return ShareWidget(
-                ShareInfo(this.item.subject, this.item.url, img: this.item.url, describe: "分享内容"),
+                ShareInfo(this.item.subject, this.item.url,
+                    img: this.item.url, describe: "分享内容"),
                 list: this.list,
               );
             });
