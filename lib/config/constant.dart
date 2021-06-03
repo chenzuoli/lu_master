@@ -96,8 +96,14 @@ class Data {
 
   static List<dynamic> tags = [];
 
-  static String wxAppid = "wxc0c7df466c9d8bc1";
+  // 微信开放平台
+  static String wxAppId = "wxc0c7df466c9d8bc1";
   static String wxAppSecret = "bd90ecdf95ed118e4f3431bf35d64b93";
+
+  // 电巴克宠物Pets小程序
+  static String miniprogramAppId = "wxa51f1ed6fe266ff1";
+  static String miniprogramOriginId = "gh_5dd44a9f73ad";
+
   static String service_content = """会员服务协议
 
 一、首部及导言

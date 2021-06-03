@@ -106,7 +106,7 @@ class _WorkInfoPageState extends State<WorkInfoPage> {
 
   _initFluwx() async {
     await fluwx.registerWxApi(
-        appId: Data.wxAppid,
+        appId: Data.wxAppId,
         doOnAndroid: true,
         doOnIOS: true,
         universalLink: "https://your.univerallink.com/link/");

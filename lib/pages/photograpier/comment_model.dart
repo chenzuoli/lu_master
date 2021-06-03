@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lu_master/config/constant.dart';
 import 'package:lu_master/pages/about/user.dart';
+import 'package:lu_master/pages/share/share_miniprogram.dart';
 import 'package:lu_master/util/dio_util.dart';
 import 'package:lu_master/pages/photograpier/work_like_comment.dart';
 import 'package:lu_master/util/select_text_item.dart';
@@ -124,7 +125,7 @@ class _CommentPageState extends State<CommentPage> {
 
   _initFluwx() async {
     await fluwx.registerWxApi(
-        appId: Data.wxAppid,
+        appId: Data.wxAppId,
         doOnAndroid: true,
         doOnIOS: true,
         universalLink: "https://your.univerallink.com/link/");
@@ -284,8 +285,16 @@ class _CommentPageState extends State<CommentPage> {
               : Container(),
 
           // 分享按钮
-          // IconButton(icon: Icon(Icons.share), onPressed: () => _shareComment()),
           _shareComment(),
+
+          RaisedButton(
+              child: Text("分享"),
+              onPressed: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) {
+                  return ShareMiniProgramPage();
+                }));
+              }),
 
           // 评论
           SelectTextItem(
