@@ -8,6 +8,15 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "12.0.0"
+  amap_location_flutter_plugin:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: HEAD
+      resolved-ref: "55f473abec7bb360065099e9150f18a71d79d5a5"
+      url: "https://github.com/amap-demo/amap-location-flutter.git"
+    source: git
+    version: "0.1.4"
   analyzer:
     dependency: transitive
     description:

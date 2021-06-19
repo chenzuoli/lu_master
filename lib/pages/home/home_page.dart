@@ -78,7 +78,7 @@ class _HomePageState extends State<HomePage> {
               swiperView(),
               // ServiceBotton(Constant.PHOTOGRAPHY_NAME, ''),
               SelectTextItem(
-                imageName: "assets/images/camera.png",
+                imageName: "dep/images/camera.png",
                 title: Constant.PHOTOGRAPHY_NAME,
                 isShowArrow: true,
                 onTap: () {
@@ -90,7 +90,7 @@ class _HomePageState extends State<HomePage> {
               ),
               LatestCompetitionPage(),
               SelectTextItem(
-                imageName: "assets/images/recommend.png",
+                imageName: "dep/images/recommend.png",
                 title: Constant.WORK_RECOMMEND_NAME,
                 isShowArrow: false,
               ),

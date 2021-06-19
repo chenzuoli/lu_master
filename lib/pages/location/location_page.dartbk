@@ -1,0 +1,80 @@
+import 'bmlocation_util.dartbk';
+import 'package:flutter/material.dart';
+import 'package:flutter_bmflocation/flutter_baidu_location.dart';
+import 'package:flutter_bmfbase/BaiduMap/bmfmap_base.dart'
+    show BMFCoordinate, BMFEdgeInsets, BMFMapSDK, BMF_COORD_TYPE;
+import 'package:flutter_bmfmap/BaiduMap/map/bmf_map_view.dart';
+import 'package:flutter_bmfmap/BaiduMap/models/bmf_map_options.dart';
+
+class LocationPage extends StatefulWidget {
+  LocationPage({Key key, this.title}) : super(key: key);
+  final String title;
+  @override
+  _LocationPageState createState() => _LocationPageState();
+}
+
+class _LocationPageState extends State<LocationPage> {
+  BMFMapOptions mapOptions;
+  BaiduLocation _baiduLocation;
+  @override
+  void initState() {
+    super.initState();
+    LocationUtils.handleStartLocation(callback: locationCallback);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    var screenSize = MediaQuery.of(context).size;
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Container(
+              height: screenSize.height,
+              width: screenSize.width,
+              child: mapOptions == null
+                  ? null
+                  : Stack(
+                      children: <Widget>[
+                        BMFMapWidget(
+                          onBMFMapCreated: (controller) {
+                            LocationUtils.onBMFMapCreated(
+                                controller,
+                                _baiduLocation?.latitude,
+                                _baiduLocation?.longitude);
+                          },
+                          mapOptions: mapOptions,
+                        ),
+                      ],
+                    ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+  locationCallback(Map<String, Object> result) {
+    setState(() {
+      try {
+        _baiduLocation = BaiduLocation.fromMap(result);
+        print('lat==${_baiduLocation.latitude}');
+        print('lon==${_baiduLocation.longitude}');
+        mapOptions = BMFMapOptions(
+            center: BMFCoordinate(
+                _baiduLocation?.latitude ?? 0, _baiduLocation?.longitude ?? 0),
+            zoomLevel: 18,
+            mapPadding: BMFEdgeInsets(left: 30, top: 0, right: 30, bottom: 0));
+      } catch (e) {
+        print(e);
+      }
+    });
+
+    @override
+    void dispose() {
+      super.dispose();
+      LocationUtils.cancel();
+    }
+  }
+}

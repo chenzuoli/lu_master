@@ -211,7 +211,7 @@ class _LoginPageState extends State<LoginPage> {
             // Column(
             //   children: [
             //     GestureDetector(
-            //       child: Image.asset("assets/images/wechat.png"),
+            //       child: Image.asset("dep/images/wechat.png"),
             //       onTap: () {
             //         _loginwx();
             //       },

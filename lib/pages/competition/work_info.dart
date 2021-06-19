@@ -70,7 +70,7 @@ class _WorkInfoPageState extends State<WorkInfoPage> {
   final List<ShareOpt> list = [
     ShareOpt(
         title: '微信',
-        img: 'assets/images/icon_wechat.jpg',
+        img: 'dep/images/icon_wechat.jpg',
         shareType: ShareType.SESSION,
         doAction: (shareType, shareInfo) async {
           var model = _getShareModel(shareType, shareInfo);
@@ -78,7 +78,7 @@ class _WorkInfoPageState extends State<WorkInfoPage> {
         }),
     ShareOpt(
         title: '朋友圈',
-        img: 'assets/images/icon_wechat_moments.jpg',
+        img: 'dep/images/icon_wechat_moments.jpg',
         shareType: ShareType.TIMELINE,
         doAction: (shareType, shareInfo) {
           var model = _getShareModel(shareType, shareInfo);
@@ -86,12 +86,12 @@ class _WorkInfoPageState extends State<WorkInfoPage> {
         }),
     ShareOpt(
         title: '复制',
-        img: 'assets/images/icon_copy.png',
+        img: 'dep/images/icon_copy.png',
         shareType: ShareType.COPY_LINK,
         doAction: (shareType, shareInfo) {}),
     ShareOpt(
         title: '链接',
-        img: 'assets/images/icon_copylink.png',
+        img: 'dep/images/icon_copylink.png',
         shareType: ShareType.COPY_LINK,
         doAction: (shareType, shareInfo) {
           if (shareType == ShareType.COPY_LINK) {

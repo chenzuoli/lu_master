@@ -146,7 +146,7 @@ class _AddPhotographyPageState extends State<AddPhotographyPage> {
     return SelectTextItem(
       title: Constant.PHOTOGRAPHY_TAG_NAME,
       titleStyle: TextStyle(fontSize: 15, color: Colors.grey[600]),
-      imageName: "assets/images/tag.png",
+      imageName: "dep/images/tag.png",
       height: 60,
       width: 16,
       content: this.tag != null ? "# " + this.tag['tag_name'] : "",

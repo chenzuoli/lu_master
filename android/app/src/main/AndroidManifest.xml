@@ -10,6 +10,8 @@
         android:label="邻家宠物"
         android:icon="@mipmap/app_name"
         android:requestLegacyExternalStorage="true">
+        <!-- 配置定位Service -->
+        <service android:name="com.amap.api.location.APSService"/>
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
@@ -34,6 +36,14 @@
               android:name="io.flutter.embedding.android.SplashScreenDrawable"
               android:resource="@drawable/launch_background"
               />
+            <!-- <meta-data
+              android:name="com.baidu.lbsapi.API_KEY"
+              android:value="AfRwG35HPe3xoEr8HSf8axopYEuPX6iq" 
+              /> -->
+              <meta-data
+                android:name="com.amap.api.v2.apikey"
+                android:value="7387ce8b784dac4b610fa8d7b702b959" 
+                />
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
@@ -49,4 +59,15 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+    <!--粗略定位-->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!--精确定位-->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <!--申请调用A-GPS模块-->
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+    <!--用于获取wifi的获取权限，wifi信息会用来进行网络定位-->
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <!--用于写入缓存数据到扩展存储卡-->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 </manifest>

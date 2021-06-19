@@ -8,7 +8,6 @@ import 'package:lu_master/util/util.dart';
 import 'competition_model.dart';
 import 'package:lu_master/util/select_text_item.dart';
 
-
 /// 添加作品
 ///
 
@@ -98,7 +97,6 @@ class _AddWorkPageState extends State<AddWorkPage> {
         ));
   }
 
-  
   Future<List<dynamic>> _getTags() async {
     // 获取所有tag_id
     var response =
@@ -113,7 +111,6 @@ class _AddWorkPageState extends State<AddWorkPage> {
     }
     return res;
   }
-
 
   Widget getTags() {
     return Container(
@@ -145,9 +142,7 @@ class _AddWorkPageState extends State<AddWorkPage> {
           return Container(
               height: 700,
               child: SingleChildScrollView(
-                child: Column(children: [
-                  getTags()
-                ]),
+                child: Column(children: [getTags()]),
               ));
         });
     setState(() {});
@@ -157,7 +152,7 @@ class _AddWorkPageState extends State<AddWorkPage> {
     return SelectTextItem(
       title: Constant.PHOTOGRAPHY_TAG_NAME,
       titleStyle: TextStyle(fontSize: 15, color: Colors.grey[600]),
-      imageName: "assets/images/tag.png",
+      imageName: "dep/images/tag.png",
       height: 60,
       width: 16,
       content: this.tag != null ? "# " + this.tag['tag_name'] : "",

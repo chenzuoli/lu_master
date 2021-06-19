@@ -68,7 +68,7 @@ class _SettingPageState extends State<SettingPage> {
                       }));
                     }),
                 SelectTextItem(
-                  imageName: 'assets/images/lock.png',
+                  imageName: 'dep/images/lock.png',
                   title: Constant.PASSWORD_PAGE_NAME,
                   onTap: () {
                     Navigator.of(context)
