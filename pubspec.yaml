@@ -49,7 +49,9 @@ dependencies:
   amap_location_flutter_plugin:
     git:
       url: https://github.com/amap-demo/amap-location-flutter.git
-  
+  # amap_all_fluttify: ^0.17.0
+  decorated_flutter: ^0.24.8
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

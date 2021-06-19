@@ -87,6 +87,15 @@ class _SettingPageState extends State<SettingPage> {
                         return FeedbackPage(user);
                       }));
                     }),
+                SelectTextItem(
+                  title: Constant.GET_COMMUNITY,
+                  onTap: () {
+                    Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (context) {
+                      // return LocationSearchPage(Constant.GET_COMMUNITY);
+                    }));
+                  },
+                ),
               ],
             ),
     );

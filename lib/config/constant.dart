@@ -68,6 +68,8 @@ class Constant {
   static const String NICK_NAME = "噜噜名";
   static const String PHONE_NUMBER = "手机号";
 
+  static const String GET_COMMUNITY = "更新小区";
+
   static const String CONTENT_TYPE_JSON = "application/json";
   static const String CONTENT_TYPE_FORM = "application/x-www-form-urlencoded";
   static const String CONTENT_TYPE_TEXT = "text/plain";
