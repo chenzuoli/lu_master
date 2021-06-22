@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'map_choice_point.dartbk';
+import 'map_choice_point.dart';
 
 class LocationSearchPage extends StatefulWidget {
   String title;

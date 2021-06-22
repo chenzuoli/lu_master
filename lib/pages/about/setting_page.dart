@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:lu_master/pages/about/feedback/feedback_page.dart';
 import 'package:lu_master/pages/about/password.dart';
+import 'package:lu_master/pages/test/location/search.dart';
 import 'package:lu_master/util/select_text_item.dart';
 import 'package:lu_master/config/constant.dart';
 import 'package:lu_master/util/dio_util.dart';
@@ -92,7 +93,7 @@ class _SettingPageState extends State<SettingPage> {
                   onTap: () {
                     Navigator.of(context)
                         .push(MaterialPageRoute(builder: (context) {
-                      // return LocationSearchPage(Constant.GET_COMMUNITY);
+                      return LocationSearchPage(Constant.GET_COMMUNITY);
                     }));
                   },
                 ),

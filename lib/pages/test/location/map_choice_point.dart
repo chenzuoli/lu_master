@@ -4,13 +4,9 @@ import 'package:decorated_flutter/decorated_flutter.dart';
 import 'package:flutter/services.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-/**
- * 地图选择点控件
- */
+/// 地图选择点控件
 class MapChoicePoint extends StatefulWidget {
-  /**
-   * 选择点后回调事件
-   */
+  /// 选择点后回调事件
   final Function onChoicePoint;
   MapChoicePoint(this.onChoicePoint);
   @override
@@ -36,9 +32,7 @@ class _MapChoicePointState extends State<MapChoicePoint>
 
   //----方法----
 
-  /**
-   * 获取权限
-   */
+  /// 获取权限
   Future<bool> _requestPermission() async {
     //获取当前的权限
     var status = await Permission.location.status;
@@ -56,9 +50,7 @@ class _MapChoicePointState extends State<MapChoicePoint>
     }
   }
 
-  /**
-   * 根据搜索条件选出想要的点
-   */
+  /// 根据搜索条件选出想要的点
   Future _openModalBottomSheet() async {
     //收起键盘
     FocusScope.of(context).requestFocus(FocusNode());

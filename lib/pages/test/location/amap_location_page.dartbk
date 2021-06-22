@@ -5,6 +5,12 @@ import 'package:permission_handler/permission_handler.dart';
 import 'dart:async';
 import 'dart:io';
 
+///依赖
+///# 高德Flutter定位插件
+// # amap_location_flutter_plugin:
+// #   git:
+// #     url: https://github.com/amap-demo/amap-location-flutter.git
+///
 class LocationPage extends StatefulWidget {
   @override
   _LocationPageState createState() => _LocationPageState();
