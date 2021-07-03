@@ -1,66 +1,169 @@
 PODS:
+  - AMap3DMap (7.5.0):
+    - AMapFoundation (~> 1.6.3)
+  - amap_all_fluttify (0.0.1):
+    - Flutter
+  - amap_core_fluttify (0.0.1):
+    - AMapFoundation (~> 1.6)
+    - Flutter
+    - foundation_fluttify
+  - amap_location_fluttify (0.0.1):
+    - amap_core_fluttify
+    - AMapLocation (~> 2.6.3)
+    - Flutter
+    - foundation_fluttify
+  - amap_map_fluttify (0.0.1):
+    - AMap3DMap (~> 7.5.0)
+    - amap_core_fluttify
+    - Flutter
+    - foundation_fluttify
+    - url_launcher
+  - amap_search_fluttify (0.0.1):
+    - amap_core_fluttify
+    - AMapSearch (~> 6.9.0)
+    - Flutter
+    - foundation_fluttify
+  - AMapFoundation (1.6.7)
+  - AMapLocation (2.6.8):
+    - AMapFoundation (~> 1.6.4)
+  - AMapSearch (6.9.0):
+    - AMapFoundation (~> 1.4)
   - connectivity (0.0.1):
     - Flutter
     - Reachability
+  - core_location_fluttify (0.0.1):
+    - Flutter
   - Flutter (1.0.0)
   - fluttertoast (0.0.2):
     - Flutter
     - Toast
+  - fluwx (0.0.1):
+    - Flutter
+    - WechatOpenSDK (= 1.8.7.1)
+  - FMDB (2.7.5):
+    - FMDB/standard (= 2.7.5)
+  - FMDB/standard (2.7.5)
+  - foundation_fluttify (0.0.1):
+    - Flutter
   - image_cropper (0.0.3):
     - Flutter
     - TOCropViewController (~> 2.5.4)
   - image_picker (0.0.1):
     - Flutter
-  - "permission_handler (5.0.1+1)":
+  - path_provider (0.0.1):
+    - Flutter
+  - "permission_handler (5.1.0+2)":
     - Flutter
   - Reachability (3.2)
   - shared_preferences (0.0.1):
     - Flutter
+  - sqflite (0.0.2):
+    - Flutter
+    - FMDB (>= 2.7.5)
   - Toast (4.0.0)
   - TOCropViewController (2.5.5)
+  - url_launcher (0.0.1):
+    - Flutter
+  - WechatOpenSDK (1.8.7.1)
 
 DEPENDENCIES:
+  - amap_all_fluttify (from `.symlinks/plugins/amap_all_fluttify/ios`)
+  - amap_core_fluttify (from `.symlinks/plugins/amap_core_fluttify/ios`)
+  - amap_location_fluttify (from `.symlinks/plugins/amap_location_fluttify/ios`)
+  - amap_map_fluttify (from `.symlinks/plugins/amap_map_fluttify/ios`)
+  - amap_search_fluttify (from `.symlinks/plugins/amap_search_fluttify/ios`)
   - connectivity (from `.symlinks/plugins/connectivity/ios`)
+  - core_location_fluttify (from `.symlinks/plugins/core_location_fluttify/ios`)
   - Flutter (from `Flutter`)
   - fluttertoast (from `.symlinks/plugins/fluttertoast/ios`)
+  - fluwx (from `.symlinks/plugins/fluwx/ios`)
+  - foundation_fluttify (from `.symlinks/plugins/foundation_fluttify/ios`)
   - image_cropper (from `.symlinks/plugins/image_cropper/ios`)
   - image_picker (from `.symlinks/plugins/image_picker/ios`)
+  - path_provider (from `.symlinks/plugins/path_provider/ios`)
   - permission_handler (from `.symlinks/plugins/permission_handler/ios`)
   - shared_preferences (from `.symlinks/plugins/shared_preferences/ios`)
+  - sqflite (from `.symlinks/plugins/sqflite/ios`)
+  - url_launcher (from `.symlinks/plugins/url_launcher/ios`)
 
 SPEC REPOS:
   trunk:
+    - AMap3DMap
+    - AMapFoundation
+    - AMapLocation
+    - AMapSearch
+    - FMDB
     - Reachability
     - Toast
     - TOCropViewController
+    - WechatOpenSDK
 
 EXTERNAL SOURCES:
+  amap_all_fluttify:
+    :path: ".symlinks/plugins/amap_all_fluttify/ios"
+  amap_core_fluttify:
+    :path: ".symlinks/plugins/amap_core_fluttify/ios"
+  amap_location_fluttify:
+    :path: ".symlinks/plugins/amap_location_fluttify/ios"
+  amap_map_fluttify:
+    :path: ".symlinks/plugins/amap_map_fluttify/ios"
+  amap_search_fluttify:
+    :path: ".symlinks/plugins/amap_search_fluttify/ios"
   connectivity:
     :path: ".symlinks/plugins/connectivity/ios"
+  core_location_fluttify:
+    :path: ".symlinks/plugins/core_location_fluttify/ios"
   Flutter:
     :path: Flutter
   fluttertoast:
     :path: ".symlinks/plugins/fluttertoast/ios"
+  fluwx:
+    :path: ".symlinks/plugins/fluwx/ios"
+  foundation_fluttify:
+    :path: ".symlinks/plugins/foundation_fluttify/ios"
   image_cropper:
     :path: ".symlinks/plugins/image_cropper/ios"
   image_picker:
     :path: ".symlinks/plugins/image_picker/ios"
+  path_provider:
+    :path: ".symlinks/plugins/path_provider/ios"
   permission_handler:
     :path: ".symlinks/plugins/permission_handler/ios"
   shared_preferences:
     :path: ".symlinks/plugins/shared_preferences/ios"
+  sqflite:
+    :path: ".symlinks/plugins/sqflite/ios"
+  url_launcher:
+    :path: ".symlinks/plugins/url_launcher/ios"
 
 SPEC CHECKSUMS:
+  AMap3DMap: fc7c911f5cf079d544ad7faec256c9554cbbb202
+  amap_all_fluttify: 40f1276b77c4f3377c216ffb6f4f556d9a195113
+  amap_core_fluttify: bc2e4245c6a6d869727ed16b009a9fa3dbefcf4a
+  amap_location_fluttify: 2c842141f7890c620a95696fe902ad2a4a6aeaf5
+  amap_map_fluttify: 176c1c6f07f59564a0e7da0e30dada7da56b99aa
+  amap_search_fluttify: ed2c9edb9deb9561a39fda6ddb29017e77f0f8e3
+  AMapFoundation: c7da72b42a713f1429c88af1858d623dde88934b
+  AMapLocation: dad27669c4ca68e395ce7532ff614b7d4d45f7b7
+  AMapSearch: af02822537e55b85a4752e9df5c19e4b9da82031
   connectivity: c4130b2985d4ef6fd26f9702e886bd5260681467
+  core_location_fluttify: 24cc9dcd986ac7059916632d2cb3babb1568ff61
   Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
   fluttertoast: 6122fa75143e992b1d3470f61000f591a798cc58
+  fluwx: 07a55ed66bf3a4961e836a2a411b02dcada32902
+  FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
+  foundation_fluttify: 0c45145e3fad1fb99188e4979daed5b24cd9b278
   image_cropper: c8f9b4157933c7bb965a66d1c5e6c8fd408c6eb4
   image_picker: 9c3312491f862b28d21ecd8fdf0ee14e601b3f09
-  permission_handler: eac8e15b4a1a3fba55b761d19f3f4e6b005d15b6
+  path_provider: abfe2b5c733d04e238b0d8691db0cfd63a27a93c
+  permission_handler: ccb20a9fad0ee9b1314a52b70b76b473c5f8dab0
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
   shared_preferences: af6bfa751691cdc24be3045c43ec037377ada40d
+  sqflite: 6d358c025f5b867b29ed92fc697fd34924e11904
   Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
   TOCropViewController: da59f531f8ac8a94ef6d6c0fc34009350f9e8bfe
+  url_launcher: 6fef411d543ceb26efce54b05a0a40bfd74cbbef
+  WechatOpenSDK: 6a4d1436c15b3b5fe2a0bd383f3046010186da44
 
 PODFILE CHECKSUM: adb00cec7b0eabb3be819164c29b992d03802cb4
 
