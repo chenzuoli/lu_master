@@ -287,14 +287,14 @@ class _CommentPageState extends State<CommentPage> {
           // 分享按钮
           _shareComment(),
 
-          RaisedButton(
-              child: Text("分享"),
-              onPressed: () {
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) {
-                  return ShareMiniProgramPage();
-                }));
-              }),
+          // RaisedButton(
+          //     child: Text("分享"),
+          //     onPressed: () {
+          //       Navigator.of(context)
+          //           .push(MaterialPageRoute(builder: (context) {
+          //         return ShareMiniProgramPage();
+          //       }));
+          //     }),
 
           // 评论
           SelectTextItem(
@@ -453,7 +453,10 @@ class _CommentPageState extends State<CommentPage> {
             context: context,
             builder: (BuildContext context) {
               return ShareWidget(
-                ShareInfo(this.item.subject, this.item.url,
+                // ShareInfo(this.item.subject, this.item.url,
+                //     img: this.item.url, describe: "分享内容"),
+                ShareInfo(this.item.subject,
+                    Constant.SHARE_MOMENTS_URL + this.item.id.toString(),
                     img: this.item.url, describe: "分享内容"),
                 list: this.list,
               );

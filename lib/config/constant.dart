@@ -89,6 +89,8 @@ class Constant {
   static const String NEW_PASSWORD = "新密码";
   static const String CONFIRM_PASSWORD = "确认密码";
   static const String UPDATE_BTN_NAME = "更新";
+
+  static const String SHARE_MOMENTS_URL = "https://pipilong.pet:7449/photography/get_moments?id=";
 }
 
 class Data {
