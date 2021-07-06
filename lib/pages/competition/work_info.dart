@@ -162,7 +162,10 @@ class _WorkInfoPageState extends State<WorkInfoPage> {
             context: context,
             builder: (BuildContext context) {
               return ShareWidget(
-                ShareInfo(this.work.subject, this.work.url,
+                // ShareInfo(this.work.subject, this.work.url,
+                //     img: this.work.url, describe: "分享内容"),
+                ShareInfo(this.work.subject,
+                    Constant.SHARE_COMPETITION_WORK_URL + this.work.id.toString(),
                     img: this.work.url, describe: "分享内容"),
                 list: this.list,
               );

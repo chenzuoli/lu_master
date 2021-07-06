@@ -91,6 +91,7 @@ class Constant {
   static const String UPDATE_BTN_NAME = "更新";
 
   static const String SHARE_MOMENTS_URL = "https://pipilong.pet:7449/photography/get_moments?id=";
+  static const String SHARE_COMPETITION_WORK_URL = "https://pipilong.pet:7449/photography/competition_work?id=";
 }
 
 class Data {
