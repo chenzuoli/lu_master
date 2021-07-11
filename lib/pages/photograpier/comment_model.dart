@@ -285,7 +285,7 @@ class _CommentPageState extends State<CommentPage> {
               : Container(),
 
           // 分享按钮
-          _shareComment(),
+          // _shareComment(),
 
           // RaisedButton(
           //     child: Text("分享"),
